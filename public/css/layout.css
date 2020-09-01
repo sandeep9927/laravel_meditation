@@ -1,0 +1,98 @@
+#overlay {
+          position: absolute; /* Sit on top of the page content */
+          display: block; /* Hidden by default */
+          width: 100%; /* Full width (cover the whole page) */
+          height: 100%; /* Full height (cover the whole page) */
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+          cursor: pointer; /* Add a pointer on hover */
+        }
+        .banner-img {
+          position: relative;
+          color: white;
+        }
+        .banner-img img{
+            height: 100vh;
+            width: 100%;
+        }
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .slider-title {
+            margin-top: 10%;
+            margin-left: 10%;
+            width: 75%;
+        }
+        .slider-title h1 {
+            z-index: 5;
+            font-size: 70px;
+            line-height: 30px;
+            color: rgb(255, 255, 255);
+            font-family: "NunitoBlack_1";
+            visibility: inherit;
+            transition: none 0s ease 0s;
+            text-align: center;
+            border-width: 0px;
+            margin: 0px;
+            padding: 0px;
+            letter-spacing: 0px;
+            font-weight: 700;
+            white-space: nowrap;
+            min-height: 0px;
+            min-width: 0px;
+            transform: translate3d(0px, 0px, 0px);
+            transform-origin: 50% 50% 0px;
+        }
+        .slider-title h2.slider-h2 {
+            z-index: 6;
+            font-family: "PlayfairDisplay-Bold";
+            color: #fff;
+            font-size: 30px;
+            line-height: 78px;
+            text-transform: uppercase;
+            font-variant: lining-nums;
+            visibility: inherit;
+            transition: none 0s ease 0s;
+            text-align: center;
+            border-width: 0px;
+            margin: 0px;
+            padding: 0px;
+            letter-spacing: 2px;
+            font-weight: 400;
+            white-space: nowrap;
+            min-height: 0px;
+            min-width: 0px;
+            max-height: none;
+            max-width: none;
+            transform: translate3d(0px, 0px, 0px);
+            transform-origin: 50% 50% 0px;
+        }
+        .slider-title h5.slider-h5 {
+            z-index: 7;
+            font-family: "Nunito";
+            color: #fff;
+            line-height: 27px;
+            font-weight: 400;
+            letter-spacing: 0px;
+            text-transform: uppercase;
+            font-size: 18px;
+            visibility: inherit;
+            transition: none 0s ease 0s;
+            text-align: center;
+            border-width: 0px;
+            margin: 0px;
+            padding: 0px;
+            white-space: nowrap;
+            min-height: 0px;
+            min-width: 0px;
+            max-height: none;
+            max-width: none;
+            transform: translate3d(0px, 0px, 0px);
+            transform-origin: 50% 50% 0px;
+        }
