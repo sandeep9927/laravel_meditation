@@ -14,7 +14,7 @@ class FaqMgmtController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.create_faq');
     }
 
     /**
@@ -22,9 +22,16 @@ class FaqMgmtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $faq_mgmt = new FaqMgmt;
+        $faq_mgmt->title = $request->input('name');
+        $faq_mgmt->description = $request->input('description');
+        $faq_mgmt->faq_cat_id = $request->input('cat');
+        $faq_mgmt->status = $request->input('status');
+        // dd($faq_mgmt);
+        $faq_mgmt->save();
+        return redirect('create_faq')->with('message','FAQ Successfully Created');
     }
 
     /**
@@ -35,7 +42,8 @@ class FaqMgmtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    
     }
 
     /**
@@ -44,9 +52,10 @@ class FaqMgmtController extends Controller
      * @param  \App\FaqMgmt  $faqMgmt
      * @return \Illuminate\Http\Response
      */
-    public function show(FaqMgmt $faqMgmt)
+    public function show()
     {
-        //
+        $show_faq = FaqMgmt::all();
+        return view('admin.faqs_mgmt',compact('show_faq'));
     }
 
     /**
@@ -55,9 +64,10 @@ class FaqMgmtController extends Controller
      * @param  \App\FaqMgmt  $faqMgmt
      * @return \Illuminate\Http\Response
      */
-    public function edit(FaqMgmt $faqMgmt)
+    public function edit($id)
     {
-        //
+        $edit_faq = FaqMgmt::find($id);
+        return view('admin.edit_faq',compact('edit_faq'));
     }
 
     /**
@@ -67,9 +77,16 @@ class FaqMgmtController extends Controller
      * @param  \App\FaqMgmt  $faqMgmt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FaqMgmt $faqMgmt)
+    public function update(Request $request,$id)
     {
-        //
+        $update_faq = FaqMgmt::find($id);
+        $update_faq->title =$request->input('name');
+        $update_faq->description =$request->input('description');
+        $update_faq->status =$request->input('status');
+        $update_faq->faq_cat_id =$request->input('cat');
+        // dd($update_faq);
+        $update_faq->save();
+        return redirect('show_faq')->with('message','FAQ Successfully Updated');
     }
 
     /**
@@ -78,8 +95,10 @@ class FaqMgmtController extends Controller
      * @param  \App\FaqMgmt  $faqMgmt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FaqMgmt $faqMgmt)
+    public function destroy($id)
     {
-        //
+        $delete_faq = FaqMgmt::find($id);
+        $delete_faq->delete();
+        return redirect('show_faq')->with('message','FAQ Successfully Deleted');
     }
 }

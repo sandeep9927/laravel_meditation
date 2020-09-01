@@ -9,6 +9,16 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Mail;
+use App\Mail\verifyUserByEmail;
+
+
+
 class RegisterController extends Controller
 {
     /*
@@ -64,11 +74,56 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role_id' => 4,
             'password' => Hash::make($data['password']),
+            'verifyToken'=> Str::random(25),
         ]);
+        mail::to($user->email)->send(new verifyUserByEmail($user));
+        return $user;
     }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+        Auth::logout();
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+        return redirect('login')->with('message','Check Your Email To verify Account');
+
+
+        // return $request->wantsJson()
+        //             ? new Response('', 201)
+        //             : redirect($this->redirectPath());
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        //
+    }
+
+    public function verifyUser($email,$token){
+        $user = User::where(['email'=>$email,'verifyToken'=>$token])->first();
+        if($user){
+            $user->verifyToken ='';
+            $user->status=1;
+            if($user->save()){
+                return redirect('login')->with('message','Your Account Successfully Verified');
+            }else{
+                return redirect('login')->with('message','Invalid Token or Email');
+            }
+        
+    }else{
+        return redirect('login')->with('message','Invalid Token or Email');
+    }
+    }
+   
 }
+

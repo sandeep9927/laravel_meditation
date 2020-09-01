@@ -14,7 +14,7 @@ class StoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.create_story');
     }
 
     /**
@@ -22,9 +22,19 @@ class StoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $story = new Story;
+        $story->title = $request->input('title');
+        $story->image = $request->input('image');
+        $story->short_description = $request->input('short_description');
+        $story->description = $request->input('description');
+        $story->writer_id = $request->input('writer');
+        $story->dep_id = $request->input('department');
+        $story->status = $request->input('status');
+        // dd($story);
+        $story->save();
+        return redirect('create_story')->with('message','Story Successfully Created');
     }
 
     /**
@@ -44,9 +54,10 @@ class StoryController extends Controller
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function show(Story $story)
-    {
-        //
+    public function show()
+    {   
+        $story = Story::all();
+        return view('admin.story_mgmt',compact('story'));
     }
 
     /**
@@ -55,9 +66,10 @@ class StoryController extends Controller
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function edit(Story $story)
+    public function edit($id)
     {
-        //
+        $edit_story = Story::find($id);
+        return view('admin.story_edit',compact('edit_story'));
     }
 
     /**
@@ -67,9 +79,26 @@ class StoryController extends Controller
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Story $story)
+    public function update(Request $request,$id)
     {
-        //
+        $update_story = Story::find($id);
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $update_story->title = $request->input('title');
+        $update_story->image = $filename;
+        $update_story->short_description = $request->input('short_description');
+        $update_story->description = $request->input('description');
+        $update_story->status = $request->input('status');
+        $update_story->writer_id = $request->input('writer');
+        $update_story->dep_id = $request->input('department');
+        // dd($update_story);
+        $update_story->save();
+        return redirect("story/$update_story->id/edit")->with('message','Story Successfully Updated');
     }
 
     /**
@@ -80,6 +109,6 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
-        //
+        
     }
 }

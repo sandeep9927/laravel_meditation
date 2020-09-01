@@ -19,6 +19,7 @@ class CreateStoriesTable extends Migration
             $table->text('image');
             $table->longText('short_description');
             $table->longText('description');
+            $table->string('status')->nullable();
             $table->bigInteger('writer_id')->unsigned();
             $table->bigInteger('dep_id')->unsigned();
             $table->timestamps();
