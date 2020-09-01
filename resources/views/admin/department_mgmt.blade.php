@@ -3,6 +3,9 @@
 @section('content')
 <div>
   <h2>Department Management</h2>
+  @if(Session::get('message'))
+      <p class="alert alert-success">{{Session('message')}}</p>
+    @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -35,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Writer</button>
+            <a class="btn btn-primary" href="{{url('/department/create')}}">Create Department</a>
           </div>
         </div>
         <table class="table">
@@ -46,17 +49,21 @@
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Action</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><?php $count=1;?>
+              @foreach($departments as $department)
+              
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
+                <th scope="row">{{$count++}}</th>
+                <td>{{$department->title}}</td>
+                <td>{{$department->status}}</td>
+                <td>{{$department->updated_at}}</td>
+                <td><a class="btn btn-primary" href="{{url("/department/$department->id/edit")}}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{{url("/department/$department->id/delete")}}">Delete</a></td>
               </tr>
-            
+            @endforeach
               
             </tbody>
           </table>

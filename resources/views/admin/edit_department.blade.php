@@ -1,17 +1,18 @@
  @extends('layouts.admin_panel')
-  @section('title','create department')
+  @section('title','edit department')
   @section('content')
   <div class="col-sm-6">
-      <form method="post" action="/department">
+    
+      <form method="post" action="{{url("department/$departments->id")}}">
         @csrf
           <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
-            <input type="text" class="form-control" name="title" aria-describedby="nameHelp" placeholder="Enter Title">
+            <input type="text" class="form-control" name="title" value="{{$departments->title}}" aria-describedby="nameHelp" placeholder="Enter Title">
           </div>
           
           <div class="form-group">
             <label for="exampleInputEmail1">Status</label>
-            <select class="custom-select" name="status">
+            <select class="custom-select" name="status" value="$departments->status">
                 <option selected >Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
