@@ -51,9 +51,12 @@ Route::get('/writer_mgmt', function () {
     return view('admin.writer_mgmt');
 });
 
-Route::get('/dep_mgmt', function () {
-    return view('admin.department_mgmt');
-});
+Route::get('/department', 'DepartmentController@index');
+Route::post('/department', 'DepartmentController@store');
+Route::get('/department/create','DepartmentController@create');
+Route::get('/department/{department}/edit','DepartmentController@edit');
+Route::get('/department/{department}/delete','DepartmentController@destroy');
+Route::post('/department/{department}','DepartmentController@update');
 
 Route::get('/story_mgmt', function () {
     return view('admin.story_mgmt');
@@ -95,7 +98,6 @@ Route::view('create_writer', 'admin.create_writer');
 Route::view('cms_user', 'admin.cms_user');
 Route::view('site_user', 'admin.site_user');
 Route::view('site_user', 'admin.site_user');
-Route::view('create_department', 'admin.create_department');
 Route::view('create_story', 'admin.create_story');
 Route::view('create_faq', 'admin.create_faq_cat');
 Route::view('create_bie', 'admin.create_bie');

@@ -13,8 +13,9 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $departments = Department::all();
+        return view('admin.department_mgmt',compact('departments'));
     }
 
     /**
@@ -24,7 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create_department');
     }
 
     /**
@@ -35,7 +36,15 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dump(request()->all());
+        $department = new Department();
+        $department->title = request('title');
+        $department->status = request('status');
+
+        $department->save();
+
+        return redirect('/department');
+
     }
 
     /**
@@ -46,7 +55,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +64,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        //
+        $departments = Department::find($id);
+        return view('admin.edit_department', compact('departments'));
     }
 
     /**
@@ -67,9 +77,14 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, $id)
     {
-        //
+        $departments = Department::find($id);
+        $departments->title = $request->input('title');
+        $departments->status = $request->input('status');
+        $departments->save();
+        return redirect('/department')->with('message','Department successfully updated');
+
     }
 
     /**
@@ -78,8 +93,11 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $delete_department = Department::find($id);
+        $delete_department->delete();
+        return redirect('/department')->with('message','Department successfully deleted');
+
     }
 }
