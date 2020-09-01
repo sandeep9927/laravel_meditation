@@ -16,9 +16,9 @@ class CreateFaqMgmtsTable extends Migration
         Schema::create('faq_mgmts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('short_description');
-            $table->longText('description');
-            $table->boolean('status')->default(0);
+            $table->longText('short_description')->nullable();
+            $table->string('description');
+            $table->string('status');
             $table->bigInteger('faq_cat_id')->unsigned();
             $table->timestamps();
         });

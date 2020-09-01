@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// <---------------User Route----------->
 Route::get('/', function () {
     return view('welcome');
 });
@@ -90,19 +90,6 @@ Route::post('profile/update/{id}','UserProfileController@update');
 
 // <------------Admin Route---------->
 
-Route::view('create_user', 'admin.create_user');
-Route::view('create_writer', 'admin.create_writer');
-Route::view('cms_user', 'admin.cms_user');
-Route::view('site_user', 'admin.site_user');
-Route::view('site_user', 'admin.site_user');
-Route::view('create_department', 'admin.create_department');
-Route::view('create_story', 'admin.create_story');
-Route::view('create_faq', 'admin.create_faq_cat');
-Route::view('create_bie', 'admin.create_bie');
-Route::view('create_panel_cat', 'admin.create_panel_cat');
-Route::view('create_childe_cat', 'admin.create_childe_cat');
-Route::view('banner_management', 'admin.banner_management');
-Route::view('create_faq', 'admin.create_faq');
 
 Route::get('create_user','UserController@create');
 Route::post('store','UserController@store');
@@ -119,3 +106,16 @@ Route::get('writer_mgmt','AdminController@writer');
 Route::get('writer_mgmt/{id}/edit','AdminController@WriterEdit');
 Route::post('writer_mgmt/{id}/update','AdminController@WriterUpdate');
 Route::get('writer_mgmt/{id}/delete','AdminController@WriterUpdate');
+
+Route::get('create_story','StoryController@index');
+Route::post('store','StoryController@create');
+Route::get('show_story','StoryController@show');
+Route::get('story/{id}/edit','StoryController@edit');
+Route::post('story/{id}/update','StoryController@update');
+
+Route::get('create_faq','FaqMgmtController@index');
+Route::post('store_faq','FaqMgmtController@create');
+Route::get('show_faq','FaqMgmtController@show');
+Route::get('faq/{id}/edit','FaqMgmtController@edit');
+Route::post('faq/{id}/update','FaqMgmtController@update');
+Route::get('faq/{id}/delete','FaqMgmtController@destroy');

@@ -6,11 +6,11 @@
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-<form action="{{url('store')}}" method="POST">
+<form action="{{url("story/$edit_story->id/update")}}" method="POST">
   @csrf
         <div class="form-group">
           <label for="exampleFormControlInput1">Story title</label>
-          <input type="text" class="form-control"  placeholder="Title" name="title">
+        <input type="text" class="form-control"  value="{{$edit_story->title}}" name="title">
         </div>
     
         <div class="form-group">
@@ -35,16 +35,16 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image" aria-describedby="emailHelp" >
+            <input type="file" class="form-control" name="image" value="{{$edit_story->image}}">
             </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Short Description</label>
-          <textarea class="form-control" name="short_description" rows="3"></textarea>
+          <textarea class="form-control" name="short_description" rows="3">{{$edit_story->short_description}}</textarea>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Description</label>
               <div class="form-group">
-                 <textarea id="editor" class="form-control" name="description"></textarea>
+                 <textarea id="editor" class="form-control" name="description">{{$edit_story->description}}</textarea>
               </div>
         </div>
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

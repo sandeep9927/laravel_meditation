@@ -6,16 +6,16 @@
     @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
     @endif
-<form action="{{url('store_faq')}}" method="post">
+<form action="{{url("faq/$edit_faq->id/update")}}" method="post">
   @csrf
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>
-          <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+        <input type="text" class="form-control" name="name" value="{{$edit_faq->title}}">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
                 <div class="form-group">
-                   <textarea id="editor" class="form-control" name="description"></textarea>
+                   <textarea id="editor" class="form-control" name="description">{{$edit_faq->description}}</textarea>
                 </div>
           </div>
           <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

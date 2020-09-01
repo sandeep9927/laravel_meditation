@@ -138,6 +138,7 @@ class UserController extends Controller
         $user_data = [
             'email'=> $request->get('email'),
             'password'=> $request->get('password'),
+            'role_id'=>1,
         ];
         if(Auth::attempt($user_data)){
             return redirect('cms_user')->with('message','You have successfully logged in');

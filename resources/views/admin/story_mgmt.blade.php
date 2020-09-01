@@ -51,17 +51,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Abc</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
-              </tr>
-            
-              
+              @foreach ($story as $story)
+                  <tr>
+                    <td>{{$story->id}}</td>
+                    <td>{{$story->title}}</td>
+                    <td>{{$story->writer_id}}</td>
+                    <td>{{$story->dep_id}}</td>
+                    <td>{{$story->status}}</td>
+                    <td>{{$story->updated_at}}</td>
+                    <td>edit</td>
+                  </tr>
+              @endforeach
             </tbody>
           </table>
           
