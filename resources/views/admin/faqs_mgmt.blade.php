@@ -38,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create FAQ</button>
+            <a class="btn btn-primary" href="{{url('create_faq')}}">Create FAQ</a>
           </div>
         </div>
         <table class="table">
