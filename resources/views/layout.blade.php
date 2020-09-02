@@ -20,11 +20,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{{url('home')}}">Home <span class="sr-only">(current)</span></a>
+          <ul class="nav nav-pills">
+          <li class="nav-link">
+            <a style="color:white" class="{{Request::is('/') ? 'nav-link active' : '' }}" href="/">Home</a></li>
             
-            <a class="nav-item nav-link" href="{{url('post/create')}}">Create Post</a>
-            {{-- <a class="nav-item nav-link disabled" href="{{url('login')}}">Login</a>
-            <a class="nav-item nav-link disabled" href="{{url('users/create')}}">SingUp</a> --}}
             @if (Route::has('login'))
             
                 @auth
@@ -41,10 +40,13 @@
                       </form>
                   
                 @else
-                    <a class="nav-item nav-link" href="{{ route('login') }}">Login</a>
+                <li class="nav-link">
+                    <a style="color:white" class="{{Request::is('login') ? 'nav-link active' : '' }}" href="{{ route('login') }}">Login</a></li>
 
                     @if (Route::has('register'))
-                        <a class="nav-item nav-link" href="{{ route('register') }}">Register</a>
+                    <li class="nav-link">
+                        <a style="color:white" class="{{Request::is('register') ? 'nav-item nav-link active' : '' }}" href="{{ route('register') }}">Register</a></li>
+                  </ul>
                     @endif
                 @endauth
             

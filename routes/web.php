@@ -27,7 +27,7 @@ Route::get('/about', function () {
     return view('about_us');
 });
 
-Route::get('/working', function () {
+Route::get('/how_it_works', function () {
     return view('how_it_works');
 });
 
@@ -62,13 +62,12 @@ Route::get('/story_mgmt', function () {
     return view('admin.story_mgmt');
 });
 
-Route::get('/faq_mgmt', function () {
-    return view('admin.faqs_mgmt');
-});
-
-Route::get('/faq_cat_mgmt', function () {
-    return view('admin.faq_cat_mgmt');
-});
+Route::get('create_faq','FaqMgmtController@index');
+Route::post('store_faq','FaqMgmtController@create');
+Route::get('show_faq','FaqMgmtController@show');
+Route::get('faq/{id}/edit','FaqMgmtController@edit');
+Route::post('faq/{id}/update','FaqMgmtController@update');
+Route::get('faq/{id}/delete','FaqMgmtController@destroy');
 
 Route::get('/bie_mgmt', function () {
     return view('admin.bie_mgmt');
@@ -117,9 +116,3 @@ Route::get('show_story','StoryController@show');
 Route::get('story/{id}/edit','StoryController@edit');
 Route::post('story/{id}/update','StoryController@update');
 
-Route::get('create_faq','FaqMgmtController@index');
-Route::post('store_faq','FaqMgmtController@create');
-Route::get('show_faq','FaqMgmtController@show');
-Route::get('faq/{id}/edit','FaqMgmtController@edit');
-Route::post('faq/{id}/update','FaqMgmtController@update');
-Route::get('faq/{id}/delete','FaqMgmtController@destroy');

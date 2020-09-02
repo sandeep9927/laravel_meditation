@@ -102,6 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="dropdown-menu" style="background-color: white">
     <a class="dropdown-item" href="#" style="color: black">Writer Management</a>
     <a class="dropdown-item" href="{{url('/department')}}"style="color: black">Department Management</a>
+    <a class="dropdown-item" href="{{url('show_faq')}}"style="color: black">FAQ Management</a>
     <a class="dropdown-item" href="#" style="color: black">Something else here</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#" style="color: black">Separated link</a>
