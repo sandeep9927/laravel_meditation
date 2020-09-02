@@ -14,7 +14,9 @@ class StoryController extends Controller
      */
     public function index()
     {
-        return view('admin.create_story');
+        $story = Story::all();
+        return view('admin.story_mgmt',compact('story'));
+        // return view('admin.create_story');
     }
 
     /**
@@ -23,18 +25,11 @@ class StoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-        $story = new Story;
-        $story->title = $request->input('title');
-        $story->image = $request->input('image');
-        $story->short_description = $request->input('short_description');
-        $story->description = $request->input('description');
-        $story->writer_id = $request->input('writer');
-        $story->dep_id = $request->input('department');
-        $story->status = $request->input('status');
-        // dd($story);
-        $story->save();
-        return redirect('create_story')->with('message','Story Successfully Created');
+    {   
+        return view('admin.create_story');
+      
+        
+        
     }
 
     /**
@@ -45,7 +40,38 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required|max:255',
+            'writer'=> 'required',
+            'department' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $story = new Story;
+        $story->title = $request->title;
+        $story->image = $filename;
+        $story->short_description = $request->input('short_description');
+        $story->description = $request->input('description');
+        $story->writer_id = $request->input('writer');
+        $story->dep_id = $request->input('department');
+        $story->status = $request->input('status');
+        // dd($story);
+        ;
+        if($story->save()){
+            return redirect('stories')->with('message','Story Successfully Created');
+        }else{
+            return redirect('stories/create')->with('message','Failed to create story');
+        }
     }
 
     /**
@@ -97,8 +123,13 @@ class StoryController extends Controller
         $update_story->writer_id = $request->input('writer');
         $update_story->dep_id = $request->input('department');
         // dd($update_story);
-        $update_story->save();
-        return redirect("story/$update_story->id/edit")->with('message','Story Successfully Updated');
+        if($update_story->save()){
+            return redirect("stories")->with('message','Story Successfully Updated');
+        }else{
+            return redirect("stories/$update_story->id/edit")->with('message','Failed To Updated');
+        }
+        
+        
     }
 
     /**
@@ -109,6 +140,11 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
-        
+        $story->delete();
+        if($story->delete()){
+            return redirect("story/$update_story->id/edit")->with('message','Story Successfully Deleted');
+        }else{
+            return redirect("story/$update_story->id/edit")->with('message','Failed To Delete');
+        }
     }
 }

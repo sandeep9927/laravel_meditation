@@ -8,35 +8,30 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+   
     public function cms_user()
     {
         $users = User::all();//where('role_id', '=', 2);
         return view('admin.cms_user',compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.create_user');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $request->validate([
+            'username' => 'required|max:50',
+            'email' => 'email:rfc,dns',
+            'password' => 'password:api',
+            'role' => 'required',
+            'status' => 'required',
+            'number' => 'required',
+        ]);
+
         if($request->hasFile('image') && $request->image->isValid()){
             $extension = $request->image->extension();
             $filename = time()."_.".$extension;
@@ -55,42 +50,17 @@ class UserController extends Controller
         if($request->has('password')){
             $user->password = Hash::make($request->password);
         }
-        // dd($user);
         $user->save();
         
-        return redirect('create_user')->with('message','User Successfully Creaeted');
+        return redirect('users/create')->with('message','User Successfully Creaeted');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::find($id);
         return view('admin.edit_user',compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request,$id)
     {   if($request->hasFile('image') && $request->image->isValid()){
         $extension = $request->image->extension();
@@ -116,36 +86,13 @@ class UserController extends Controller
         $users = User::all()->where('role_id','=',4);
         return view('admin.site_user',compact('users'));
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $user_delete = User::find($id);
-        // dd($user_delete);
         $user_delete->delete();
         return redirect('site_user')->with('message','User Successfully Deleted');
 
     }
-
-    public function Admin(){
-        return view('admin.admin_login');
-    }
-    public function AdminLogin(Request $request){
-        $user_data = [
-            'email'=> $request->get('email'),
-            'password'=> $request->get('password'),
-            'role_id'=>1,
-        ];
-        if(Auth::attempt($user_data)){
-            return redirect('cms_user')->with('message','You have successfully logged in');
-        }else{
-            
-            return redirect('admin')->with('message','These credentials do not match our records.');
-        }
-    } 
 
 }

@@ -7,7 +7,7 @@
       <p class="alert alert-success">{{Session('message')}}</p>
     @endif
   <br>
-    <form>
+
         <div class="form-row align-items-center">
             <label for="">Search Title </label>
             <div>
@@ -69,7 +69,7 @@
           </table>
           
           
-      </form>
+
 </div>
 
 @endsection
