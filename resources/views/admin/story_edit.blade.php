@@ -6,7 +6,7 @@
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-<form action="{{url("story/$edit_story->id/update")}}" method="POST">
+<form action="{{url("stories/$edit_story->id/update")}}" method="POST">
   @csrf
         <div class="form-group">
           <label for="exampleFormControlInput1">Story title</label>

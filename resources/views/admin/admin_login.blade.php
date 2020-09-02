@@ -5,7 +5,7 @@
 
 <body>
     
-<form action="{{url('dashboard')}}" method="post">
+<form action="{{url('admin/dashboard')}}" method="post">
 
     @csrf
     <div id="login">

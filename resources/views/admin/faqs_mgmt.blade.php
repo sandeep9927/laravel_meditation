@@ -64,7 +64,7 @@
                 <td>{{$show->title}}</td>
                 <td>{{$show->status}}</td>
                 <td>{{$show->updated_at}}</td>
-              <td><a class="btn btn-primary" href="{{url("faq/$show->id/edit")}}">Edit</a></td>
+              <td><a class="btn btn-primary" href="{{url("faqs/$show->id/edit")}}">Edit</a></td>
               <td><a class="btn btn-danger" href="{{url("faq/$show->id/delete")}}">Delete</a></td>
               </tr>
               @endforeach

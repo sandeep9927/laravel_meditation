@@ -6,14 +6,14 @@
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
   <h2>Cms User</h2>
-    <form>
+   
         <div class="form-row align-items-center">
             <label for="">Role</label>
           <div class="col-auto my-1">
             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Role</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
+              <option selected>Active</option>
+              <option value="1">Inactive</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
@@ -53,10 +53,11 @@
               @foreach ($users as $user)
               <tr>
                 <th scope="row">{{$user->id}}</th>
+                
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->id}}</td>
-                <td>{{$user->id}}</td>
+                <td>{{$user->user_status}}</td>
+                <td>{{$user->role_id}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>edit</td>
               </tr> 
@@ -68,7 +69,7 @@
           </table>
           
           
-      </form>
+      
 </div>
 
 @endsection
