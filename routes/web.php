@@ -132,3 +132,17 @@ Route::get('faqs/{faq}','FaqMgmtController@show');
 Route::get('faqs/{id}/edit','FaqMgmtController@edit');
 Route::post('faqs/{id}/update','FaqMgmtController@update');
 Route::get('faq/{id}/delete','FaqMgmtController@destroy');
+
+
+//<---------------------FqaCatMgmtController--------------------->
+
+Route::resource('faqsCat', 'FaqCatMgmtController');
+
+//<----------------------BannerController------------------------->
+Route::resource('banners', 'BannerController');
+
+//<----------------------BlogController------------------------->
+Route::resource('blogs', 'BlogController');
+
+//<----------------------TechniqueController------------------------->
+Route::resource('techniques', 'TechniqueController');
