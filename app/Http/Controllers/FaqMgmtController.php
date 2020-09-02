@@ -11,12 +11,12 @@ class FaqMgmtController extends Controller
     public function index()
     {
         $show_faq = FaqMgmt::all();
-        return view('admin.faqs_mgmt',compact('show_faq'));
+        return view('admin.faqs.faqs_mgmt',compact('show_faq'));
     }
 
     public function create()
     {
-        return view('admin.create_faq'); 
+        return view('admin.faqs.create_faq'); 
     }
 
     public function store(Request $request)
@@ -40,13 +40,13 @@ class FaqMgmtController extends Controller
     public function show()
     {
         $show_faq = FaqMgmt::all();
-        return view('admin.faqs_mgmt',compact('show_faq'));
+        return view('admin.faqs.faqs_mgmt',compact('show_faq'));
     }
 
     public function edit($id)
     {
         $edit_faq = FaqMgmt::find($id);
-        return view('admin.edit_faq',compact('edit_faq'));
+        return view('admin.faqs.edit_faq',compact('edit_faq'));
     }
 
     public function update(Request $request,$id)

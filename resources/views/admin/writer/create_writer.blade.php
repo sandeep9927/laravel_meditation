@@ -6,11 +6,11 @@
     <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Name</label>
-          <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+        <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Enter Name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Last Name</label>
-            <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Last Name">
+            <input type="text" class="form-control" name="name"  placeholder="Last Name">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Description</label>
