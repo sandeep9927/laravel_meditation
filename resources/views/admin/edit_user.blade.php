@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','create user')
+@section('title','edit user')
 @section('content')
 <div class="col-sm-6">
   @if (Session::get('message'))

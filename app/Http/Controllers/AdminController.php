@@ -4,31 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function writer()
-    {
+   
+
+    public function index(){
         $writers = User::all()->where('role_id','=',3);
         return view('admin.writer_mgmt',compact('writers'));
     }
 
-    public function WriterEdit($id){
+    public function edit($id)
+    {
         $writer_edit = User::find($id);
         return view('admin.writer_edit',compact('writer_edit'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function WriterUpdate(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'username' => 'required|max:50',
+            'email' => 'email:rfc,dns',
+            'password' => 'password:api',
+            'role' => 'required',
+            'status' => 'required',
+            'number' => 'required',
+        ]);
+
         $writer_update = User::find($id);
 
         if($request->hasFile('image') && $request->image->isValid()){
@@ -45,64 +47,33 @@ class AdminController extends Controller
         $writer_update->user_status = $request->input('status');
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
-        // dd($writer_update);
         $writer_update->save();
-        return redirect("writer_mgmt/".$id."/edit")->with('message','Writer Successfully Updated');
+        return redirect("writers/".$id."/edit")->with('message','Writer Successfully Updated');
     }
 
     public function destroy($id)
     {
         $writer_delete = User::find($id);
-        // dd($user_delete);
         $writer_delete->delete();
-        return redirect('site_user')->with('message','Writer Successfully Deleted');
+        return redirect('writers')->with('message','Writer Successfully Deleted');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function admin(){
+        return view('admin.admin_login');
     }
+    public function adminlogin(Request $request){
+        $user_data = [
+            'email'=> $request->get('email'),
+            'password'=> $request->get('password'),
+            'role_id'=>1,
+        ];
+        if(Auth::attempt($user_data)){
+            return redirect('cms_user')->with('message','You have successfully logged in');
+        }else{
+            
+            return redirect('admin')->with('message','These credentials do not match our records.');
+        }
+    } 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    
 }

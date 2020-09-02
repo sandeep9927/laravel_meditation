@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','site user')
 @section('content')
 <div>
   

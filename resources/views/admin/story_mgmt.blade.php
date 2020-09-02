@@ -1,8 +1,11 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Stories')
 @section('content')
 <div>
   <h2>Story Management</h2>
+  @if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -35,7 +38,8 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Story</button>
+          <a class="btn btn-primary" href="{{url('stories/create')}}">Create Story</a>
+           
           </div>
         </div>
         <table class="table">
@@ -59,7 +63,7 @@
                     <td>{{$story->dep_id}}</td>
                     <td>{{$story->status}}</td>
                     <td>{{$story->updated_at}}</td>
-                    <td>edit</td>
+                    <td><a class="btn btn-primary" href="{{url("stories/$story->id/edit")}}">Edit</a></td>
                   </tr>
               @endforeach
             </tbody>

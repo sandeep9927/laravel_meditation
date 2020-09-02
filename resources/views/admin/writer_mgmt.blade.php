@@ -1,8 +1,11 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Writers')
 @section('content')
 <div>
   <h2>Writer Management</h2>
+  @if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -35,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Writer</button>
+          <a class="btn btn-primary" href="{{url('users/create')}}">Create_user</a>
           </div>
         </div>
         <table class="table">
@@ -60,8 +63,8 @@
               <td>{{$writer->mobile}}</td>
               <td>{{$writer->user_status}}</td>
               <td>{{$writer->updated_at}}</td>
-              <td><a class="btn btn-secondary" href="{{url("writer_mgmt/$writer->id/edit")}}">Edit</a> |
-              <a class="btn btn-danger" href="{{url("writer_mgmt/$writer->id/delete")}}">Delete</a></td>
+              <td><a class="btn btn-secondary" href="{{url("writers/$writer->id/edit")}}">Edit</a> |
+              <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
                 
               </tr>
               @endforeach
