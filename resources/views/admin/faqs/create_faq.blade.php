@@ -10,13 +10,13 @@
   @csrf
         <div class="form-group">
           <label for="">Title</label>
-          <input type="text" class="form-control" name="name"  placeholder="Enter Name">
+        <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Enter Name">
           @error('name')<p style="color:red">{{$message}}</p>@enderror
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
                 <div class="form-group">
-                   <textarea id="editor" class="form-control" name="description"></textarea>
+                <textarea id="editor" class="form-control" name="description">{{old('description')}}</textarea>
                    @error('description')<p style="color:red">{{$message}}</p>@enderror
                 </div>
           </div>

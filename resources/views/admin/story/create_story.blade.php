@@ -38,17 +38,17 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image" aria-describedby="emailHelp" >
+        <input type="file" class="form-control" name="image" value="{{old('image')}}" >
             </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Short Description</label>
-          <textarea class="form-control" name="short_description" rows="3"></textarea>
+        <textarea class="form-control" name="short_description" rows="3">{{old('short_description')}}</textarea>
           @error('short_description')<p style="color: red">{{$message}}</p>@enderror
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Description</label>
               <div class="form-group">
-                 <textarea id="editor" class="form-control" name="description"></textarea>
+                 <textarea id="editor" class="form-control" name="description">{{old('description')}}</textarea>
                  @error('description')<p style="color: red">{{$message}}</p>@enderror
               </div>
         </div>

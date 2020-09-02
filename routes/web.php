@@ -136,10 +136,8 @@ Route::get('faq/{id}/delete','FaqMgmtController@destroy');
 
 //<---------------------FqaCatMgmtController--------------------->
 
-Route::resource('faqsCat', 'FaqCatMgmtController');
+Route::resource('faqcats', 'FaqCatMgmtController');
 
-//<----------------------BannerController------------------------->
-Route::resource('banners', 'BannerController');
 
 //<----------------------BlogController------------------------->
 Route::resource('blogs', 'BlogController');

@@ -6,15 +6,15 @@
         @csrf
           <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
-            <input type="text" class="form-control" name="title" aria-describedby="nameHelp" placeholder="Enter Title">
+          <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="Enter Title">
             @error('title')<p style="color: red">{{$message}}</p>@enderror
           </div>
           
           <div class="form-group">
             <label for="exampleInputEmail1">Status</label>
             <select class="custom-select" name="status">
-                <option selected >Active</option>
-                <option value="Inactive">Inactive</option>
+                <option value="Active" {{ old('status') == "Active" ? 'selected' : '' }} >Active</option>
+                <option value="Inactive" {{ old('status') == "Inactive" ? 'selected' : '' }} >Inactive</option>
               </select>
               @error('status')<p style="color: red">{{$message}}</p>@enderror
               </div>

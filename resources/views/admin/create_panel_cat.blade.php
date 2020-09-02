@@ -6,17 +6,17 @@
     <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>
-          <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+          <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Enter Name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image" aria-describedby="emailHelp" >
+            <input type="file" class="form-control" name="image" value="{{old('image')}}" >
             </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Status</label>
-          <select class="custom-select">
-              <option selected>Active</option>
-              <option value="1">One</option>
+          <select class="custom-select" name="status">
+              <option value="Active" {{ old('status') == "Apple" ? 'selected' : '' }}>Active</option>
+              <option value="Inactive" {{ old('status') == "Apple" ? 'selected' : '' }}>Inactive</option>
             </select>
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
