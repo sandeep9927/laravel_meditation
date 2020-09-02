@@ -14,7 +14,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
+        $banners = Banner::all();
+        return view('admin.banner_mgmt',compact('banners'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create_banner');
     }
 
     /**
@@ -35,7 +36,26 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'title' => 'required|max:20',
+            'image' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $banner = new Banner();
+        $banner->title = request('title');
+        $banner->image = $filename;
+        $banner->status = request('status');
+        $banner->save();
+
+        return redirect('/banners');
     }
 
     /**
@@ -46,7 +66,7 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        //
+        return view('admin.banner_mgmt', compact('banner'));
     }
 
     /**
@@ -55,9 +75,10 @@ class BannerController extends Controller
      * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-        //
+        $banners = Banner::find($id);
+        return view('admin.edit_banner',compact('banners'));
     }
 
     /**
@@ -67,9 +88,28 @@ class BannerController extends Controller
      * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
-        //
+        $request -> validate([
+            'title' => 'required|max:20',
+            'image' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $banners = Banner::find($id);
+        $banners->title = $request['title'];
+        $banners->image = $filename;
+        $banners->status = $request['status'];
+        // dd($banners);
+        $banners->save();
+        return redirect('/banners')->with('message','Banner successfully updated');
     }
 
     /**

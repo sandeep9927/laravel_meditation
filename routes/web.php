@@ -58,10 +58,6 @@ Route::get('/department/{department}/edit','DepartmentController@edit');
 Route::get('/department/{department}/delete','DepartmentController@destroy');
 Route::post('/department/{department}','DepartmentController@update');
 
-Route::get('/story_mgmt', function () {
-    return view('admin.story_mgmt');
-});
-
 Route::get('create_faq','FaqMgmtController@index');
 Route::post('store_faq','FaqMgmtController@create');
 Route::get('show_faq','FaqMgmtController@show');
@@ -125,10 +121,13 @@ Route::post('stories/{id}/update','StoryController@update');
 
 // <--------------------FaqMgmtController---------------------->
 
-Route::get('faqs','FaqMgmtController@index');
+Route::get('faqs','FaqMgmtController@index')->name('faqs.index');
 Route::get('faqs/create','FaqMgmtController@create');
 Route::post('faqs','FaqMgmtController@store');
 Route::get('faqs/{faq}','FaqMgmtController@show');
 Route::get('faqs/{id}/edit','FaqMgmtController@edit');
 Route::post('faqs/{id}/update','FaqMgmtController@update');
 Route::get('faq/{id}/delete','FaqMgmtController@destroy');
+
+//<----------------------BannerController------------------------->
+Route::resource('banners', 'BannerController');
