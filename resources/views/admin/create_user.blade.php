@@ -60,7 +60,7 @@
           <label class="form-check-label" for="exampleCheck1">Notify User Of New Account</label>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Monile Number</label>
+            <label for="exampleInputEmail1">Mobile Number</label>
             <input type="text" class="form-control" name="number" placeholder="Enter Mobile Number">
             @error('number')<p style="color: red">{{$message}}</p>@enderror
           </div>

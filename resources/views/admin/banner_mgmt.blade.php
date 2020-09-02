@@ -3,6 +3,9 @@
 @section('content')
 <div>
   <h2>Banner Management</h2>
+  @if(Session::get('message'))
+      <p class="alert alert-success">{{Session('message')}}</p>
+    @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -35,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Banner</button>
+            <button type="submit" href= "{{route('banners.create')}}" class="btn btn-primary">Create Banner</button>
           </div>
         </div>
         <table class="table">
@@ -43,24 +46,23 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">Title</th>
-                <th scope="col">Page Name</th>
                 <th scope="col">Banner Image</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><?php $count=1?>
+            @foreach($banners as $banner)
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Image</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
+                <th scope="row">{{$count++}}</th>
+                <td>{{$banner->title}}</td>
+                <td>{{$banner->image}}</td>
+                <td>{{$banner->status}}</td>
+                <td>{{$banner->updated_at}}</td>
+                <td><a href="{{url("/banners/$banner->id/edit")}}">Edit</a></td>
               </tr>
-            
+            @endforeach
               
             </tbody>
           </table>
