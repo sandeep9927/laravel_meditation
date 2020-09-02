@@ -27,7 +27,7 @@ Route::get('/about', function () {
     return view('about_us');
 });
 
-Route::get('/working', function () {
+Route::get('/how_it_works', function () {
     return view('how_it_works');
 });
 
@@ -58,17 +58,12 @@ Route::get('/department/{department}/edit','DepartmentController@edit');
 Route::get('/department/{department}/delete','DepartmentController@destroy');
 Route::post('/department/{department}','DepartmentController@update');
 
-Route::get('/story_mgmt', function () {
-    return view('admin.story_mgmt');
-});
-
-Route::get('/faq_mgmt', function () {
-    return view('admin.faqs_mgmt');
-});
-
-Route::get('/faq_cat_mgmt', function () {
-    return view('admin.faq_cat_mgmt');
-});
+Route::get('create_faq','FaqMgmtController@index');
+Route::post('store_faq','FaqMgmtController@create');
+Route::get('show_faq','FaqMgmtController@show');
+Route::get('faq/{id}/edit','FaqMgmtController@edit');
+Route::post('faq/{id}/update','FaqMgmtController@update');
+Route::get('faq/{id}/delete','FaqMgmtController@destroy');
 
 Route::get('/bie_mgmt', function () {
     return view('admin.bie_mgmt');
@@ -120,12 +115,13 @@ Route::get('stories','StoryController@index');
 Route::get('stories/create','StoryController@create');
 Route::post('stories','StoryController@store');
 Route::get('show_story','StoryController@show');
+
 Route::get('stories/{id}/edit','StoryController@edit');
 Route::post('stories/{id}/update','StoryController@update');
 
 // <--------------------FaqMgmtController---------------------->
 
-Route::get('faqs','FaqMgmtController@index');
+Route::get('faqs','FaqMgmtController@index')->name('faqs.index');
 Route::get('faqs/create','FaqMgmtController@create');
 Route::post('faqs','FaqMgmtController@store');
 Route::get('faqs/{faq}','FaqMgmtController@show');
@@ -144,3 +140,5 @@ Route::resource('blogs', 'BlogController');
 
 //<----------------------TechniqueController------------------------->
 Route::resource('techniques', 'TechniqueController');
+//<----------------------BannerController------------------------->
+Route::resource('banners', 'BannerController');

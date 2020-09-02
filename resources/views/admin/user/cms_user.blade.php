@@ -34,7 +34,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <a class="btn btn-primary" href="{{url("create_user")}}">Create User</a>
+            <a class="btn btn-primary" href="{{url("users/create")}}">Create User</a>
           </div>
         </div>
         <table class="table">
