@@ -127,7 +127,7 @@ Route::post('stories/{id}/update','StoryController@update');
 
 Route::get('faqs','FaqMgmtController@index');
 Route::get('faqs/create','FaqMgmtController@create');
-Route::post('faqs','FaqMgmtController@store');
+Route::post('faqs','FaqMgmtController@store')->name('faqs.create');
 Route::get('faqs/{faq}','FaqMgmtController@show');
 Route::get('faqs/{id}/edit','FaqMgmtController@edit');
 Route::post('faqs/{id}/update','FaqMgmtController@update');

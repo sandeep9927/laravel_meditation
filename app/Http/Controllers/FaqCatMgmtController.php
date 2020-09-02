@@ -59,10 +59,11 @@ class FaqCatMgmtController extends Controller
         }
     }
 
-    public function destroy(FaqCatMgmt $faqCatMgmt)
+    public function destroy($id)
     {
-        
-        if( $faqCatMgmt->delete()){
+        // dd($faqCatMgmt);$dele
+        $faqCatMgmt = FaqCatMgmt::find($id);
+        if($faqCatMgmt->delete()){
             return redirect("faqcats")->with('message','Writer Successfully Deleted ');
         }else{
             return redirect("faqcats/create ")->with('message','Failed to Deleted');

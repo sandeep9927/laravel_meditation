@@ -6,7 +6,7 @@
     @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
     @endif
-<form action="{{url('faqs')}}" method="post">
+<form action="{{route('faqs.create')}}" method="post">
   @csrf
         <div class="form-group">
           <label for="">Title</label>

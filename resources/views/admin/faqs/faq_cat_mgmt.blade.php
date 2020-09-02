@@ -68,7 +68,7 @@
               <form action="{{url("faqcats/$faq_cat->id")}}" method="POST">
                 @method('delete')
                 @csrf
-                <button type="submit" class="btn btn-primary">Deeelete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
               </form></td>
               </tr>
               @endforeach
