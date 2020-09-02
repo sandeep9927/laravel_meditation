@@ -38,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" href= "{{route('banners.create')}}" class="btn btn-primary">Create Banner</button>
+            <a class="btn btn-primary" href="{{url('/banners/create')}}">Create Banner</a>
           </div>
         </div>
         <table class="table">
@@ -57,7 +57,7 @@
               <tr>
                 <th scope="row">{{$count++}}</th>
                 <td>{{$banner->title}}</td>
-                <td>{{$banner->image}}</td>
+                <td><img style="width: 180px" src="{{url('images/' . $banner->image)}}" alt=""></td>
                 <td>{{$banner->status}}</td>
                 <td>{{$banner->updated_at}}</td>
                 <td><a href="{{url("/banners/$banner->id/edit")}}">Edit</a></td>

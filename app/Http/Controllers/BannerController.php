@@ -53,7 +53,7 @@ class BannerController extends Controller
         $banner->title = request('title');
         $banner->image = $filename;
         $banner->status = request('status');
-        $banner->save();
+        $banner->save(); //if condition
 
         return redirect('/banners');
     }
