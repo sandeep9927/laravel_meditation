@@ -1,8 +1,11 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Stories')
 @section('content')
 <div>
-  <h2>FAQs Management</h2>
+  <h2>Story Management</h2>
+  @if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -35,29 +38,34 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create FAQ</button>
+          <a class="btn btn-primary" href="{{url('stories/create')}}">Create Story</a>
+           
           </div>
         </div>
         <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">S.No</th>
-                <th scope="col">Questions</th>
+                <th scope="col">Title</th>
+                <th scope="col">Writer Name</th>
+                <th scope="col">Category</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
-              </tr>
-            
-              
+              @foreach ($story as $story)
+                  <tr>
+                    <td>{{$story->id}}</td>
+                    <td>{{$story->title}}</td>
+                    <td>{{$story->writer_id}}</td>
+                    <td>{{$story->dep_id}}</td>
+                    <td>{{$story->status}}</td>
+                    <td>{{$story->updated_at}}</td>
+                    <td><a class="btn btn-primary" href="{{url("stories/$story->id/edit")}}">Edit</a></td>
+                  </tr>
+              @endforeach
             </tbody>
           </table>
           

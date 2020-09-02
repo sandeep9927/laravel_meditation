@@ -1,30 +1,31 @@
 @extends('layouts.admin_panel')
-@section('title','create user')
+@section('title','edit user')
 @section('content')
 <div class="col-sm-6">
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-  <h2>Create User</h2>
-<form action="{{url('store')}}" method="post" enctype="multipart/form-data">
-  @csrf
+  <h2>Edit User</h2>
+<form action="{{url("site_user/$user->id")}}" method="post" enctype="multipart/form-data">
+  @csrf 
+  
   <div class="form-group">
     <label for="">Name</label>
-    <input type="text" class="form-control" name="username"  placeholder="Name email">
+  <input type="text" class="form-control" name="username"  value="{{$user->name}}">
     
   </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" value="{{$user->email}}">
             
           </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password">
+          <input type="password" class="form-control" name="password" value="{{$user->password}}">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" name="password2" placeholder="Confurm Password">
+            <input type="password" class="form-control" name="password2" value="{{$user->password}}">
           </div>
           <label for="">Select Role</label><br>
           <div class="form-check form-check-inline">
@@ -57,11 +58,11 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Monile Number</label>
-            <input type="text" class="form-control" name="number" placeholder="Enter Mobile Number">
+            <input type="text" class="form-control" name="number" value="{{$user->mobile}}">
           </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image">
+            <input type="file" class="form-control" name="image" value="{{$user->image}}">
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

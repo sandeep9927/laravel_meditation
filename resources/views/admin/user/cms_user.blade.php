@@ -1,18 +1,23 @@
 @extends('layouts.admin_panel')
 @section('title','cms user')
 @section('content')
-<div>
-  
-  <h2>Site User</h2>
+<div >
   @if (Session::get('message'))
-  <p class="alert alert-success">{{Session('message')}}</p>
-    @endif
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
+  <h2>Cms User</h2>
+   
         <div class="form-row align-items-center">
-            <label for="">Email</label>
-            <div class="col-sm-3 my-1">
-                <label class="sr-only" for="inlineFormInputName">Name</label>
-                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Email">
-              </div>
+            <label for="">Role</label>
+          <div class="col-auto my-1">
+            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Role</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option selected>Active</option>
+              <option value="1">Inactive</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
           
           <div class="form-row align-items-center">
             <label for="">Status</label>
@@ -40,37 +45,31 @@
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
                 <th scope="col">Role</th>
-                <th scope="col">Suscriber</th>
-                <th scope="col">Schedul Tecnique</th>
-                <th scope="col">Schedul Seminar</th>
-                <th scope="col">Schedul Event</th>
                 <th scope="col">Registration Date</th>
-                <th scope="col">Edit | Delete</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($users as $user)
               <tr>
                 <th scope="row">{{$user->id}}</th>
+                
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->user_status}}</td>
                 <td>{{$user->role_id}}</td>
-                <td>yes</td>
-                <td>3</td>
-                <td>0</td>
-                <td>0</td>
                 <td>{{$user->created_at}}</td>
-
-                <td><a class="btn btn-primary" href="{{url("site_user/$user->id/edit")}}">Edit</a> |
-                <a class="btn btn-danger" href="{{url("site_user/$user->id/delete")}}">Delete</a></td>
+                <td>edit</td>
               </tr> 
               @endforeach
-            
+              
+              
               
             </tbody>
           </table>
- 
+          
+          
+      
 </div>
 
 @endsection

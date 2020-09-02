@@ -2,9 +2,11 @@
 @section('title','cms user')
 @section('content')
 <div>
-  <h2>Story Management</h2>
+  <h2>FAQ Category Management</h2>
+  @if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
   <br>
-    <form>
         <div class="form-row align-items-center">
             <label for="">Search Title</label>
            <div>
@@ -35,7 +37,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Story</button>
+            <button type="submit" class="btn btn-primary">Create FAQ Category</button>
           </div>
         </div>
         <table class="table">
@@ -43,30 +45,37 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">Title</th>
-                <th scope="col">Writer Name</th>
-                <th scope="col">Category</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
-                <th scope="col">Action</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
+              @php
+                  $count = 1;
+              @endphp
+              @foreach ($faq_cats as $faq_cat)
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Abc</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
-              </tr>
-            
+              <td>{{$count++}}</td>
+              <td>{{$faq_cat->title}}</td>
+              <td>{{$faq_cat->status}}</td>
+              <td>{{$faq_cat->updated_at}}</td>
+              <td><a class="btn btn-primary" href="{{url("faqcats/$faq_cat->id/edit")}}">Edit</a>
+                <a href="{{route("faqcats.destroy",$faq_cat->id)}}">delete</a></td>
               
+              <td>
+              <form action="{{url("faqcats/$faq_cat->id")}}" method="POST">
+                @method('delete')
+                @csrf
+                <button type="submit" class="btn btn-primary">Deeelete</button>
+              </form></td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
           
-          
-      </form>
 </div>
 
 @endsection
+

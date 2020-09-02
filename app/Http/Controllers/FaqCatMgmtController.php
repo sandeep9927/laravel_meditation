@@ -7,79 +7,65 @@ use Illuminate\Http\Request;
 
 class FaqCatMgmtController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $faq_cats = FaqCatMgmt::all();
+        return view('admin.faqs.faq_cat_mgmt',compact('faq_cats'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('admin.faqs.create_faq_cat');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $faq_cat_create = new FaqCatMgmt;
+        $faq_cat_create->title = $request->title;
+        $faq_cat_create->status = $request->status;
+        if( $faq_cat_create->save()){
+            return redirect("faqcats")->with('message','Writer Successfully Created');
+        }else{
+            return redirect("faqcats/create ")->with('message','Failed to create');
+        }
+       
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FaqCatMgmt  $faqCatMgmt
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(FaqCatMgmt $faqCatMgmt)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\FaqCatMgmt  $faqCatMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FaqCatMgmt $faqCatMgmt)
+    public function edit($id)
     {
-        //
+        $edit_faq_cat = FaqCatMgmt::find($id);
+        return view('admin.faqs.edit_faq_cat',compact('edit_faq_cat'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FaqCatMgmt  $faqCatMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FaqCatMgmt $faqCatMgmt)
+
+    public function update(Request $request,$id)
     {
-        //
+        $faqCatMgmt = FaqCatMgmt::find($id);
+        $faqCatMgmt->title = $request->title;
+        $faqCatMgmt->status = $request->status;
+        if( $faqCatMgmt->save()){
+            return redirect("faqcats")->with('message','Writer Successfully Upadted');
+        }else{
+            return redirect("faqcats/create ")->with('message','Failed to update');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\FaqCatMgmt  $faqCatMgmt
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(FaqCatMgmt $faqCatMgmt)
     {
-        //
+        
+        if( $faqCatMgmt->delete()){
+            return redirect("faqcats")->with('message','Writer Successfully Deleted ');
+        }else{
+            return redirect("faqcats/create ")->with('message','Failed to Deleted');
+        }
     }
 }

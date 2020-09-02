@@ -31,7 +31,7 @@
 
                         <!-- Split button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="user/profile/{{Auth::user()->id}}">Edit</a>
+                            <a class="btn btn-primary" href="user/{{Auth::user()->id}}/edit">Edit</a>
                         </div>
                     </div>
                     

@@ -13,11 +13,11 @@
               </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>
-          <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+        <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Enter Name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image" aria-describedby="emailHelp" >
+            <input type="file" class="form-control" name="image" value="{{old('image')}}" >
             </div>
             <table class="table">
                 <thead class="thead-dark">

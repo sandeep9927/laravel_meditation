@@ -7,79 +7,69 @@ use Illuminate\Http\Request;
 
 class FaqMgmtController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        //
+        $show_faq = FaqMgmt::all();
+        return view('admin.faqs.faqs_mgmt',compact('show_faq'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.faqs.create_faq'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'cat'=> 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+        $faq_mgmt = new FaqMgmt;
+        $faq_mgmt->title = $request->input('name');
+        $faq_mgmt->description = $request->input('description');
+        $faq_mgmt->faq_cat_id = $request->input('cat');
+        $faq_mgmt->status = $request->input('status');
+        $faq_mgmt->save();
+        return redirect('faqs')->with('message','FAQ Successfully Created');
+    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FaqMgmt  $faqMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FaqMgmt $faqMgmt)
+    public function show()
     {
-        //
+        $show_faq = FaqMgmt::all();
+        return view('admin.faqs.faqs_mgmt',compact('show_faq'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\FaqMgmt  $faqMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FaqMgmt $faqMgmt)
+    public function edit($id)
     {
-        //
+        $edit_faq = FaqMgmt::find($id);
+        return view('admin.faqs.edit_faq',compact('edit_faq'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FaqMgmt  $faqMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FaqMgmt $faqMgmt)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'cat'=> 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+        $update_faq = FaqMgmt::find($id);
+        $update_faq->title =$request->input('name');
+        $update_faq->description =$request->input('description');
+        $update_faq->status =$request->input('status');
+        $update_faq->faq_cat_id =$request->input('cat');
+        $update_faq->save();
+        return redirect('faqs')->with('message','FAQ Successfully Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\FaqMgmt  $faqMgmt
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FaqMgmt $faqMgmt)
+    public function destroy($id)
     {
-        //
+        $delete_faq = FaqMgmt::find($id);
+        $delete_faq->delete();
+        return redirect('faqs')->with('message','FAQ Successfully Deleted');
     }
 }

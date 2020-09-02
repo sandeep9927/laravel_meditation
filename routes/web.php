@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// <---------------User Route----------->
 Route::get('/', function () {
     return view('welcome');
 });
@@ -51,9 +51,12 @@ Route::get('/writer_mgmt', function () {
     return view('admin.writer_mgmt');
 });
 
-Route::get('/dep_mgmt', function () {
-    return view('admin.department_mgmt');
-});
+Route::get('/department', 'DepartmentController@index');
+Route::post('/department', 'DepartmentController@store');
+Route::get('/department/create','DepartmentController@create');
+Route::get('/department/{department}/edit','DepartmentController@edit');
+Route::get('/department/{department}/delete','DepartmentController@destroy');
+Route::post('/department/{department}','DepartmentController@update');
 
 Route::get('/story_mgmt', function () {
     return view('admin.story_mgmt');
@@ -84,38 +87,60 @@ Route::get('verify/{email}/{token}','Auth\RegisterController@verifyUser')->name(
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
+//<------------------UserProfile----------------->
 Route::get('profile','UserProfileController@show');
-Route::get('user/profile/{id}','UserProfileController@edit');
-Route::post('profile/update/{id}','UserProfileController@update');
+Route::get('user/{id}/edit','UserProfileController@edit');
+Route::post('profile/{id}/update','UserProfileController@update');
 
-// <------------Admin Route---------->
+// <----------------UserController----------------->
 
-Route::view('create_user', 'admin.create_user');
-Route::view('create_writer', 'admin.create_writer');
-Route::view('cms_user', 'admin.cms_user');
-Route::view('site_user', 'admin.site_user');
-Route::view('site_user', 'admin.site_user');
-Route::view('create_department', 'admin.create_department');
-Route::view('create_story', 'admin.create_story');
-Route::view('create_faq', 'admin.create_faq_cat');
-Route::view('create_bie', 'admin.create_bie');
-Route::view('create_panel_cat', 'admin.create_panel_cat');
-Route::view('create_childe_cat', 'admin.create_childe_cat');
-Route::view('banner_management', 'admin.banner_management');
-Route::view('create_faq', 'admin.create_faq');
 
-Route::get('create_user','UserController@create');
-Route::post('store','UserController@store');
+
+Route::get('users/create','UserController@create');
+Route::post('users','UserController@store');
 Route::get('site_user','UserController@site_user');
 Route::get('site_user/{id}/edit','UserController@edit');
 Route::post('site_user/{id}','UserController@update');
 Route::get('site_user/{id}/delete','UserController@destroy');
 Route::get('cms_user','UserController@cms_user');
 
-Route::get('admin','UserController@Admin');
-Route::post('dashboard','UserController@AdminLogin');
 
-Route::get('writer_mgmt','AdminController@writer');
-Route::get('writer_mgmt/{id}/edit','AdminController@WriterEdit');
-Route::post('writer_mgmt/{id}/update','AdminController@WriterUpdate');
-Route::get('writer_mgmt/{id}/delete','AdminController@WriterUpdate');
+//<-------------------AdminController-------------------->
+
+Route::get('admin/login','AdminController@admin');
+Route::post('admin/dashboard','AdminController@adminlogin');
+
+Route::get('writers','AdminController@index');
+Route::get('writers/{id}/edit','AdminController@edit');
+Route::post('writers/{id}/update','AdminController@update');
+Route::get('writers/{id}/delete','AdminController@destroy');
+
+//<----------------------StoryController----------------->
+Route::get('stories','StoryController@index');
+Route::get('stories/create','StoryController@create');
+Route::post('stories','StoryController@store');
+Route::get('show_story','StoryController@show');
+Route::get('stories/{id}/edit','StoryController@edit');
+Route::post('stories/{id}/update','StoryController@update');
+
+// <--------------------FaqMgmtController---------------------->
+
+Route::get('faqs','FaqMgmtController@index');
+Route::get('faqs/create','FaqMgmtController@create');
+Route::post('faqs','FaqMgmtController@store');
+Route::get('faqs/{faq}','FaqMgmtController@show');
+Route::get('faqs/{id}/edit','FaqMgmtController@edit');
+Route::post('faqs/{id}/update','FaqMgmtController@update');
+Route::get('faq/{id}/delete','FaqMgmtController@destroy');
+
+
+//<---------------------FqaCatMgmtController--------------------->
+
+Route::resource('faqcats', 'FaqCatMgmtController');
+
+
+//<----------------------BlogController------------------------->
+Route::resource('blogs', 'BlogController');
+
+//<----------------------TechniqueController------------------------->
+Route::resource('techniques', 'TechniqueController');

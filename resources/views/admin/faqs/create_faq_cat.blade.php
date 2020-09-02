@@ -2,14 +2,15 @@
 @section('title','create user')
 @section('content')
 <div class="col-sm-6">
-    <form>
+<form action="{{url('faqcats')}}" method="POST">
+  @csrf
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>
-          <input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+        <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="Enter Name">
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Status</label>
-          <select class="custom-select">
+          <select class="custom-select" name="status">
               <option selected>Active</option>
               <option value="1">One</option>
             </select>

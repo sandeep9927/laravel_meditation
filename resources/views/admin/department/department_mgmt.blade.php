@@ -1,13 +1,16 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Department management')
 @section('content')
 <div>
-  <h2>Writer Management</h2>
+  <h2>Department Management</h2>
+  @if(Session::get('message'))
+      <p class="alert alert-success">{{Session('message')}}</p>
+    @endif
   <br>
-    <form>
+
         <div class="form-row align-items-center">
-            <label for="">Search Title</label>
-           <div>
+            <label for="">Search Title </label>
+            <div>
             <form class="form-inline ml-3">
             <div class="input-group input-group-sm">
              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -35,41 +38,38 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create Writer</button>
+            <a class="btn btn-primary" href="{{url('/department/create')}}">Create Department</a>
           </div>
         </div>
         <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">S.No</th>
-                <th scope="col">First Name</th>
-                
-                <th scope="col">Email ID</th>
-                <th scope="col">Mobile No.</th>
+                <th scope="col">Title</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Action</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-              @foreach ($writers as $writer)
+            <tbody><?php $count=1;?>
+              @foreach($departments as $department)
+              
               <tr>
-              <td>{{$writer->id}}</td>
-              <td>{{$writer->name}}</td>
-              <td>{{$writer->email}}</td>
-              <td>{{$writer->mobile}}</td>
-              <td>{{$writer->user_status}}</td>
-              <td>{{$writer->updated_at}}</td>
-              <td><a class="btn btn-secondary" href="{{url("writer_mgmt/$writer->id/edit")}}">Edit</a> |
-              <a class="btn btn-danger" href="{{url("writer_mgmt/$writer->id/delete")}}">Delete</a></td>
-                
+                <th scope="row">{{$count++}}</th>
+                <td>{{$department->title}}</td>
+                <td>{{$department->status}}</td>
+                <td>{{$department->updated_at}}</td>
+                <td><a class="btn btn-primary" href="{{url("/department/$department->id/edit")}}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{{url("/department/$department->id/delete")}}">Delete</a></td>
               </tr>
-              @endforeach
+            @endforeach
+              
             </tbody>
           </table>
           
           
-      </form>
+
 </div>
 
 @endsection
