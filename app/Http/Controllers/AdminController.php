@@ -63,6 +63,10 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
     public function adminlogin(Request $request){
+        $request->validate([
+            'email' => 'email',
+            'password' => 'required',
+        ]);
         $user_data = [
             'email'=> $request->get('email'),
             'password'=> $request->get('password'),
@@ -72,7 +76,7 @@ class AdminController extends Controller
             return redirect('cms_user')->with('message','You have successfully logged in');
         }else{
             
-            return redirect('admin')->with('message','These credentials do not match our records.');
+            return redirect('admin/login')->with('message','These credentials do not match our records.');
         }
     } 
 

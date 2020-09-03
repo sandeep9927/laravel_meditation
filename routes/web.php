@@ -31,6 +31,10 @@ Route::get('/how_it_works', function () {
     return view('how_it_works');
 });
 
+Route::get('/learn/homepage', function () {
+    return view('learn.homepage');
+});
+
 Route::get('/department', 'DepartmentController@index');
 Route::post('/department', 'DepartmentController@store');
 Route::get('/department/create','DepartmentController@create');
