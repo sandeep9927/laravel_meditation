@@ -96,3 +96,21 @@
             transform: translate3d(0px, 0px, 0px);
             transform-origin: 50% 50% 0px;
         }
+        footer.page-footer a{
+            font-size: 16px !important;
+
+        }
+        .pd-tp{
+            padding-top: 60px;
+        }
+
+        .pd-bt{
+            padding-bottom: 60px;
+        }
+
+        .well-sm{
+            padding: 40px !important;
+        }
+        .well-sm p{
+            font-size: 16px;
+        }
