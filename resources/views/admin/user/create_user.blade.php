@@ -10,29 +10,29 @@
   @csrf
   <div class="form-group">
     <label for="">Name</label>
-    <input type="text" class="form-control" name="username"  placeholder="Name name">
+    <input type="text" class="form-control" name="username"  placeholder="Name name" value="{{old('username')}}">
     @error('username')<p style="color: red">{{$message}}</p>@enderror
     
   </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+        <input type="email" class="form-control" name="email" value="{{old('email')}}" placeholder="Enter email">
             @error('email')<p style="color: red">{{$message}}</p>@enderror
             
           </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password">
-          @error('password')<p style="color: red">{{$message}}</p>@enderror
+          
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" name="password2" placeholder="Confurm Password">
-            @error('password2')<p style="color: red">{{$message}}</p>@enderror
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Confurm Password">
+            @error('password')<p style="color: red">{{$message}}</p>@enderror
           </div>
           <label for="">Select Role</label><br>
           <div class="form-check form-check-inline">
-            <input type="radio" id="teacher" value="1" name="role" >
+          <input type="radio" id="teacher" value="1" name="role" >
             <label class="form-check-label" for="inlineRadio1">Superuser</label>
           </div>
           <div class="form-check form-check-inline">
@@ -50,7 +50,7 @@
             <label class="form-check-label" for="inlineRadio1">Active</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="status"  value="inactive">
+            <input class="form-check-input" type="radio" name="status"  value="inactive" >
             <label class="form-check-label" for="inlineRadio2">Inactive</label>
           </div>@error('status')<p style="color: red">{{$message}}</p>@enderror<br>
           
@@ -60,13 +60,13 @@
           <label class="form-check-label" for="exampleCheck1">Notify User Of New Account</label>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Mobile Number</label>
-            <input type="text" class="form-control" name="number" placeholder="Enter Mobile Number">
+            <label for="exampleInputEmail1">Monile Number</label>
+            <input type="text" class="form-control" name="number" placeholder="Enter Mobile Number" value="{{old('number')}}">
             @error('number')<p style="color: red">{{$message}}</p>@enderror
           </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-            <input type="file" class="form-control" name="image">
+            <input type="file" class="form-control" name="image" value="{{old('image')}}">
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

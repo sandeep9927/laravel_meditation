@@ -13,12 +13,12 @@ class UserController extends Controller
     public function cms_user()
     {
         $users = User::all();//where('role_id', '=', 2);
-        return view('admin.cms_user',compact('users'));
+        return view('admin.user.cms_user',compact('users'));
     }
 
     public function create()
     {
-        return view('admin.create_user');
+        return view('admin.user.create_user');
     }
 
     public function store(Request $request)
@@ -26,7 +26,7 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required|max:50',
             'email' => 'email:rfc,dns',
-            'password' => 'password:api',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'role' => 'required',
             'status' => 'required',
             'number' => 'required',
@@ -58,7 +58,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.edit_user',compact('user'));
+        return view('admin.user.edit_user',compact('user'));
     }
 
     public function update(Request $request,$id)
@@ -84,7 +84,7 @@ class UserController extends Controller
     public function site_user()
     {
         $users = User::all()->where('role_id','=',4);
-        return view('admin.site_user',compact('users'));
+        return view('admin.user.site_user',compact('users'));
     }
 
     public function destroy($id)

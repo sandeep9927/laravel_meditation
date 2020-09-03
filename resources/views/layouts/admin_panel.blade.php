@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     Page Management
   </button>
   <div class="dropdown-menu" style="background-color: white">
-    <a class="dropdown-item" href="#" style="color: black">Writer Management</a>
+  <a class="dropdown-item" href="{{url('writers')}}" style="color: black">Writer Management</a>
     <a class="dropdown-item" href="{{url('/department')}}"style="color: black">Department Management</a>
     <a class="dropdown-item" href="{{url('/banners')}}"style="color: black">Banner Management</a>
     <a class="dropdown-item" href="{{url('show_faq')}}"style="color: black">FAQ Management</a>

@@ -11,13 +11,13 @@ class AdminController extends Controller
 
     public function index(){
         $writers = User::all()->where('role_id','=',3);
-        return view('admin.writer_mgmt',compact('writers'));
+        return view('admin.writer.writer_mgmt',compact('writers'));
     }
 
     public function edit($id)
     {
         $writer_edit = User::find($id);
-        return view('admin.writer_edit',compact('writer_edit'));
+        return view('admin.writer.writer_edit',compact('writer_edit'));
     }
 
     public function update(Request $request, $id)
