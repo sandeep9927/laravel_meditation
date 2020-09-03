@@ -16,6 +16,12 @@ class UserController extends Controller
         return view('admin.user.cms_user',compact('users'));
     }
 
+    public function cms_users_edit($id)
+    {
+        $cms_users = User::find($id);
+        return view('admin.user.cms_user');
+    }
+
     public function create()
     {
         return view('admin.user.create_user');

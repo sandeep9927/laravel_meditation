@@ -40,7 +40,7 @@
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">S.N</th>
+                <th scope="col">S.No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
@@ -59,7 +59,7 @@
                 <td>{{$user->user_status}}</td>
                 <td>{{$user->role_id}}</td>
                 <td>{{$user->created_at}}</td>
-                <td>edit</td>
+                <td><a class="btn btn-primary" href="{{url("/user/$user->id/edit")}}">Edit</a></td>
               </tr> 
               @endforeach
               

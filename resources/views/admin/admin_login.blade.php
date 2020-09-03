@@ -19,12 +19,14 @@
                         <form id="login-form" class="form" action="" method="post">
                             <h3 class="text-center text-info">Admin Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="email" name="email" id="username" class="form-control">
+                                <label for="username" class="text-info">Enter Email:</label><br>
+                                <input type="email" name="email" id="username" value="{{old('email')}}" class="form-control">
+                                @error('email')<p style="color: red">{{$message}}</p>@enderror
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
                                 <input type="password" name="password" id="password" class="form-control">
+                                @error('password')<p style="color: red">{{$message}}</p>@enderror
                             </div>
                             <div class="form-group">
                                 <br>
