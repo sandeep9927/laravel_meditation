@@ -2,12 +2,13 @@
 @section('title','profile')
 @section('content')
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<section style="padding: 94.5px 0;">
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">
             @if (Session::get('message'))
-<p class="alert alert-success">{{Session('message')}}</p>
-  @endif
+            <p class="alert alert-success">{{Session('message')}}</p>
+            @endif
             <div class="well well-sm">
                 <div class="row">
                     @if (Auth::user()->image)
@@ -31,7 +32,7 @@
 
                         <!-- Split button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="user/{{Auth::user()->id}}/edit">Edit</a>
+                            <a class="btn btn-primary" href="user/{{Auth::user()->id}}/edit" style="font-size: 15px;border-radius: 4px;padding: 10px 38px;">Edit</a>
                         </div>
                     </div>
                     
@@ -40,5 +41,5 @@
         </div>
     </div>
 </div>
-
+</section>
 @endsection

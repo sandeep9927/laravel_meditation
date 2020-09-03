@@ -35,23 +35,24 @@
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">S.N</th>
+                <th scope="col">S.No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
                 <th scope="col">Role</th>
-                <th scope="col">Suscriber</th>
-                <th scope="col">Schedul Tecnique</th>
-                <th scope="col">Schedul Seminar</th>
-                <th scope="col">Schedul Event</th>
+                <th scope="col">Subscriber</th>
+                <th scope="col">Schedule Technique</th>
+                <th scope="col">Schedule Seminar</th>
+                <th scope="col">Schedule Event</th>
                 <th scope="col">Registration Date</th>
-                <th scope="col">Edit | Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><?php $count = 1; ?>
               @foreach ($users as $user)
               <tr>
-                <th scope="row">{{$user->id}}</th>
+                <th scope="row">{{$count++}}</th>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->user_status}}</td>

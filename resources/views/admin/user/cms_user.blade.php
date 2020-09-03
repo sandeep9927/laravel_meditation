@@ -49,10 +49,10 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><?php $count = 1; ?>
               @foreach ($users as $user)
               <tr>
-                <th scope="row">{{$user->id}}</th>
+                <th scope="row">{{$count++}}</th>
                 
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
