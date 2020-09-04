@@ -1,8 +1,11 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Techniques')
 @section('content')
 <div>
   <h2>Techniques Category Management</h2>
+  @if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
   <br>
     <form>
         <div class="form-row align-items-center">
@@ -55,19 +58,28 @@
                 <th scope="col">Child Category</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
-                <th scope="col">Action</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
+              @foreach ($techniques as $technique)
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Abc</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
+                <td>{{ $technique->id }}</td>
+                <td>{{ $technique->title }}</td>
+                <td>{{ $technique->title }}</td>
+                <td>{{ $technique->title }}</td>
+                <td>{{ $technique->status }}</td>
+                <td>{{ $technique->updated_at }}</td>
+                <td><a class="btn btn-primary" href="{{ url("techniques/$technique->id/edit") }}">Edit</a></td>
+                <td><form action="{{url("techniques/$technique->id")}}" method="post">
+                  @method('delete')
+                  @csrf
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                  </form></td>
               </tr>
+              @endforeach
+              
             
               
             </tbody>

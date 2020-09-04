@@ -10,9 +10,18 @@ class UserController extends Controller
 {
     
    
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('cms_user');
+    }
     public function cms_user()
     {
-        $users = User::all();//where('role_id', '=', 2);
+        $users = User::paginate(10);//where('role_id', '=', 2);
         return view('admin.user.cms_user',compact('users'));
     }
 
@@ -77,7 +86,7 @@ class UserController extends Controller
         $user_upadte->user_status = $request->input('status');
         $user_upadte->mobile = $request->input('number');
         $user_upadte->image = $filename;
-        dd($user_upadte);
+        // dd($user_upadte);
         $user_upadte->save();
         return redirect("site_user/".$id."/edit")->with('message','User Successfully Updated');
     }

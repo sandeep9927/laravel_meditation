@@ -28,8 +28,8 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" name="password2" value="{{$writer_edit->password}}">
-            @error('password2')<p style="color: red">{{$message}}</p>@enderror
+            <input type="password" class="form-control" name="password_confirmation" value="{{$writer_edit->password}}">
+            @error('password_confirmation')<p style="color: red">{{$message}}</p>@enderror
           </div>
           <label for="">Select Role</label><br>
           <div class="form-check form-check-inline">

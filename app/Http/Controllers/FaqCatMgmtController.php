@@ -10,7 +10,7 @@ class FaqCatMgmtController extends Controller
 
     public function index()
     {
-        $faq_cats = FaqCatMgmt::all();
+        $faq_cats = FaqCatMgmt::paginate(10);
         return view('admin.faqs.faq_cat_mgmt',compact('faq_cats'));
     }
 
@@ -59,9 +59,9 @@ class FaqCatMgmtController extends Controller
         }
     }
 
-    public function destroy(FaqCatMgmt $faqCatMgmt)
+    public function destroy($id)
     {
-        
+        $faqCatMgmt = FaqCatMgmt::find($id);
         if( $faqCatMgmt->delete()){
             return redirect("faqcats")->with('message','Writer Successfully Deleted ');
         }else{

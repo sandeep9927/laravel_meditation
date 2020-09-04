@@ -71,5 +71,7 @@
           
 
 </div>
-
+<div class="col-sm-12">
+  {{$departments->links()}}
+</div
 @endsection
