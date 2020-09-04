@@ -46,7 +46,7 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">First Name</th>
-                
+
                 <th scope="col">Email ID</th>
                 <th scope="col">Mobile No.</th>
                 <th scope="col">Status</th>
@@ -63,16 +63,22 @@
               <td>{{$writer->mobile}}</td>
               <td>{{$writer->user_status}}</td>
               <td>{{$writer->updated_at}}</td>
+              @if (Auth::check() && Auth::user()->id==$writer->id)
               <td><a class="btn btn-secondary" href="{{url("writers/$writer->id/edit")}}">Edit</a> |
-              <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
+                <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
+              @endif
+              
                 
               </tr>
               @endforeach
+              
             </tbody>
           </table>
           
           
       </form>
 </div>
-
+<div class="col-sm-12">
+  {{$writers->links()}}
+</div
 @endsection

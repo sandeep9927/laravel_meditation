@@ -9,8 +9,8 @@ class StoryController extends Controller
 {
     public function index()
     {
-        $story = Story::all();
-        return view('admin.story.story_mgmt',compact('story'));
+        $stories = Story::paginate(10);
+        return view('admin.story.story_mgmt',compact('stories'));
     }
 
 
@@ -92,13 +92,13 @@ class StoryController extends Controller
    
     }
 
-    public function destroy(Story $story)
+    public function destroy($id)
     {
-        $story->delete();
+        $story = Story::find($id);
         if($story->delete()){
-            return redirect("story/$update_story->id/edit")->with('message','Story Successfully Deleted');
+            return redirect("stories")->with('message','Story Successfully Deleted');
         }else{
-            return redirect("story/$update_story->id/edit")->with('message','Failed To Delete');
+            return redirect("stories")->with('message','Failed To Delete');
         }
     }
 }

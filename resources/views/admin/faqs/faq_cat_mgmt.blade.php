@@ -62,13 +62,13 @@
               <td>{{$faq_cat->status}}</td>
               <td>{{$faq_cat->updated_at}}</td>
               <td><a class="btn btn-primary" href="{{url("faqcats/$faq_cat->id/edit")}}">Edit</a>
-                <a href="{{route("faqcats.destroy",$faq_cat->id)}}">delete</a></td>
+                </td>
               
               <td>
               <form action="{{url("faqcats/$faq_cat->id")}}" method="POST">
                 @method('delete')
                 @csrf
-                <button type="submit" class="btn btn-primary">Deeelete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
               </form></td>
               </tr>
               @endforeach
@@ -76,6 +76,8 @@
           </table>
           
 </div>
-
+<div class="col-sm-12">
+  {{$faq_cats->links() }}
+</div>
 @endsection
 

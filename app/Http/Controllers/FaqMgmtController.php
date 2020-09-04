@@ -10,7 +10,7 @@ class FaqMgmtController extends Controller
   
     public function index()
     {
-        $show_faq = FaqMgmt::all();
+        $show_faq = FaqMgmt::paginate(10);
         return view('admin.faqs.faqs_mgmt',compact('show_faq'));
     }
 

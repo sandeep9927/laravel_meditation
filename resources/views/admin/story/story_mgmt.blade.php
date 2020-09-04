@@ -51,11 +51,12 @@
                 <th scope="col">Category</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
-                <th scope="col">Action</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($story as $story)
+              @foreach ($stories as $story)
                   <tr>
                     <td>{{$story->id}}</td>
                     <td>{{$story->title}}</td>
@@ -63,14 +64,28 @@
                     <td>{{$story->dep_id}}</td>
                     <td>{{$story->status}}</td>
                     <td>{{$story->updated_at}}</td>
+                    @can('isWriter')
                     <td><a class="btn btn-primary" href="{{url("stories/$story->id/edit")}}">Edit</a></td>
+                    <td><form action="{{ url("stories/$story->id") }}" method="post">
+                      @method('delete')
+                      @csrf
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                      </form></td> 
+                    @endcan
+                  
+                    
+                    
                   </tr>
+                  
               @endforeach
+              
             </tbody>
           </table>
           
           
       </form>
 </div>
-
+<div class="col-sm-12">
+  {{$stories->links()}}
+</div>
 @endsection

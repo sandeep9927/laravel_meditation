@@ -34,13 +34,14 @@ Route::get('/how_it_works', function () {
 Route::get('/learn/homepage', function () {
     return view('learn.homepage');
 });
-
+//<--------------------DepartmentController---------->
 Route::get('/department', 'DepartmentController@index');
 Route::post('/department', 'DepartmentController@store');
 Route::get('/department/create','DepartmentController@create');
 Route::get('/department/{department}/edit','DepartmentController@edit');
 Route::get('/department/{department}/delete','DepartmentController@destroy');
 Route::post('/department/{department}','DepartmentController@update');
+
 
 Route::get('create_faq','FaqMgmtController@index');
 Route::post('store_faq','FaqMgmtController@create');
@@ -89,6 +90,7 @@ Route::get('show_story','StoryController@show');
 
 Route::get('stories/{id}/edit','StoryController@edit');
 Route::post('stories/{id}/update','StoryController@update');
+Route::delete('stories/{id}','StoryController@destroy');
 
 // <--------------------FaqMgmtController---------------------->
 
@@ -105,7 +107,6 @@ Route::get('faq/{id}/delete','FaqMgmtController@destroy');
 
 Route::resource('faqcats', 'FaqCatMgmtController');
 
-
 //<----------------------BlogController------------------------->
 Route::resource('blogs', 'BlogController');
 
@@ -113,3 +114,10 @@ Route::resource('blogs', 'BlogController');
 Route::resource('techniques', 'TechniqueController');
 //<----------------------BannerController------------------------->
 Route::resource('banners', 'BannerController');
+
+//<----------------------ParentCategoryController------------------->
+Route::resource('parents', 'ParentCategoryController');
+
+//<----------------------ChildCategoryController------------------->
+Route::resource('childs', 'ChildCategoryController');
+

@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Gate;
 use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
-   
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('admin','adminlogin');
+    }
 
     public function index(){
-        $writers = User::all()->where('role_id','=',3);
+        $writers = User::orderBy('created_at', 'desc')->where('role_id','=',3)->paginate(10);
         return view('admin.writer.writer_mgmt',compact('writers'));
     }
 
@@ -25,7 +34,7 @@ class AdminController extends Controller
         $request->validate([
             'username' => 'required|max:50',
             'email' => 'email:rfc,dns',
-            'password' => 'password:api',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'role' => 'required',
             'status' => 'required',
             'number' => 'required',
@@ -63,16 +72,23 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
     public function adminlogin(Request $request){
+
+        //User::adminvalidate();
+        // if(!Gate::allows('isAdmin')){
+        //     abort(404,'soryy your not able access this page');
+        // }  
+
         $request->validate([
             'email' => 'email',
             'password' => 'required',
         ]);
+
         $user_data = [
             'email'=> $request->get('email'),
             'password'=> $request->get('password'),
-            'role_id'=>1,
+            
         ];
-        if(Auth::attempt($user_data)){
+        if(Auth::attempt($user_data) && Gate::allows('isAdmin') || Gate::allows('isBlogger') || Gate::allows('isWriter')){
             return redirect('cms_user')->with('message','You have successfully logged in');
         }else{
             

@@ -14,7 +14,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::paginate(10);
+        return view('admin.blog.bie_mgmt',compact('blogs'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blog.create_bie');
     }
 
     /**
@@ -35,7 +36,35 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blog = new Blog;
+        $request->validate([
+            'title' => 'required|max:200',
+            'short_description' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'type' => 'required',
+            'technique' => 'required',
+        ]);
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $blog->title = $request->title;
+        $blog->image = $filename;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->description;
+        $blog->status = $request->status;
+        $blog->type = $request->type;
+        $blog->techinque_id = $request->technique;
+        // dd($blog);
+        if($blog->save()){
+            return redirect('blogs')->with('message','Blog Successfully Created');
+        }else{
+            return redirect('blogs/create')->with('message','Failed TO create Blog');
+        }
     }
 
     /**
@@ -46,7 +75,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +84,10 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        //
+        $edit_blog = Blog::find($id);
+        return view('admin.blog.edit_blog',compact('edit_blog'));
     }
 
     /**
@@ -67,9 +97,31 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-        //
+        $update_blog = Blog::find($id);
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filemane = time()."_.".$extension;
+            $request->image(public_path('images'),$filemane);
+        }else{
+            $filemane = "no-image.png";
+        }
+        $update_blog->title = $request->title;
+        $update_blog->image = $filemane;
+        $update_blog->short_description = $request->short_description;
+        // dd($update_blog);
+        $update_blog->description = $request->description;
+        $update_blog->status = $request->status;
+        $update_blog->type = $request->type;
+        $update_blog->techinque_id = $request->technique;
+        // dd($update_blog);
+        if($update_blog->save()){
+            return redirect('blogs')->with('message','Blog Successfully Updated');
+        }else{
+            return redirect("blogs/$id/edit")->with('message','Failed to update Blog');
+        }
+
     }
 
     /**
@@ -78,8 +130,13 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
-        //
+        $blog = Blog::find($id);
+        if($blog->delete()){
+            return redirect('blogs')->with('message','Blog Successfully Deleted'); 
+        }else{
+            return redirect('blogs')->with('message','Failed to delete Blog');
+        }
     }
 }

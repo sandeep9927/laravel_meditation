@@ -1,10 +1,12 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','Blogs')
 @section('content')
 <div>
   <h2>Blog, Interview and Event Management</h2>
   <br>
-    <form>
+@if (Session::get('message'))
+<p class="alert alert-success">{{Session('message')}}</p>
+  @endif
         <div class="form-row align-items-center">
             <label for="">Search Title</label>
            <div>
@@ -12,9 +14,9 @@
             <div class="input-group input-group-sm">
              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
-             <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
+             <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </div> 
         </div>
       </div>
     </form>
@@ -31,15 +33,11 @@
               </select>
             </div>
           
-          <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Apply</button>
-          </div> 
+          
 
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Reset</button>
-          </div>
-          <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create </button>
+            <a class="btn btn-primary" href="{{ url('blogs/create') }}">Create</a>
+         
           </div>
         </div>
         <table class="table">
@@ -47,28 +45,45 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">Title</th>
+                <th scope="col">Image</th>
                 <th scope="col">Type</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
-                <th scope="col">Action</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
+              @php
+                  $count =1;
+              @endphp
+              @foreach ($blogs as $blog)
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Inactive</td>
-                <td>26/01/2020</td>
-                <td><a href="">Edit</a></td>
+                
+              <td>{{$count++}}</td>
+              <td>{{$blog->title}}</td>
+              <td><img style="width:100px" src="{{'/images/'.$blog->image}}" alt="no-image.png"></td>
+              <td>{{$blog->type}}</td>
+              <td>{{$blog->status}}</td>
+              <td>{{$blog->updated_at}}</td>
+              <td><a class="btn btn-primary" href="{{url("blogs/$blog->id/edit")}}">Edit</a></td>
+              <td>
+                <form action="{{url("blogs/$blog->id")}}" method="post">
+                  @method('delete')
+                @csrf
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </td>
               </tr>
-            
+              @endforeach
               
             </tbody>
           </table>
           
-          
-      </form>
-</div>
 
+</div>
+<div class="col-sm-12">
+  {{$blogs->links()}}
+</div>
 @endsection
+
