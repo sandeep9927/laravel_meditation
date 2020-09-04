@@ -98,15 +98,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
         <!-- Example single danger button -->
 
-
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <!-- <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
               Page Management
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a> -->
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url('writers')}}" class="nav-link active">
@@ -214,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               Faq Category <br> Management
                 
               </p>
-            </a>
+            </a> -->
           </li>
           
         </ul>

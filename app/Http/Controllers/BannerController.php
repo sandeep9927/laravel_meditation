@@ -25,7 +25,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.create_banner');
+        return view('admin.banner.create_banner');
     }
 
     /**
@@ -66,7 +66,7 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        return view('admin.banner_mgmt', compact('banner'));
+        return view('admin.banner.banner_mgmt', compact('banner'));
     }
 
     /**
@@ -77,8 +77,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        $banners = Banner::find($id);
-        return view('admin.edit_banner',compact('banners'));
+        $banner = Banner::find($id);
+        return view('admin.edit_banner',compact('banner'));
     }
 
     /**
@@ -92,7 +92,6 @@ class BannerController extends Controller
     {
         $request -> validate([
             'title' => 'required|max:20',
-            'image' => 'required',
             'status' => 'required',
         ]);
 
