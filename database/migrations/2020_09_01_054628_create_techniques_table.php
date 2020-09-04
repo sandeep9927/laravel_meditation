@@ -18,7 +18,7 @@ class CreateTechniquesTable extends Migration
             $table->string('title');
             $table->string('aduio');
             $table->string('vedio');
-            $table->boolean('status')->default(0);
+            $table->string('status');
             $table->bigInteger('parent_cat_id')->unsigned();
             $table->bigInteger('child_cat_id')->unsigned();
             $table->timestamps();

@@ -71,5 +71,7 @@
           
       
 </div>
-
+<div class="col-sm-12">
+  {{ $users->links() }}
+</div>
 @endsection

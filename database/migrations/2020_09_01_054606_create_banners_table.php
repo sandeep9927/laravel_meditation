@@ -17,7 +17,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('image');
-            $table->boolean('status')->default(0);
+            $table->string('status');
             $table->timestamps();
         });
     }

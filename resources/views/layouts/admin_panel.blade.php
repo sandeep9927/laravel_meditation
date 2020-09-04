@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
+  
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -66,26 +67,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
     
   </nav>
+ 
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    {{-- <a href="index3.html" class="brand-link">
       <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    </a> --}}
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ '/images/'.Auth::user()->image }}" class="img-circle elevation-2" alt="no">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="{{url('/site_user/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -95,60 +97,125 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <!-- Example single danger button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Page Management
-  </button>
-  <div class="dropdown-menu" style="background-color: white">
-  <a class="dropdown-item" href="{{url('writers')}}" style="color: black">Writer Management</a>
-    <a class="dropdown-item" href="{{url('/department')}}"style="color: black">Department Management</a>
-    <a class="dropdown-item" href="{{url('/technique')}}"style="color: black">Technique Management</a>
-    <a class="dropdown-item" href="{{url('banners')}}"style="color: black">Banner Management</a>
-    <a class="dropdown-item" href="{{url('show_faq')}}"style="color: black">FAQ Management</a>
-    <a class="dropdown-item" href="#" style="color: black">Something else here</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#" style="color: black">Separated link</a>
-  </div>
-</div><br>
 
           <li class="nav-item has-treeview menu-open">
             <!-- <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Starter Pages
+              Page Management
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a> -->
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{url('writers')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Writer Management</p>
                 </a>
-              </li>
+              </li> 
+              @cannot('isWriter')
               <li class="nav-item">
-                <a href="{{url('cms_user')}}" class="nav-link">
+                <a href="{{url('faqs')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>CMS User</p>
+                    <p>FAQ Management</p>
                   </a>
                 </li>
+              @endcannot
+             
               <li class="nav-item">
-              <a href="{{url('site_user')}}" class="nav-link">
+              <a href="{{url('banners')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Site User</p>
+                  <p>Banner Management</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <!-- <a href="#" class="nav-link">
+            <a href="{{url('blogs')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+              Blog,Inverview
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('stories')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Story Management
+              
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('site_user')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Video Management
+           
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('blogs')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Seminar Management
+               
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('blogs')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Technique Management
+               
+              </p>
+            </a>
+          </li>
+          @cannot('isWriter')
+          <li class="nav-item">
+            <a href="{{url('site_user')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Master Management
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('/department')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Department Management
+                
+              </p>
+            </a>
+          </li>
+          @endcannot
+          
+          <li class="nav-item">
+            <a href="{{url('techniques')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Technique Category
+              <br> Management
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('faqcats')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Faq Category <br> Management
+                
               </p>
             </a> -->
           </li>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

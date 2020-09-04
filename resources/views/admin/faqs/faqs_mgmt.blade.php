@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title',' Faqs')
 @section('content')
 <div>
   <h2>FAQs Management</h2>
@@ -27,10 +27,10 @@
             <label for="">Status</label>
             <div class="col-auto my-1">
               <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected>Choose</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+               
               </select>
             </div>
           
@@ -38,7 +38,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <a class="btn btn-primary" href="{{url('create_faq')}}">Create FAQ</a>
+            <a class="btn btn-primary" href="{{url('faqs/create')}}">Create FAQ</a>
           </div>
         </div>
         <table class="table">
@@ -77,5 +77,7 @@
           
       </form>
 </div>
-
+<div class="col-sm-12">
+  {{$show_faq->links() }}
+</div>
 @endsection

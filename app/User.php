@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\UserProfile;
 use App\Role;
+use Gate;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -45,5 +46,11 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasMany('App\Role',);
+    }
+    
+    public static function adminvalidate(){
+        if(!Gate::allows('isAdmin')){
+            abort(404,'soryy your not able access this page');
+        }
     }
 }
