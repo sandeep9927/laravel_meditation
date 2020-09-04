@@ -31,6 +31,10 @@ Route::get('/how_it_works', function () {
     return view('how_it_works');
 });
 
+Route::get('/technique', function () {
+    return view('technique.technique_list');
+});
+
 Route::get('/learn/homepage', function () {
     return view('learn.homepage');
 });

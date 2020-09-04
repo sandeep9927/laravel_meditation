@@ -102,7 +102,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="dropdown-menu" style="background-color: white">
   <a class="dropdown-item" href="{{url('writers')}}" style="color: black">Writer Management</a>
     <a class="dropdown-item" href="{{url('/department')}}"style="color: black">Department Management</a>
-    <a class="dropdown-item" href="{{url('/banners')}}"style="color: black">Banner Management</a>
+    <a class="dropdown-item" href="{{url('/technique')}}"style="color: black">Technique Management</a>
+    <a class="dropdown-item" href="{{url('banners')}}"style="color: black">Banner Management</a>
     <a class="dropdown-item" href="{{url('show_faq')}}"style="color: black">FAQ Management</a>
     <a class="dropdown-item" href="#" style="color: black">Something else here</a>
     <div class="dropdown-divider"></div>
@@ -111,13 +112,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div><br>
 
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <!-- <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Starter Pages
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a> -->
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link active">
@@ -140,13 +141,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <!-- <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Simple Link
                 <span class="right badge badge-danger">New</span>
               </p>
-            </a>
+            </a> -->
           </li>
         </ul>
       </nav>
