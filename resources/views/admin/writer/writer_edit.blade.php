@@ -30,21 +30,7 @@
             <label for="exampleInputPassword1">Confirm Password</label>
             <input type="password" class="form-control" name="password_confirmation" value="{{$writer_edit->password}}">
             @error('password_confirmation')<p style="color: red">{{$message}}</p>@enderror
-          </div>
-          <label for="">Select Role</label><br>
-          <div class="form-check form-check-inline">
-            <input type="radio" id="teacher" value="1" name="role" required>
-            <label class="form-check-label" for="inlineRadio1">Superuser</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input type="radio" id="teacher" value="2" name="role" required>
-            <label class="form-check-label" for="inlineRadio1">Blogger</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input type="radio" id="teacher" value="3" name="role" required>
-            <label class="form-check-label" for="inlineRadio1">Writer</label>
-          </div>@error('role')<p style="color: red">{{$message}}</p>@enderror<br>
-          
+          </div>  
           <label for="">Status</label><br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="status" value="active" required>

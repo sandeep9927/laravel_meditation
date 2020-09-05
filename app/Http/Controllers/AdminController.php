@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Gate;
+use DB;
 use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
@@ -22,6 +23,12 @@ class AdminController extends Controller
         $writers = User::orderBy('created_at', 'desc')->where('role_id','=',3)->paginate(10);
         return view('admin.writer.writer_mgmt',compact('writers'));
     }
+    public function search(Request $request){
+        $search = $request->search;
+        $status = $request->status;
+        $writers =DB::table('users')->where('name','like','%'.$search.'%','or','user_status','like','%'.$status.'%')->paginate(10);
+        return view('admin.writer.writer_mgmt',compact('writers'));
+    }
 
     public function edit($id)
     {
@@ -33,9 +40,8 @@ class AdminController extends Controller
     {
         $request->validate([
             'username' => 'required|max:50',
-            'email' => 'email:rfc,dns',
+            'email' => 'email',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'role' => 'required',
             'status' => 'required',
             'number' => 'required',
         ]);
@@ -52,11 +58,12 @@ class AdminController extends Controller
         $writer_update->name = $request->input('username');
         $writer_update->email = $request->input('email');
         $writer_update->password = $request->input('password');
-        $writer_update->role_id = $request->input('role');
+        // $writer_update->role_id = $request->input('role');
         $writer_update->user_status = $request->input('status');
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
         $writer_update->save();
+        // dd($writer_update);
         return redirect("writers/".$id."/edit")->with('message','Writer Successfully Updated');
     }
 

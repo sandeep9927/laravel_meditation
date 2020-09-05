@@ -107,6 +107,7 @@ Route::get('admin/login','AdminController@admin');
 Route::post('admin/dashboard','AdminController@adminlogin');
 
 Route::get('writers','AdminController@index');
+Route::get('/search','AdminController@search');
 Route::get('writers/{id}/edit','AdminController@edit');
 Route::post('writers/{id}/update','AdminController@update');
 Route::get('writers/{id}/delete','AdminController@destroy');
@@ -149,4 +150,7 @@ Route::resource('parents', 'ParentCategoryController');
 
 //<----------------------ChildCategoryController------------------->
 Route::resource('childs', 'ChildCategoryController');
+
+
+Route::get('notification', 'NotificationController@toMail');
 
