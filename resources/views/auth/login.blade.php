@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+<section class="pd-tp pd-bt">
 <div class="container">
     @if (Session::get('message'))
 <p class="alert alert-info">{{Session('message')}}</p>
@@ -74,4 +75,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

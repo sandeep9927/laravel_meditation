@@ -31,24 +31,12 @@ Route::get('/how_it_works', function () {
     return view('how_it_works');
 });
 
-Route::get('/admin_login', function () {
-    return view('admin.admin_login');
+Route::get('/technique', function () {
+    return view('technique.technique_list');
 });
 
-Route::get('/admin', function () {
-    return view('admin.create_user');
-});
-
-Route::get('/cms_user', function () {
-    return view('admin.cms_user');
-});
-
-Route::get('/site_user', function () {
-    return view('admin.site_user');
-});
-
-Route::get('/writer_mgmt', function () {
-    return view('admin.writer_mgmt');
+Route::get('/learn/homepage', function () {
+    return view('learn.homepage');
 });
 //<--------------------DepartmentController---------->
 Route::get('/department', 'DepartmentController@index');
@@ -66,17 +54,6 @@ Route::get('faq/{id}/edit','FaqMgmtController@edit');
 Route::post('faq/{id}/update','FaqMgmtController@update');
 Route::get('faq/{id}/delete','FaqMgmtController@destroy');
 
-Route::get('/bie_mgmt', function () {
-    return view('admin.bie_mgmt');
-});
-Route::get('/tech_cat_mgmt', function () {
-    return view('admin.techniques_cat_mgmt');
-});
-
-Route::get('/banner_mgmt', function () {
-    return view('admin.banner_mgmt');
-});
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('verify/{email}/{token}','Auth\RegisterController@verifyUser')->name('verify');
 
@@ -89,8 +66,6 @@ Route::get('user/{id}/edit','UserProfileController@edit');
 Route::post('profile/{id}/update','UserProfileController@update');
 
 // <----------------UserController----------------->
-
-
 
 Route::get('users/create','UserController@create');
 Route::post('users','UserController@store');

@@ -40,7 +40,7 @@
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">S.N</th>
+                <th scope="col">S.No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
@@ -49,17 +49,17 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><?php $count = 1; ?>
               @foreach ($users as $user)
               <tr>
-                <th scope="row">{{$user->id}}</th>
+                <th scope="row">{{$count++}}</th>
                 
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->user_status}}</td>
                 <td>{{$user->role_id}}</td>
                 <td>{{$user->created_at}}</td>
-                <td>edit</td>
+                <td><a class="btn btn-primary" href="{{url("/user/$user->id/edit")}}">Edit</a></td>
               </tr> 
               @endforeach
               

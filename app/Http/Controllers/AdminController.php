@@ -79,10 +79,17 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
     public function adminlogin(Request $request){
+
         //User::adminvalidate();
         // if(!Gate::allows('isAdmin')){
         //     abort(404,'soryy your not able access this page');
         // }  
+
+        $request->validate([
+            'email' => 'email',
+            'password' => 'required',
+        ]);
+
         $user_data = [
             'email'=> $request->get('email'),
             'password'=> $request->get('password'),
