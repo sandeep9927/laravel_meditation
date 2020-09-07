@@ -54,7 +54,8 @@
             </thead>
             <tbody>
               @php
-                 $count = 1; 
+                 $count = 1+(request()->get('page',1)-1)*10; 
+                //  var_dump(request()->get('page',1));
               @endphp
               @foreach ($show_faq as $show)
               

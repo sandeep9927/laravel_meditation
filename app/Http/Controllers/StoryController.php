@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Story;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class StoryController extends Controller
@@ -44,7 +45,7 @@ class StoryController extends Controller
         $story->image = $filename;
         $story->short_description = $request->input('short_description');
         $story->description = $request->input('description');
-        $story->writer_id = $request->input('writer');
+        $story->writer_id = Auth::user()->id;
         $story->dep_id = $request->input('department');
         $story->status = $request->input('status');
         ;

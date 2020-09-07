@@ -14,7 +14,7 @@
           @error('title')<p style="color: red">{{$message}}</p>@enderror
         </div>
     
-        <div class="form-group">
+        <div class="form-group " hidden>
           <label for="exampleFormControlSelect1">Select Writer</label>
           <select class="form-control" name="writer">
             <option>1</option>

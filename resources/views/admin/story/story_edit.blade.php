@@ -15,7 +15,7 @@
     
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Writer</label>
-          <select class="form-control" name="writer">
+          <select class="form-control" name="writer" hidden>
             <option>1</option>
             <option>2</option>
             <option>3</option>

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\UserCreated;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\User;
-use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
-    
-   
-      /**
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -21,8 +21,8 @@ class UserController extends Controller
     }
     public function cms_user()
     {
-        $users = User::paginate(10);//where('role_id', '=', 2);
-        return view('admin.user.cms_user',compact('users'));
+        $users = User::paginate(10); //where('role_id', '=', 2);
+        return view('admin.user.cms_user', compact('users'));
     }
 
     public function cms_users_edit($id)
@@ -47,11 +47,11 @@ class UserController extends Controller
             'number' => 'required',
         ]);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $user = new User;
@@ -62,28 +62,36 @@ class UserController extends Controller
         $user->user_status = $request->input('status');
         $user->mobile = $request->input('number');
         $user->image = $filename;
-        if($request->has('password')){
+        if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
-        $user->save();
-        
-        return redirect('users/create')->with('message','User Successfully Creaeted');
+        if ($user->save()) {
+            if ($request->notify) {
+                $user->notify(new UserCreated());
+            }
+
+            return redirect('users/create')->with('message', 'User Successfully Created');
+        } else {
+            return redirect('stories/create')->with('message', 'Failed to create User');
+        }
+
     }
 
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit_user',compact('user'));
+        return view('admin.user.edit_user', compact('user'));
     }
 
-    public function update(Request $request,$id)
-    {   if($request->hasFile('image') && $request->image->isValid()){
-        $extension = $request->image->extension();
-        $filename = time()."_.".$extension;
-        $request->image->move(public_path('images'),$filename);
-    }else{
-        $filename = "no-image.jpg";
-    }
+    public function update(Request $request, $id)
+    {
+        if ($request->hasFile('image') && $request->image->isValid()) {
+            $extension = $request->image->extension();
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
+            $filename = "no-image.jpg";
+        }
         $user_upadte = User::find($id);
         $user_upadte->name = $request->input('username');
         $user_upadte->email = $request->input('email');
@@ -94,19 +102,19 @@ class UserController extends Controller
         $user_upadte->image = $filename;
         // dd($user_upadte);
         $user_upadte->save();
-        return redirect("site_user/".$id."/edit")->with('message','User Successfully Updated');
+        return redirect("site_user/" . $id . "/edit")->with('message', 'User Successfully Updated');
     }
     public function site_user()
     {
-        $users = User::all()->where('role_id','=',4);
-        return view('admin.user.site_user',compact('users'));
+        $users = User::all()->where('role_id', '=', 4);
+        return view('admin.user.site_user', compact('users'));
     }
 
     public function destroy($id)
     {
         $user_delete = User::find($id);
         $user_delete->delete();
-        return redirect('site_user')->with('message','User Successfully Deleted');
+        return redirect('site_user')->with('message', 'User Successfully Deleted');
 
     }
 

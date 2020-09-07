@@ -53,7 +53,7 @@
             </thead>
             <tbody>
               @php
-                  $count = 1;
+                  $count = 1+(request()->get('page',1)-1)*10; 
               @endphp
               @foreach ($faq_cats as $faq_cat)
               <tr>

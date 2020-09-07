@@ -56,7 +56,7 @@
           
           
         <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" name="notify">
           <label class="form-check-label" for="exampleCheck1">Notify User Of New Account</label>
         </div>
         <div class="form-group">
