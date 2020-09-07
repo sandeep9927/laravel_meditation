@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChildCategory;
 use Illuminate\Http\Request;
+use ParentCategory;
 
 class ChildCategoryController extends Controller
 {
@@ -24,7 +25,8 @@ class ChildCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.technique.create_child');
+        $parents = ParentCategory::all();
+        return view('admin.technique.create_child',compact('parents'));
     }
 
     /**

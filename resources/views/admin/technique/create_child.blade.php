@@ -10,10 +10,12 @@
   @csrf
   <div class="form-group">
     <label for="exampleFormControlSelect2">Select Parent </label>
+    @foreach ($parents as $parent)
     <select class="form-control" name="parent">
-      <option>1</option>
-      <option>2</option>
+      <option>{{ $parent->title }}</option>
     </select>
+    @endforeach
+    
   </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"> Title</label>
