@@ -30,6 +30,7 @@ class AdminController extends Controller
         $writers = User::orderBy('created_at', 'desc')->where('role_id', '=', 3)->paginate(10);
         return view('admin.writer.writer_mgmt', compact('writers'));
     }
+
     public function search(Request $request)
     {
         $search = $request->search;
