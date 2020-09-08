@@ -124,7 +124,7 @@ class BannerController extends Controller
 
     public function homebanner()
     {
-        $banners = Banner::all();
-        return view('welcome',compact('banners'));
+        $banner = Banner::first();
+        return view('welcome',compact('banner'));
     }
 }

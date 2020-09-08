@@ -4,9 +4,9 @@
 <section>
         <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
             <div class="banner-img">
-                @foreach($banners as $banner)
+                
                   <img src="{{url('/images/'.$banner->image)}}" alt="Snow" style="width:100%;">
-                @endforeach
+                
                   <div id="overlay"></div>
             </div>
             <div class="centered text-banner">
