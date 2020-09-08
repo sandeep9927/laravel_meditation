@@ -11,6 +11,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>@yield('title')</title>
 
+
+
+
+
+
+
+
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->

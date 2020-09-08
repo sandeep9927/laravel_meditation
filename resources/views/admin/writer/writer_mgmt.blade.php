@@ -22,6 +22,7 @@
         <label for="">Status</label>
         <div class="col-auto my-1">
           <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="status">
+            <option value="">Select status</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>  
           </select>
