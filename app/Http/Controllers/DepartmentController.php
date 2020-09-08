@@ -111,19 +111,21 @@ class DepartmentController extends Controller
     {
         $search = $request->search;
         $status = $request->status;
-        $where = [
-            [
-                'name',
-                '=',
-                $search,
-            ],
-            [
-                'status',
-                '=',
-                $status,
-            ]
-        ];
-        $departments = DB::table('departments')->where($where);
+        // dd($search,$status);
+        // $where = [
+        //     [
+        //         'name',
+        //         '=',
+        //         $search,
+        //     ],
+        //     [
+        //         'status',
+        //         '=',
+        //         $status,
+        //     ]
+        // ];
+        $departments = DB::table('departments')->where('title','like',$search .'%' )->paginate(10);
+        //dd($departments);
         return view('admin.department.department_mgmt',compact('departments'));
     }
 }

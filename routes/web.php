@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // <---------------User Route----------->
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','BannerController@homebanner');
 
 Auth::routes();
 
