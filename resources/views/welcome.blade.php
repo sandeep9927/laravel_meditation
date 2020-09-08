@@ -4,7 +4,9 @@
 <section>
         <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
             <div class="banner-img">
-                  <img src="../images/morning-meditation.jpg" alt="Snow" style="width:100%;">
+                @foreach($banners as $banner)
+                  <img src="{{url('/images/'.$banner->image)}}" alt="Snow" style="width:100%;">
+                @endforeach
                   <div id="overlay"></div>
             </div>
             <div class="centered text-banner">
@@ -17,7 +19,7 @@
                         <h2><p style="margin-bottom: 0;">LEARN</p></h2>
                         <span>Articles, Blogs And Interviews</span>
                     </a>
-                    <a href="#" class="btn btn-primary" style="padding:10px 20px; border-radius: 5px; border:none; ">
+                    <a href="{{url('home/technique')}}" class="btn btn-primary" style="padding:10px 20px; border-radius: 5px; border:none; ">
                         <h2><p style="margin-bottom: 0;">TECHNIQUES</p></h2>
                         <span>Meditations For Your Needs</span>
                     </a>

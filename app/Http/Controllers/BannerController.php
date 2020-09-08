@@ -121,4 +121,10 @@ class BannerController extends Controller
     {
         //
     }
+
+    public function homebanner()
+    {
+        $banners = Banner::all();
+        return view('welcome',compact('banners'));
+    }
 }
