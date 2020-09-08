@@ -54,8 +54,8 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">Parent Category</th>
-                <th scope="col">Title</th>
                 <th scope="col">Child Category</th>
+                <th scope="col">Title</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Edit</th>
@@ -66,10 +66,10 @@
               @foreach ($techniques as $technique)
               <tr>
                 <td>{{ $technique->id }}</td>
+                <td>{{ $technique->parentCategory->title }}</td>
+                <td>{{ $technique->childCategory->title }}</td>
                 <td>{{ $technique->title }}</td>
-                <td>{{ $technique->title }}</td>
-                <td>{{ $technique->title }}</td>
-                <td>{{ $technique->status }}</td>
+                <td>{{ $technique->parentCategory->status }}</td>
                 <td>{{ $technique->updated_at }}</td>
                 <td><a class="btn btn-primary" href="{{ url("techniques/$technique->id/edit") }}">Edit</a></td>
                 <td><form action="{{url("techniques/$technique->id")}}" method="post">

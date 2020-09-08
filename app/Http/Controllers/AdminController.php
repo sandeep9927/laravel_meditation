@@ -15,10 +15,10 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -34,27 +34,10 @@ class AdminController extends Controller
     {
         $search = $request->search;
         $status = $request->status;
-        // dd($status,$search);
-        // $where = [
-        //     [
-        //         'name',
-        //         '=',
-        //         $search
-
-        //     ],
-        //     [
-        //         'user_status',
-        //         '=',
-        //         $status
-        //     ]
-        //     ];
-            // dd($where);
         $writers = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('user_status', 'like', '%' . $status . '%')->paginate(10);
-        // dd($writers);
         return view('admin.writer.writer_mgmt', compact('writers'));
     }
 
-    // 'name', 'like', '%' . $search . '%'.'or', 'user_status', 'like', '%' . $status . '%'
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,7 +84,6 @@ class AdminController extends Controller
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
         $writer_update->save();
-        // dd($writer_update);
         return redirect("writers/" . $id . "/edit")->with('message', 'Writer Successfully Updated');
     }
 

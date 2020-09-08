@@ -17,7 +17,7 @@ class TechniqueController extends Controller
      */
     public function index()
     {
-        $techniques = ParentCategory::paginate(10);
+        $techniques = Technique::paginate(10);
         return view('admin.technique.techniques_cat_mgmt', compact('techniques'));
     }
 
@@ -28,7 +28,9 @@ class TechniqueController extends Controller
      */
     public function create()
     {
-        //
+        $parent_cat_id = ParentCategory::all();
+        $child_cat_id = ChildCategory::all();
+        return view('admin.technique.create_tec',compact('parent_cat_id'),compact('child_cat_id'));
     }
 
     /**
@@ -39,7 +41,35 @@ class TechniqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'short_description' => 'required',
+            'description' => 'required',
+            'parent' => 'required',
+            'child' => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->image->isValid()){
+            $extension = $request->image->extension();
+            $filename = time()."_.".$extension;
+            $request->image->move(public_path('images'),$filename);
+        }else{
+            $filename = "no-image.jpg";
+        }
+        $story = new Technique;
+        $story->title = $request->title;
+        $story->image = $filename;
+        $story->short_description = $request->input('short_description');
+        $story->description = $request->input('description');
+        $story->parent_cat_id = $request->parent;
+        $story->child_cat_id = $request->child;
+        $story->faqs = $request->faqs;
+        
+        if($story->save()){
+            return redirect('techniques')->with('message','techniques Successfully Created');
+        }else{
+            return redirect('techniques/create')->with('message','Failed to create story');
+        }
     }
 
     /**
