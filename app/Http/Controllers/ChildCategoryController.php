@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChildCategory;
 use Illuminate\Http\Request;
-use ParentCategory;
+use App\ParentCategory;
 
 class ChildCategoryController extends Controller
 {

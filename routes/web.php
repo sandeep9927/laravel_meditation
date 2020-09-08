@@ -126,6 +126,10 @@ Route::resource('parents', 'ParentCategoryController');
 //<----------------------ChildCategoryController------------------->
 Route::resource('childs', 'ChildCategoryController');
 
-
+//<----------------------NotificationController------------------->
 Route::get('notification', 'NotificationController@toMail');
 
+//<----------------------home/technique------------------->
+Route::get('home/technique','TechniqueController@technique');
+Route::get('technique/{id}','TechniqueController@show');
+Route::post('technique/{id}','TechniqueController@rate');

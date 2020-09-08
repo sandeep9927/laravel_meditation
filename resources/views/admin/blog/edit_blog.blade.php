@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-sm-6">
     <h2>Edit Blog,Interview And Event Manegement</h2>
-<form action="{{url("blogs/$edit_blog->id")}}" method="post">
+<form action="{{url("blogs/$edit_blog->id")}}" method="post" enctype="multipart/form-data">
   @method('put')
   @csrf
         <div class="form-group">
