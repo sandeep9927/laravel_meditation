@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
-use Gate;
 use DB;
+use Gate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class AdminController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('admin','adminlogin');
+        $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
     }
 
     /**
@@ -24,18 +25,37 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $writers = User::orderBy('created_at', 'desc')->where('role_id','=',3)->paginate(10);
-        return view('admin.writer.writer_mgmt',compact('writers'));
-    }
-    
-    public function search(Request $request){
-        $search = $request->search;
-        $status = $request->status;
-        $writers =DB::table('users')->where('name','like','%'.$search.'%','or','user_status','like','%'.$status.'%')->paginate(10);
-        return view('admin.writer.writer_mgmt',compact('writers'));
+    public function index()
+    {
+        $writers = User::orderBy('created_at', 'desc')->where('role_id', '=', 3)->paginate(10);
+        return view('admin.writer.writer_mgmt', compact('writers'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $status = $request->status;
+        // dd($status,$search);
+        // $where = [
+        //     [
+        //         'name',
+        //         '=',
+        //         $search
+
+        //     ],
+        //     [
+        //         'user_status',
+        //         '=',
+        //         $status
+        //     ]
+        //     ];
+            // dd($where);
+        $writers = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('user_status', 'like', '%' . $status . '%')->paginate(10);
+        // dd($writers);
+        return view('admin.writer.writer_mgmt', compact('writers'));
+    }
+
+    // 'name', 'like', '%' . $search . '%'.'or', 'user_status', 'like', '%' . $status . '%'
     /**
      * Show the form for editing the specified resource.
      *
@@ -45,7 +65,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $writer_edit = User::find($id);
-        return view('admin.writer.writer_edit',compact('writer_edit'));
+        return view('admin.writer.writer_edit', compact('writer_edit'));
     }
 
     /**
@@ -67,11 +87,11 @@ class AdminController extends Controller
 
         $writer_update = User::find($id);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $writer_update->name = $request->input('username');
@@ -83,7 +103,7 @@ class AdminController extends Controller
         $writer_update->image = $filename;
         $writer_update->save();
         // dd($writer_update);
-        return redirect("writers/".$id."/edit")->with('message','Writer Successfully Updated');
+        return redirect("writers/" . $id . "/edit")->with('message', 'Writer Successfully Updated');
     }
 
     /**
@@ -101,19 +121,21 @@ class AdminController extends Controller
      */
         $writer_delete = User::find($id);
         $writer_delete->delete();
-        return redirect('writers')->with('message','Writer Successfully Deleted');
+        return redirect('writers')->with('message', 'Writer Successfully Deleted');
 
     }
 
-    public function admin(){
+    public function admin()
+    {
         return view('admin.admin_login');
     }
-    public function adminlogin(Request $request){
+    public function adminlogin(Request $request)
+    {
 
         //User::adminvalidate();
         // if(!Gate::allows('isAdmin')){
         //     abort(404,'soryy your not able access this page');
-        // }  
+        // }
 
         $request->validate([
             'email' => 'email',
@@ -121,16 +143,16 @@ class AdminController extends Controller
         ]);
 
         $user_data = [
-            'email'=> $request->get('email'),
-            'password'=> $request->get('password'),
-            
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+
         ];
-        if(Auth::attempt($user_data) && Gate::allows('isAdmin') || Gate::allows('isBlogger') || Gate::allows('isWriter')){
-            return redirect('cms_user')->with('message','You have successfully logged in');
-        }else{
-            
-            return redirect('admin/login')->with('message','These credentials do not match our records.');
+        if (Auth::attempt($user_data) && Gate::allows('isAdmin') || Gate::allows('isBlogger') || Gate::allows('isWriter')) {
+            return redirect('cms_user')->with('message', 'You have successfully logged in');
+        } else {
+
+            return redirect('admin/login')->with('message', 'These credentials do not match our records.');
         }
-    } 
+    }
 
 }

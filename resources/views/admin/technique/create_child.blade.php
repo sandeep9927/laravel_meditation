@@ -6,16 +6,17 @@
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-<form action="{{url('childs')}}" method="POST">
+<form action="{{url('childs')}}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="form-group">
     <label for="exampleFormControlSelect2">Select Parent </label>
-    @foreach ($parents as $parent)
     <select class="form-control" name="parent">
-      <option>{{ $parent->title }}</option>
-    </select>
+      <option selected>select parenet category</option>
+    @foreach ($parents as $parent)
+     
+      <option value="{{ $parent->id }}">{{ $parent->title }}</option>
     @endforeach
-    
+  </select>
   </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"> Title</label>

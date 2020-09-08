@@ -16,7 +16,8 @@
         "laravel/framework": "^7.24",
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.2"
+        "laravel/ui": "^2.2",
+        "willvincent/laravel-rateable": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
