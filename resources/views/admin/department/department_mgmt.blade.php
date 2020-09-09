@@ -11,26 +11,25 @@
         <div class="form-row align-items-center">
             <label for="">Search Title </label>
             <div>
-            <form class="form-inline ml-3">
+            <form class="form-inline ml-3" action="{{url('department/search')}}" method="get">
             <div class="input-group input-group-sm">
-             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+             <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
-             <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
+             <button class="btn btn-primary" type="submit">
+               Search          
+             </button>
         </div>
       </div>
     </form>
     </div>
           
-          <div class="form-row align-items-center">
+          <div class="form-row align-items-center" style="margin-left: 5px;">
             <label for="">Status</label>
             <div class="col-auto my-1">
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <select name="status" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="1">Active</option>
+                <option value="2">Inactive</option>
               </select>
             </div>
           

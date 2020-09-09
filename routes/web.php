@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // <---------------User Route----------->
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','BannerController@homebanner');
 
 Auth::routes();
 
@@ -35,9 +33,8 @@ Route::get('/technique', function () {
     return view('technique.technique_list');
 });
 
-Route::get('/learn/homepage', function () {
-    return view('learn.homepage');
-});
+Route::get('/learn/homepage','LearnController@index');
+
 //<--------------------DepartmentController---------->
 Route::get('/department', 'DepartmentController@index');
 Route::post('/department', 'DepartmentController@store');
@@ -45,8 +42,9 @@ Route::get('/department/create','DepartmentController@create');
 Route::get('/department/{department}/edit','DepartmentController@edit');
 Route::get('/department/{department}/delete','DepartmentController@destroy');
 Route::post('/department/{department}','DepartmentController@update');
+Route::get('/department/search','DepartmentController@search');
 
-
+//<-----------------------FaqController------------------->
 Route::get('create_faq','FaqMgmtController@index');
 Route::post('store_faq','FaqMgmtController@create');
 Route::get('show_faq','FaqMgmtController@show');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use DB;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -104,5 +105,27 @@ class DepartmentController extends Controller
         $delete_department->delete();
         return redirect('/department')->with('message','Department successfully deleted');
 
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $status = $request->status;
+        // dd($search,$status);
+        // $where = [
+        //     [
+        //         'name',
+        //         '=',
+        //         $search,
+        //     ],
+        //     [
+        //         'status',
+        //         '=',
+        //         $status,
+        //     ]
+        // ];
+        $departments = DB::table('departments')->where('title','like',$search .'%' )->paginate(10);
+        //dd($departments);
+        return view('admin.department.department_mgmt',compact('departments'));
     }
 }

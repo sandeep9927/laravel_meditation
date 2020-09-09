@@ -73,9 +73,11 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($id)
     {
-        
+        $blog = Blog::find($id);
+        $blogs_suggestion = Blog::inRandomOrder()->paginate(3);
+        return view('admin.blog.show',compact('blog'),compact('blogs_suggestion'));
     }
 
     /**
@@ -103,7 +105,7 @@ class BlogController extends Controller
         if($request->hasFile('image') && $request->image->isValid()){
             $extension = $request->image->extension();
             $filemane = time()."_.".$extension;
-            $request->image(public_path('images'),$filemane);
+            $request->image->move(public_path('images'),$filemane);
         }else{
             $filemane = "no-image.png";
         }

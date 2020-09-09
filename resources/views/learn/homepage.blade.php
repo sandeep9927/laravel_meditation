@@ -3,42 +3,35 @@
 @section('content')
 
 <div class="container text-center">    
-  <h3>Learn</h3><br>
-  <div class="row">
-    <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
-    </div>
-    <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
+  <div class="row" >
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col-sm-12"><h3 style="margin-bottom: 3rem;">LEARN</h3></div>
+          @foreach($blogs as $blog)
+          <div class="col-sm-6">
+            <a href="{{url('blogs/'. $blog->id)}}"><img src="{{url('images/' . $blog->image)}}" class="img-responsive" style="width:100%" alt="Image"></a>
+            <p>{{$blog->title}}</p>
+          </div>
+          @endforeach
       </div>
     </div>
+    
     <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
-    </div>
-    <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
+      <div class="row">
+          <div class="col-sm-12"><h3 style="margin-bottom: 3rem;">Suggested Blogs</h3></div>
       </div>
+          @foreach($blogs_suggestion as $blog_suggestion)
       <div class="well">
-       <p>Some text..</p>
+        <a href="{{url('blogs/'. $blog_suggestion->id)}}"><img src="{{url('images/' . $blog_suggestion->image)}}" class="img-responsive" style="width:50%;" alt="Image"></a>
+        <p style="text-align: left;">{{$blog_suggestion->title}}</p>
       </div>
+        @endforeach
+    </div>
+    
+    <div class="col-sm-12">
+      {{$blogs->links()}}
     </div>
   </div>
-
 </div>
 
 @endsection
