@@ -127,4 +127,12 @@ class BannerController extends Controller
         $banner = Banner::first();
         return view('welcome',compact('banner'));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $banner = DB::table('banners')->where('title','like',$search .'%' )->paginate(10);
+        //dd($banner);
+        return view('admin.banner.banner_mgmt',compact('banner'));
+    }
 }
