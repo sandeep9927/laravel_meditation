@@ -78,7 +78,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = Banner::find($id);
-        return view('admin.edit_banner',compact('banner'));
+        return view('admin.banner.edit_banner',compact('banner'));
     }
 
     /**
@@ -120,5 +120,19 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         //
+    }
+
+    public function homebanner()
+    {
+        $banner = Banner::first();
+        return view('welcome',compact('banner'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $banner = DB::table('banners')->where('title','like',$search .'%' )->paginate(10);
+        //dd($banner);
+        return view('admin.banner.banner_mgmt',compact('banner'));
     }
 }

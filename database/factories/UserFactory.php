@@ -84,7 +84,7 @@ $factory->define(FaqCatMgmt::class,function(Faker $faker){
 $factory->define(Department::class,function(Faker $faker){
     return [
 
-        'title' => $faker->sentence(20),
+        'title' => $faker->sentence(6),
         'status' =>'active',
  
     ];

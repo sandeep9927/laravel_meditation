@@ -33,8 +33,9 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
-        <input type="file" class="form-control" name="image" value="{{$edit_blog->image}}" >
-            </div>Edit
+            <input type="file" class="form-control" name="image" value="{{$edit_blog->image}}">
+            <img style="width: 100px" src="{{url('images/' . $edit_blog->image)}}" alt="">
+        </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Short Description</label>
         <textarea class="form-control" name="short_description" rows="3">{{$edit_blog->short_description}}</textarea>

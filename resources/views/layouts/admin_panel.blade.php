@@ -181,17 +181,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           @endcannot
-          
+          @cannot('isWriter')
           <li class="nav-item">
             <a href="{{url('techniques')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Technique Category
               <br> Management
-                
               </p>
             </a>
           </li>
+          @endcannot
+          @cannot('isWriter')
           <li class="nav-item">
             <a href="{{url('faqcats')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -199,6 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               Faq Category <br> Management
                 
               </p>
+              @endcannot
             </a> -->
           </li>
           
