@@ -117,6 +117,7 @@ Route::resource('blogs', 'BlogController');
 Route::resource('techniques', 'TechniqueController');
 //<----------------------BannerController------------------------->
 Route::resource('banners', 'BannerController');
+Route::get('banners/search', 'BannerController@search');
 
 //<----------------------ParentCategoryController------------------->
 Route::resource('parents', 'ParentCategoryController');
