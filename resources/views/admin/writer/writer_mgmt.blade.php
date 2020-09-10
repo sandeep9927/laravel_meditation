@@ -67,7 +67,7 @@
               @can('isAdmin')
                 
               
-              <td><a class="btn btn-secondary" href="{{url("writers/$writer->id/edit")}}">Edit</a> |
+              <td><a class="btn btn-secondary" href="{{url("update-profile")}}">Edit</a> |
                 <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
                 @endcan
               

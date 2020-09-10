@@ -75,15 +75,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         @if ('isWriter')
         <div class="info">
-          <a href="{{url('/writers/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{url('update-profile')}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
         @elseif('isUser')
         <div class="info">
-          <a href="{{url('update-writer-profile')}}" class="d-block">{{ Auth::user()->name }}</a>
-        </div>
-        @elseif('isAdmin')
-        <div class="info">
-          <a href="{{url('/users/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{url('update-user-profile')}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
         @endif
         
