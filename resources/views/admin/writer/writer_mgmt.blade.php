@@ -63,10 +63,13 @@
               <td>{{$writer->mobile}}</td>
               <td>{{$writer->user_status}}</td>
               <td>{{$writer->updated_at}}</td>
-              @if (Auth::check() && Auth::user()->id==$writer->id)
+              {{-- @if (Auth::check() && Auth::user()->id==$writer->id) --}}
+              @can('isAdmin')
+                
+              
               <td><a class="btn btn-secondary" href="{{url("writers/$writer->id/edit")}}">Edit</a> |
                 <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
-              @endif
+                @endcan
               
                 
               </tr>

@@ -87,6 +87,7 @@ class AdminController extends Controller
         $writer_update->save();
         return redirect("writers/" . $id . "/edit")->with('message', 'Writer Successfully Updated');
     }
+    
 
     /**
      * Remove the specified resource from storage.
