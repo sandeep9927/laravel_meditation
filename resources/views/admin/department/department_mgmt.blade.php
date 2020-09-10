@@ -66,9 +66,6 @@
               
             </tbody>
           </table>
-          
-          
-
 </div>
 <div class="col-sm-12">
   {{$departments->links()}}

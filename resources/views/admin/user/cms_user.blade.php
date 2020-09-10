@@ -62,14 +62,8 @@
                 <td><a class="btn btn-primary" href="{{url("/user/$user->id/edit")}}">Edit</a></td>
               </tr> 
               @endforeach
-              
-              
-              
             </tbody>
           </table>
-          
-          
-      
 </div>
 <div class="col-sm-12">
   {{ $users->links() }}

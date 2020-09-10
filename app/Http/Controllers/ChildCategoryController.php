@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ChildCategory;
-use Illuminate\Http\Request;
 use App\ParentCategory;
+use Illuminate\Http\Request;
 
 class ChildCategoryController extends Controller
 {
@@ -26,7 +26,7 @@ class ChildCategoryController extends Controller
     public function create()
     {
         $parents = ParentCategory::all();
-        return view('admin.technique.create_child',compact('parents'));
+        return view('admin.technique.create_child', compact('parents'));
     }
 
     /**
@@ -42,21 +42,21 @@ class ChildCategoryController extends Controller
             'title' => 'required|max:255',
             'status' => 'required',
         ]);
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $child->parent_id = $request->parent;
         $child->title = $request->title;
         $child->status = $request->status;
         $child->image = $filename;
-        if($child->save()){
-            return redirect("techniques")->with('message','Child  Successfully Created');
-        }else{
-            return redirect("techniques")->with('message','Failed To Created');
+        if ($child->save()) {
+            return redirect("techniques")->with('message', 'Child  Successfully Created');
+        } else {
+            return redirect("techniques")->with('message', 'Failed To Created');
         }
     }
 

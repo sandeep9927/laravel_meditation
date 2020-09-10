@@ -75,18 +75,12 @@
                       </form></td>  
                     @endif
                     
-                    @endcan
-                  
-                    
-                    
-                  </tr>
-                  
+                    @endcan                  
+                  </tr>     
               @endforeach
               
             </tbody>
-          </table>
-          
-          
+          </table>  
       </form>
 </div>
 <div class="col-sm-12">

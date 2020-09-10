@@ -15,7 +15,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::paginate(10);
-        return view('admin.blog.bie_mgmt',compact('blogs'));
+        return view('admin.blog.bie_mgmt', compact('blogs'));
     }
 
     /**
@@ -45,11 +45,11 @@ class BlogController extends Controller
             'type' => 'required',
             'technique' => 'required',
         ]);
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $blog->title = $request->title;
@@ -59,11 +59,11 @@ class BlogController extends Controller
         $blog->status = $request->status;
         $blog->type = $request->type;
         $blog->techinque_id = $request->technique;
-        // dd($blog);
-        if($blog->save()){
-            return redirect('blogs')->with('message','Blog Successfully Created');
-        }else{
-            return redirect('blogs/create')->with('message','Failed TO create Blog');
+       
+        if ($blog->save()) {
+            return redirect('blogs')->with('message', 'Blog Successfully Created');
+        } else {
+            return redirect('blogs/create')->with('message', 'Failed TO create Blog');
         }
     }
 
@@ -77,7 +77,7 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
         $blogs_suggestion = Blog::inRandomOrder()->paginate(3);
-        return view('admin.blog.show',compact('blog'),compact('blogs_suggestion'));
+        return view('admin.blog.show', compact('blog'), compact('blogs_suggestion'));
     }
 
     /**
@@ -89,7 +89,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $edit_blog = Blog::find($id);
-        return view('admin.blog.edit_blog',compact('edit_blog'));
+        return view('admin.blog.edit_blog', compact('edit_blog'));
     }
 
     /**
@@ -102,26 +102,24 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $update_blog = Blog::find($id);
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filemane = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filemane);
-        }else{
+            $filemane = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filemane);
+        } else {
             $filemane = "no-image.png";
         }
         $update_blog->title = $request->title;
         $update_blog->image = $filemane;
         $update_blog->short_description = $request->short_description;
-        // dd($update_blog);
         $update_blog->description = $request->description;
         $update_blog->status = $request->status;
         $update_blog->type = $request->type;
         $update_blog->techinque_id = $request->technique;
-        // dd($update_blog);
-        if($update_blog->save()){
-            return redirect('blogs')->with('message','Blog Successfully Updated');
-        }else{
-            return redirect("blogs/$id/edit")->with('message','Failed to update Blog');
+        if ($update_blog->save()) {
+            return redirect('blogs')->with('message', 'Blog Successfully Updated');
+        } else {
+            return redirect("blogs/$id/edit")->with('message', 'Failed to update Blog');
         }
 
     }
@@ -135,10 +133,10 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::find($id);
-        if($blog->delete()){
-            return redirect('blogs')->with('message','Blog Successfully Deleted'); 
-        }else{
-            return redirect('blogs')->with('message','Failed to delete Blog');
+        if ($blog->delete()) {
+            return redirect('blogs')->with('message', 'Blog Successfully Deleted');
+        } else {
+            return redirect('blogs')->with('message', 'Failed to delete Blog');
         }
     }
 }

@@ -44,7 +44,7 @@
         <div class="navbar-nav">
           <ul class="nav nav-pills">
           <li class="nav-link">
-            <a style="color:white" class="{{Request::is('/') ? 'nav-link active' : '' }}" href="/">Home</a></li>
+            <a style="color:white" class="{{Request::is('/') ? 'nav-link active' : '' }}" href="/home">Home</a></li>
             
             @if (Route::has('login'))
             
@@ -117,7 +117,7 @@
             </a>
             <a class="nav-item nav-link" href="{{url('contact')}}">Contact Us</a>
             <a class="nav-item nav-link" href="/about">About Us</a>
-            <a class="nav-item nav-link" href="/working">How It Works</a>
+            <a class="nav-item nav-link" href="/how-its-works">How It Works</a>
           </div>
         </div>
         <!-- Grid column -->

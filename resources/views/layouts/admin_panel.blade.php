@@ -153,7 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('blogs')}}" class="nav-link">
+            <a href="{{url('techniques')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Technique Management
@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
               </p>
               @endcannot
-            </a> -->
+            </a> 
           </li>
           
         </ul>

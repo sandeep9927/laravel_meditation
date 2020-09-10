@@ -11,14 +11,6 @@
           <input type="text" class="form-control" name="title" value="{{old('title')}}" aria-describedby="nameHelp" placeholder="Enter Name">
           @error('title') <p style="color:red">{{$message}}</p> @enderror
         </div>
-        <!-- <div class="form-group">
-            <label for="exampleInputEmail1">Select Page</label>
-            <select class="custom-select">
-                
-                <option value="1">One</option>
-                <option value="1">Two</option>
-              </select>
-              </div> -->
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
             <input type="file" class="form-control" name="image" aria-describedby="emailHelp" >

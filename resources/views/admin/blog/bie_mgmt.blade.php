@@ -32,12 +32,9 @@
                 <option value="3">Three</option>
               </select>
             </div>
-          
-          
 
           <div class="col-auto my-1">
             <a class="btn btn-primary" href="{{ url('blogs/create') }}">Create</a>
-         
           </div>
         </div>
         <table class="table">
@@ -79,8 +76,6 @@
               
             </tbody>
           </table>
-          
-
 </div>
 <div class="col-sm-12">
   {{$blogs->links()}}

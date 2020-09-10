@@ -9,7 +9,6 @@
 						<img src="{{url('/images/' . $blog->image)}}" style="width: 100%;" alt="" class="image image-full">
 						<div class="title">
 							<h2>{{$blog->title}}</h2>
-							<!-- <span class="byline">jhy yvi</span> -->
 						</div>
 						{!!$blog->description!!}
 					</div>
