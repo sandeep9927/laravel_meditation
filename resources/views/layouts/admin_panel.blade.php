@@ -99,28 +99,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview menu-open">
               @cannot('isWriter')
               <li class="nav-item">
-                <a href="{{url('cms_user')}}" class="nav-link">
+                <a href="{{url('cms_user')}}" class="{{Request::is('cms_user') ? 'nav-link active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>User Management</p>
                   </a>
                 </li>
               @endcannot
               <li class="nav-item">
-                <a href="{{url('writers')}}" class="nav-link active">
+                <a href="{{url('writers')}}" class="{{Request::is('writers') ? 'nav-link active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Writer Management</p>
                 </a>
               </li> 
               @cannot('isWriter')
               <li class="nav-item">
-                <a href="{{url('faqs')}}" class="nav-link">
+                <a href="{{url('faqs')}}" class="{{Request::is('faqs') ? 'nav-link active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>FAQ Management</p>
                   </a>
                 </li>
               @endcannot            
               <li class="nav-item">
-              <a href="{{url('banners')}}" class="nav-link">
+              <a href="{{url('banners')}}" class="{{Request::is('banners') ? 'nav-link active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Banner Management</p>
                 </a>
@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
           </li>
           <li class="nav-item">
-            <a href="{{url('blogs')}}" class="nav-link">
+            <a href="{{url('blogs')}}" class="{{Request::is('blogs') ? 'nav-link active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Blog,Interview
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('stories')}}" class="nav-link">
+            <a href="{{url('stories')}}" class="{{Request::is('stories') ? 'nav-link active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Story Management
@@ -147,16 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @cannot('isWriter')
           <li class="nav-item">
-            <a href="{{url('site_user')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Master Management
-                
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{url('/department')}}" class="nav-link">
+            <a href="{{url('/department')}}" class="{{Request::is('department') ? 'nav-link active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Department Management
@@ -167,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @endcannot
           @cannot('isWriter')
           <li class="nav-item">
-            <a href="{{url('techniques')}}" class="nav-link">
+            <a href="{{url('techniques')}}" class="{{Request::is('techniques') ? 'nav-link active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Technique Management
@@ -177,7 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @endcannot
           @cannot('isWriter')
           <li class="nav-item">
-            <a href="{{url('faqcats')}}" class="nav-link">
+            <a href="{{url('faqcats')}}" class="{{Request::is('faqcats') ? 'nav-link active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
               Faq Category <br> Management
