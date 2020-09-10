@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ '/images/'.Auth::user()->image }}" class="img-circle elevation-2" alt="no">
         </div>
         <div class="info">
-          <a href="{{url('/site_user/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{url('update-writer-profile')}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -86,14 +86,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Example single danger button -->
 
           <li class="nav-item has-treeview menu-open">
-            <!-- <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-              Page Management
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a> -->
-            <ul class="nav nav-treeview">
+              @cannot('isWriter')
+              <li class="nav-item">
+                <a href="{{url('cms_user')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>User Management</p>
+                  </a>
+                </li>
+              @endcannot
               <li class="nav-item">
                 <a href="{{url('writers')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
@@ -107,15 +107,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p>FAQ Management</p>
                   </a>
                 </li>
-              @endcannot
-             
+              @endcannot            
               <li class="nav-item">
               <a href="{{url('banners')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Banner Management</p>
                 </a>
               </li>
-            </ul>
+            
           </li>
           <li class="nav-item">
             <a href="{{url('blogs')}}" class="nav-link">

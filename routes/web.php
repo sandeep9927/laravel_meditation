@@ -77,7 +77,7 @@ Route::get('cms_user','UserController@cms_user');
 Route::get('admin/login','AdminController@admin');
 Route::post('admin/dashboard','AdminController@adminlogin');
 Route::get('writers','AdminController@index');
-Route::get('update-writer-profie','AdminController@writerprofile');
+Route::get('update-writer-profile','AdminController@writerprofile');
 Route::get('/search','AdminController@search');
 
 
