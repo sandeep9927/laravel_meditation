@@ -73,9 +73,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           <img src="{{ '/images/'.Auth::user()->image }}" class="img-circle elevation-2" alt="no">
         </div>
+        @if ('isWriter')
+        <div class="info">
+          <a href="{{url('/writers/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
+        </div>
+        @elseif('isUser')
         <div class="info">
           <a href="{{url('update-writer-profile')}}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
+        @elseif('isAdmin')
+        <div class="info">
+          <a href="{{url('/users/'.Auth::user()->id.'/edit')}}" class="d-block">{{ Auth::user()->name }}</a>
+        </div>
+        @endif
+        
       </div>
 
       <!-- Sidebar Menu -->

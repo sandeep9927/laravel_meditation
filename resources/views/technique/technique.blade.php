@@ -17,20 +17,27 @@
   <div class="row">
     <div class="col-sm-4" >
       <div class="panel panel-primary" id="nav">
-        @if ($techniques->count())
-  
         <div class="panel-heading">Tradition</div>
-        @foreach ($techniques as $technique)
-        <ul >
-          <li> <a href="{{ url("technique/$technique->id") }}"><img style="width: 100px;" src="{{ url('/images/'.$technique->image) }}" alt="">  {{ $technique->title }}</li></a>
-        </ul>
-        @endforeach
-          
-        @endif
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+        <div class="container">
+          <div id="blog" class="row"> 
+                 @if ($techniques->count())
+                 @foreach ($techniques as $technique)
+                 <div class="col-md-10 blogShort">
+                     {{-- <h1>{{ $technique->title }}</h1> --}}
+                     <img style="width: 100px; height:70px;" src="{{ url('/images/'.$technique->image) }}" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                     
+                        <a href="{{ url("technique/$technique->id") }}" target="_blank"><strong>{{ $technique->title }} </strong></a>
+                     <div class="text"><p style="width: 500px;" >
+                         {!!$technique->description!!}
+                     </p></div>
+                     
+                 </div>
+                 @endforeach
+                 @endif
+             </div>
+       </div>
       </div>
     </div>
- 
     <div class="col-sm-4"> 
       <div class="panel panel-danger">
         
@@ -72,6 +79,5 @@
       </div>
     </div>
   </div>
-</div><br><br>
-
+</div><br>
 @endsection

@@ -60,7 +60,7 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallba
 
 //<------------------UserProfile----------------->
 Route::get('profile','UserProfileController@show');
-
+Route::post('profile/{id}/update','UserProfileController@update');
 Route::get('update-user-profile','UserProfileController@userprofile');
 
 
@@ -69,6 +69,7 @@ Route::get('update-user-profile','UserProfileController@userprofile');
 Route::get('users/create','UserController@create');
 Route::post('users','UserController@store');
 Route::get('site_user','UserController@site_user');
+Route::get('site_user/{id}/edit','UserController@edit');
 Route::get('cms_user','UserController@cms_user');
 
 
@@ -77,7 +78,12 @@ Route::get('cms_user','UserController@cms_user');
 Route::get('admin/login','AdminController@admin');
 Route::post('admin/dashboard','AdminController@adminlogin');
 Route::get('writers','AdminController@index');
+<<<<<<< HEAD
+Route::get('writers/{id}/edit','AdminController@edit');
+Route::get('update-writer-profie','AdminController@writerprofile');
+=======
 Route::get('update-writer-profile','AdminController@writerprofile');
+>>>>>>> eb1965a939d3e82a9fc42e0e68a34404a0742877
 Route::get('/search','AdminController@search');
 
 
@@ -138,14 +144,14 @@ Route::post('payment', 'PaymentController@payment')->name('payment');
 
 Route::group(['middleware'=>'can:isAdmin'], function () {
     Route::get('user/{id}/edit','UserProfileController@edit');
-    Route::post('profile/{id}/update','UserProfileController@update');
     
-    Route::get('site_user/{id}/edit','UserController@edit');
+    
+    
     Route::get('update-my-profile','UserController@updateprofile');
     Route::post('site_user/{id}','UserController@update');
     Route::get('site_user/{id}/delete','UserController@destroy');
 
-    Route::get('writers/{id}/edit','AdminController@edit');
+    
     Route::post('writers/{id}/update','AdminController@update');
     Route::get('writers/{id}/delete','AdminController@destroy');
 });
