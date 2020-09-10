@@ -43,7 +43,7 @@
                         @endif
                         <div class="card card-default">
                             <div class="card-header">
-                                Click below button to make payment successfully
+                                Click below on button to make payment successfully
                             </div>
 
                             <div class="card-body text-center">

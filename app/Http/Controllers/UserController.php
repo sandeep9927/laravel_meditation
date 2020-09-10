@@ -16,10 +16,10 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['can:isAdmin', 'can:isWriter', 'can:isBlogger'])->except('admin', 'adminlogin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['can:isAdmin', 'can:isWriter', 'can:isBlogger'])->except('admin', 'adminlogin');
+    // }
     public function cms_user()
     {
         $users = User::paginate(10);
@@ -106,7 +106,7 @@ class UserController extends Controller
     }
     public function updateprofile()
     {
-        return $this->edit(auth()->user()->$id);
+        return $this->edit(auth()->user()->id);
     }
     public function site_user()
     {
@@ -121,5 +121,11 @@ class UserController extends Controller
         return redirect('site_user')->with('message', 'User Successfully Deleted');
 
     }
+    public function writerprofie(){
+        return $this->edit(auth()->user()->id);
+    }
 
 }
+
+
+

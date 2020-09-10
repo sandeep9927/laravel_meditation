@@ -75,6 +75,9 @@
           
           </div>
         <div style="float: right;">
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item"><a class="nav-link" href="{{ url('payment-razorpay') }}">Upgrade A/C</a></li>
+          </ul>
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
             <a class="nav-link"><i class="fab fa-facebook-f"></i></a>
