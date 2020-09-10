@@ -54,7 +54,7 @@
 .border_social .social_icons li a:hover, .border_social.social_icons li a:hover {
     background-color: #F32B56;
     border-color: #F32B56;
-    color: #fff;
+    color: #ffff;
 }
 .contact_info > li > i {
     font-size: 18px;

@@ -128,6 +128,7 @@ class BannerController extends Controller
         return view('welcome', compact('banner'));
     }
 
+
     public function search(Request $request)
     {
         $search = $request->search;

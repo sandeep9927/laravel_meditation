@@ -6,7 +6,14 @@
   <div class="row" >
     <div class="col-sm-8">
       <div class="row">
-        <div class="col-sm-12"><h3 style="margin-bottom: 3rem;">LEARN</h3></div>
+        <div class="col-sm-12"><h3 style="margin-bottom: 3rem;">Articles & Blogs</h3>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item active" aria-current="page">Learn</li>
+              <li class="breadcrumb-item"><a href="{{ url('home/technique') }}">Techniques</a></li>
+            </ol>
+          </nav>
+        </div>
           @foreach($blogs as $blog)
           <div class="col-sm-6">
             <a href="{{url('blogs/'. $blog->id)}}"><img src="{{url('images/' . $blog->image)}}" class="img-responsive" style="width:100%" alt="Image"></a>
