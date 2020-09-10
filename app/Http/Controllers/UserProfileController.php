@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\UserProfile;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class UserProfileController extends Controller
 {
- 
 
     public function show()
     {
@@ -16,24 +16,24 @@ class UserProfileController extends Controller
     }
 
     public function edit()
-    {   
-        return view('profiles.edit_profile')->with('user',Auth::user());
+    {
+        return view('profiles.edit_profile')->with('user', Auth::user());
     }
 
     public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'email:rfc,dns',
-            'dob' =>'required',
+            'email' => 'email',
+            'dob' => 'required',
 
         ]);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $user = Auth::user();
@@ -42,12 +42,16 @@ class UserProfileController extends Controller
         $user->date_of_birth = $request->input('dob');
         $user->password = $request->input('password');
         $user->image = $filename;
-        if($request->has('password')){
+        if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
-        
-        return redirect('profile')->with('message','You Profile Successfully Updated');
+
+        return redirect('profile')->with('message', 'You Profile Successfully Updated');
+    }
+    public function userprofile()
+    {
+        return $this->edit(auth()->user()->id);
     }
 
     public function destroy(UserProfile $userProfile)

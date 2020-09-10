@@ -15,10 +15,10 @@ class AdminController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
-    // }
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
+    }
 
     /**
      * Display a listing of the resource.
@@ -113,11 +113,6 @@ class AdminController extends Controller
     }
     public function adminlogin(Request $request)
     {
-
-        //User::adminvalidate();
-        // if(!Gate::allows('isAdmin')){
-        //     abort(404,'soryy your not able access this page');
-        // }
 
         $request->validate([
             'email' => 'email',

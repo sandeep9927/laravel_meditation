@@ -55,12 +55,10 @@
             <tbody>
               @php
                  $count = 1+(request()->get('page',1)-1)*10; 
-                //  var_dump(request()->get('page',1));
               @endphp
               @foreach ($show_faq as $show)
               
               <tr>
-              
               <td>{{$count++}}</td>
                 <td>{{$show->title}}</td>
                 <td>{{$show->status}}</td>
@@ -69,13 +67,8 @@
               <td><a class="btn btn-danger" href="{{url("faq/$show->id/delete")}}">Delete</a></td>
               </tr>
               @endforeach
-              
-            
-              
             </tbody>
-          </table>
-          
-          
+          </table>   
       </form>
 </div>
 <div class="col-sm-12">

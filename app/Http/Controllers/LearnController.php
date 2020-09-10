@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Blog;
-
+use Illuminate\Http\Request;
 
 class LearnController extends Controller
 {
@@ -17,10 +16,8 @@ class LearnController extends Controller
     {
         $blogs = Blog::paginate(4);
         $blogs_suggestion = Blog::inRandomOrder()->paginate(3);
-        return view('learn.homepage',compact('blogs'),compact('blogs_suggestion'));
-    }    
-
-
+        return view('learn.homepage', compact('blogs'), compact('blogs_suggestion'));
+    }
 
     /**
      * Show the form for creating a new resource.

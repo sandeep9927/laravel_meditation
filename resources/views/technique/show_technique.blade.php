@@ -16,18 +16,22 @@
       <p><a href="#">Link</a></p>
     </div>
     
-    <div class="col-sm-8 text-left"> 
+    <div class="col-sm-8 text-left" > 
       <form action="{{ url('technique/'.$show_techniuqe->id) }}" method="POST">
         @csrf
-      <h1>{{ $show_techniuqe->title }}</h1>
-      <p>{{ $show_techniuqe->image }}</p>
-      <div class="rating">
-        <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $show_techniuqe->userAverageRating }}" data-size="xs">
-        <input type="hidden" name="id" required="" value="{{ $show_techniuqe->id }}">
-        <span class="review-no">422 reviews</span><br/>
-        <button class="btn btn-success">Submit Review</button>
-      </form>
-    </div>      
+        
+        <div style="text-align: center">
+          <h1 >{{ $show_techniuqe->title }}</h1>
+          <img style="width: 400px;"  src="{{ url('/images/'.$show_techniuqe->image) }}" alt="no-image.png">
+          <p style="width: 400px;">{!!$show_techniuqe->description!!}</p>
+          <div class="rating" style="float: right">
+            <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $show_techniuqe->userAverageRating }}" data-size="xs">
+            <input type="hidden" name="id" required="" value="{{ $show_techniuqe->id }}">
+            <span  class="review-no">422 reviews</span><br/>
+            <button class="btn btn-success">Submit Review</button>
+          </form>
+           </div> 
+        </div>           
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">

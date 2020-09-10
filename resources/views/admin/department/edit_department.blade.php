@@ -1,6 +1,6 @@
- @extends('layouts.admin_panel')
-  @section('title','edit department')
-  @section('content')
+@extends('layouts.admin_panel')
+@section('title','edit department')
+@section('content')
   <div class="col-sm-6">
     
       <form method="post" action="{{url("department/$departments->id")}}">
@@ -23,4 +23,4 @@
           <a href=""  name="cancel" class="btn btn-primary">Cancel</a>
         </form>
   </div>
-  @endsection  
+@endsection  

@@ -2,12 +2,11 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use App\UserProfile;
 use App\Role;
 use Gate;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -18,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','verifyToken','provider_id','status','image','role_id',
+        'name', 'email', 'password', 'verifyToken', 'provider_id', 'status', 'image', 'role_id',
     ];
 
     /**
@@ -42,15 +41,16 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\UserProfile');
     }
-    
+
     public function role()
     {
-        return $this->hasMany('App\Role',);
+        return $this->hasMany('App\Role', );
     }
-    
-    public static function adminvalidate(){
-        if(!Gate::allows('isAdmin')){
-            abort(404,'soryy your not able access this page');
+
+    public static function adminvalidate()
+    {
+        if (!Gate::allows('isAdmin')) {
+            abort(404, 'soryy your not able access this page');
         }
     }
 }

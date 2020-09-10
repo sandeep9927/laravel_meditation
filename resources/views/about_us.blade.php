@@ -1,3 +1,7 @@
+@extends('layout')
+@section('title','About')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,3 +190,5 @@ textarea.form-control {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+@endsection

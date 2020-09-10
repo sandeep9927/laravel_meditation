@@ -6,7 +6,8 @@
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-<form action="{{url('techniques')}}" method="POST" enctype="multipart/form-data">
+<form action="{{url("techniques/$edit_tec->id")}}" method="POST" enctype="multipart/form-data">
+    @method('put')
   @csrf
   <div class="form-group">
     <label for="exampleFormControlSelect2">Select Parent </label>
@@ -32,7 +33,7 @@
   </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"> Title</label>
-          <input type="text" class="form-control"  placeholder="Title" name="title">
+          <input type="text" class="form-control"  value="{{ $edit_tec->title }}" name="title">
           @error('title')<p style="color: red">{{$message}}</p>@enderror
         </div>
     
@@ -43,13 +44,13 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Short Description</label>
-          <textarea class="form-control" name="short_description" rows="3">{{old('short_description')}}</textarea>
+          <textarea class="form-control" name="short_description" rows="3">{{ $edit_tec->short_description }}</textarea>
             @error('short_description')<p style="color: red">{{$message}}</p>@enderror
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
                 <div class="form-group">
-                   <textarea id="editor" class="form-control" name="description">{{old('description')}}</textarea>
+                   <textarea id="editor" class="form-control" name="description">{{ $edit_tec->description }}</textarea>
                    @error('description')<p style="color: red">{{$message}}</p>@enderror
                 </div>
           </div>
@@ -58,7 +59,7 @@
   
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Create FAQs</label>
-          <input type="text" name="faqs" id="" class="form-control">
+          <input type="text" name="faqs" id="" class="form-control" value="{{ $edit_tec->faqs }}">
           </div>
           
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -67,4 +68,3 @@
    
 </div>
 @endsection  
-

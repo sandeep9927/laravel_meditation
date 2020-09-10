@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Role;
-use App\Auth;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,8 +16,8 @@ class RoleController extends Controller
     public function index()
     {
         $users = User::all()->where('role_id', '=', 2);
-        return view('admin.cms_user',compact('users'));       
-                
+        return view('admin.cms_user', compact('users'));
+
     }
 
     /**

@@ -1,6 +1,6 @@
- @extends('layouts.admin_panel')
-  @section('title','create department')
-  @section('content')
+@extends('layouts.admin_panel')
+@section('title','create department')
+@section('content')
   <div class="col-sm-6">
       <form method="post" action="/department">
         @csrf
@@ -22,4 +22,4 @@
           <a href=""  name="cancel" class="btn btn-primary">Cancel</a>
         </form>
   </div>
-  @endsection  
+@endsection  

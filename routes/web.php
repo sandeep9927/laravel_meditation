@@ -25,7 +25,7 @@ Route::get('/about', function () {
     return view('about_us');
 });
 
-Route::get('/how_it_works', function () {
+Route::get('/how-its-works', function () {
     return view('how_it_works');
 });
 
@@ -60,17 +60,14 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallba
 
 //<------------------UserProfile----------------->
 Route::get('profile','UserProfileController@show');
-Route::get('user/{id}/edit','UserProfileController@edit');
-Route::post('profile/{id}/update','UserProfileController@update');
+
+Route::get('update-user-profile','UserProfileController@userprofile');
+
 
 // <----------------UserController----------------->
 
 Route::get('users/create','UserController@create');
 Route::post('users','UserController@store');
-Route::get('site_user','UserController@site_user');
-Route::get('site_user/{id}/edit','UserController@edit');
-Route::post('site_user/{id}','UserController@update');
-Route::get('site_user/{id}/delete','UserController@destroy');
 Route::get('cms_user','UserController@cms_user');
 
 
@@ -81,16 +78,13 @@ Route::post('admin/dashboard','AdminController@adminlogin');
 
 Route::get('writers','AdminController@index');
 Route::get('/search','AdminController@search');
-Route::get('writers/{id}/edit','AdminController@edit');
-Route::post('writers/{id}/update','AdminController@update');
-Route::get('writers/{id}/delete','AdminController@destroy');
+
 
 //<----------------------StoryController----------------->
 Route::get('stories','StoryController@index');
 Route::get('stories/create','StoryController@create');
 Route::post('stories','StoryController@store');
 Route::get('show_story','StoryController@show');
-
 Route::get('stories/{id}/edit','StoryController@edit');
 Route::post('stories/{id}/update','StoryController@update');
 Route::delete('stories/{id}','StoryController@destroy');
@@ -99,7 +93,7 @@ Route::delete('stories/{id}','StoryController@destroy');
 
 Route::get('faqs','FaqMgmtController@index')->name('faqs.index');
 Route::get('faqs/create','FaqMgmtController@create');
-Route::post('faqs','FaqMgmtController@store');
+Route::post('faqs','FaqMgmtController@store')->name('faqs.create');
 Route::get('faqs/{faq}','FaqMgmtController@show');
 Route::get('faqs/{id}/edit','FaqMgmtController@edit');
 Route::post('faqs/{id}/update','FaqMgmtController@update');
@@ -132,3 +126,25 @@ Route::get('notification', 'NotificationController@toMail');
 Route::get('home/technique','TechniqueController@technique');
 Route::get('technique/{id}','TechniqueController@show');
 Route::post('technique/{id}','TechniqueController@rate');
+
+
+
+//<--------------------PaymentController------------------->
+Route::get('payment-razorpay', 'PaymentController@create')->name('paywithrazorpay');
+Route::post('payment', 'PaymentController@payment')->name('payment');
+
+
+
+Route::group(['middleware'=>'can:isAdmin'], function () {
+    Route::get('user/{id}/edit','UserProfileController@edit');
+    Route::post('profile/{id}/update','UserProfileController@update');
+    Route::get('site_user','UserController@site_user');
+    Route::get('site_user/{id}/edit','UserController@edit');
+    Route::get('update-my-profile','UserController@updateprofile');
+    Route::post('site_user/{id}','UserController@update');
+    Route::get('site_user/{id}/delete','UserController@destroy');
+
+    Route::get('writers/{id}/edit','AdminController@edit');
+    Route::post('writers/{id}/update','AdminController@update');
+    Route::get('writers/{id}/delete','AdminController@destroy');
+});

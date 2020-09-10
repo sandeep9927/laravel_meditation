@@ -67,8 +67,6 @@
                 <a class="btn btn-danger" href="{{url("site_user/$user->id/delete")}}">Delete</a></td>
               </tr> 
               @endforeach
-            
-              
             </tbody>
           </table>
  

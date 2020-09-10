@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\ChildCategory;
 use App\ParentCategory;
 use App\Technique;
-use App\Blog;
 use Illuminate\Http\Request;
 
 class TechniqueController extends Controller
@@ -30,7 +29,7 @@ class TechniqueController extends Controller
     {
         $parent_cat_id = ParentCategory::all();
         $child_cat_id = ChildCategory::all();
-        return view('admin.technique.create_tec',compact('parent_cat_id'),compact('child_cat_id'));
+        return view('admin.technique.create_tec', compact('parent_cat_id'), compact('child_cat_id'));
     }
 
     /**
@@ -49,11 +48,11 @@ class TechniqueController extends Controller
             'child' => 'required',
         ]);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $story = new Technique;
@@ -64,11 +63,11 @@ class TechniqueController extends Controller
         $story->parent_cat_id = $request->parent;
         $story->child_cat_id = $request->child;
         $story->faqs = $request->faqs;
-        
-        if($story->save()){
-            return redirect('techniques')->with('message','techniques Successfully Created');
-        }else{
-            return redirect('techniques/create')->with('message','Failed to create story');
+
+        if ($story->save()) {
+            return redirect('techniques')->with('message', 'techniques Successfully Created');
+        } else {
+            return redirect('techniques/create')->with('message', 'Failed to create story');
         }
     }
 
@@ -80,8 +79,10 @@ class TechniqueController extends Controller
      */
     public function edit($id)
     {
-        $edit_parent = ParentCategory::find($id);
-        return view('admin.technique.edit_parent', compact('edit_parent'));
+        $parent_cat_id = ParentCategory::all();
+        $child_cat_id = ChildCategory::all();
+        $edit_tec = Technique::find($id);
+        return view('admin.technique.edit_tec', compact('edit_tec', 'parent_cat_id', 'child_cat_id'));
     }
 
     /**
@@ -93,7 +94,7 @@ class TechniqueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_technique = ParentCategory::find($id);
+        $update_technique = Technique::find($id);
         if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
             $filename = time() . "_." . $extension;
@@ -101,9 +102,12 @@ class TechniqueController extends Controller
         } else {
             $filename = "no-image.jpg";
         }
-        $update_technique->title = $request->input('title');
+        $update_technique->title = $request->title;
         $update_technique->image = $filename;
-        $update_technique->status = $request->input('status');
+        $update_technique->short_description = $request->short_description;
+        $update_technique->description = $request->description;
+        $update_technique->parent_cat_id = $request->parent;
+        $update_technique->child_cat_id = $request->child;
 
         if ($update_technique->save()) {
             return redirect("techniques")->with('message', 'technique Successfully Updated');
@@ -121,7 +125,7 @@ class TechniqueController extends Controller
      */
     public function destroy($id)
     {
-        $delete = ParentCategory::find($id);
+        $delete = Technique::find($id);
         if ($delete->delete()) {
             return redirect("techniques")->with('message', 'Technique Successfully Deleted');
         } else {
@@ -131,7 +135,7 @@ class TechniqueController extends Controller
 
     public function technique()
     {
-        $techniques = ChildCategory::all();
+        $techniques = Technique::all();
         return view('technique.technique', compact('techniques'));
     }
 
@@ -143,14 +147,14 @@ class TechniqueController extends Controller
      */
     public function show($id)
     {
-        $show_techniuqe = ChildCategory::find($id);
+        $show_techniuqe = Technique::find($id);
         return view('technique.show_technique', compact('show_techniuqe'));
     }
 
     public function rate(Request $request)
     {
-        // request()->validate(['rate' => 'required']);
-        $post = ChildCategory::find($request->id);
+        //request()->validate(['rate' => 'required']);
+        $post = Technique::find($request->id);
         $rating = new \willvincent\Rateable\Rating;
         $rating->rating = $request->rate;
         $rating->user_id = auth()->user()->id;
