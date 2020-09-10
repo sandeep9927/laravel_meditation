@@ -89,6 +89,11 @@ class AdminController extends Controller
     }
     
 
+    public function writerprofile()
+    {
+        return $this->edit(auth()->user()->id);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -130,10 +135,16 @@ class AdminController extends Controller
             'password' => $request->get('password'),
 
         ];
-        if (Auth::attempt($user_data) && Gate::allows('isAdmin') || Gate::allows('isBlogger') || Gate::allows('isWriter')) {
-            return redirect('cms_user')->with('message', 'You have successfully logged in');
-        } else {
-
+        if (Auth::attempt($user_data) && Gate::allows('isAdmin') || Gate::allows('isBlogger'))
+        {
+            return redirect('cms_user')->with('message', 'Welcome Admin');
+        } 
+        elseif(Auth::attempt($user_data) && Gate::allows('isWriter'))
+        {
+            return redirect('writers')->with('message', 'Welcome writer..You are ready to create stuff');
+        } 
+        else
+        {
             return redirect('admin/login')->with('message', 'These credentials do not match our records.');
         }
     }

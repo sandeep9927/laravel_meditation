@@ -78,8 +78,12 @@ Route::get('cms_user','UserController@cms_user');
 Route::get('admin/login','AdminController@admin');
 Route::post('admin/dashboard','AdminController@adminlogin');
 Route::get('writers','AdminController@index');
+<<<<<<< HEAD
 Route::get('writers/{id}/edit','AdminController@edit');
 Route::get('update-writer-profie','AdminController@writerprofile');
+=======
+Route::get('update-writer-profile','AdminController@writerprofile');
+>>>>>>> eb1965a939d3e82a9fc42e0e68a34404a0742877
 Route::get('/search','AdminController@search');
 
 
