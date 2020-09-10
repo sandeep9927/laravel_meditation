@@ -39,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
+      <a class="nav-item nav-link" href="/">Home</a>
       <a class="nav-item nav-link" href="{{ route('logout') }}"
          onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
@@ -120,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{url('blogs')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Blog,Inverview
+              Blog,Interview
                 
               </p>
             </a>
@@ -131,33 +132,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>
               Story Management
               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{url('site_user')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Video Management
-           
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{url('blogs')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Seminar Management
-               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{url('blogs')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Technique Management
-               
               </p>
             </a>
           </li>
@@ -186,8 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{url('techniques')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Technique Category
-              <br> Management
+              Technique Management
               </p>
             </a>
           </li>

@@ -50,12 +50,16 @@
             
                 @auth
                    <li class="nav-link"> <a class="nav-item nav-link" href="{{url('profile')}}">{{ Auth::user()->name}}</a></li>
+                   <li class="nav-link">
+                     @cannot('isUser')
+                      <a class="nav-item nav-link" href="cms_user">CMS</a>
+                      @endcannot
+                   </li>
                      <li class="nav-link"> <a class="nav-item nav-link" href="{{ route('logout') }}"
                          onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                           {{ __('Logout') }}
                       </a></li>
-
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
