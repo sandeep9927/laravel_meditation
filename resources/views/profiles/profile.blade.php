@@ -32,7 +32,7 @@
 
                         <!-- Split button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="user/{{Auth::user()->id}}/edit" style="font-size: 15px;border-radius: 4px;padding: 10px 38px;">Edit</a>
+                            <a class="btn btn-primary" href="{{ url('/update-user-profile') }}" style="font-size: 15px;border-radius: 4px;padding: 10px 38px;">Edit</a>
                         </div>
                     </div>
                     

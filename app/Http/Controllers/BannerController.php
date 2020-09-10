@@ -15,7 +15,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::paginate(10);
-        return view('admin.banner.banner_mgmt',compact('banners'));
+        return view('admin.banner.banner_mgmt', compact('banners'));
     }
 
     /**
@@ -36,17 +36,17 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
+        $request->validate([
             'title' => 'required|max:20',
             'image' => 'required',
             'status' => 'required',
         ]);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $banner = new Banner();
@@ -78,7 +78,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = Banner::find($id);
-        return view('admin.banner.edit_banner',compact('banner'));
+        return view('admin.banner.edit_banner', compact('banner'));
     }
 
     /**
@@ -90,16 +90,16 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request -> validate([
+        $request->validate([
             'title' => 'required|max:20',
             'status' => 'required',
         ]);
 
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $banners = Banner::find($id);
@@ -108,7 +108,7 @@ class BannerController extends Controller
         $banners->status = $request['status'];
         // dd($banners);
         $banners->save();
-        return redirect('/banners')->with('message','Banner successfully updated');
+        return redirect('/banners')->with('message', 'Banner successfully updated');
     }
 
     /**
@@ -125,15 +125,14 @@ class BannerController extends Controller
     public function homebanner()
     {
         $banner = Banner::first();
-        return view('welcome',compact('banner'));
+        return view('welcome', compact('banner'));
     }
 
 
     public function search(Request $request)
     {
         $search = $request->search;
-        $banner = DB::table('banners')->where('title','like',$search .'%' )->paginate(10);
-        //dd($banner);
-        return view('admin.banner.banner_mgmt',compact('banner'));
+        $banner = DB::table('banners')->where('title', 'like', $search . '%')->paginate(10);
+        return view('admin.banner.banner_mgmt', compact('banner'));
     }
 }

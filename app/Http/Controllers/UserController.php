@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Notifications\UserCreated;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,13 +16,13 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth')->except('cms_user');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['can:isAdmin', 'can:isWriter', 'can:isBlogger'])->except('admin', 'adminlogin');
+    // }
     public function cms_user()
     {
-        $users = User::paginate(10); //where('role_id', '=', 2);
+        $users = User::paginate(10);
         return view('admin.user.cms_user', compact('users'));
     }
 
@@ -100,9 +101,12 @@ class UserController extends Controller
         $user_upadte->user_status = $request->input('status');
         $user_upadte->mobile = $request->input('number');
         $user_upadte->image = $filename;
-        // dd($user_upadte);
         $user_upadte->save();
         return redirect("site_user/" . $id . "/edit")->with('message', 'User Successfully Updated');
+    }
+    public function updateprofile()
+    {
+        return $this->edit(auth()->user()->id);
     }
     public function site_user()
     {
@@ -117,5 +121,11 @@ class UserController extends Controller
         return redirect('site_user')->with('message', 'User Successfully Deleted');
 
     }
+    public function writerprofie(){
+        return $this->edit(auth()->user()->id);
+    }
 
 }
+
+
+

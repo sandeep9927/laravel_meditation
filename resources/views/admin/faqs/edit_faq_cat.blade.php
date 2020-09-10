@@ -5,7 +5,6 @@
 <form action="{{url("faqcats/$edit_faq_cat->id")}}" method="POST">
     
     @method('put')
-
     @csrf
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>

@@ -15,9 +15,9 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $departments = Department::paginate(10);
-        return view('admin.department.department_mgmt',compact('departments'));
+        return view('admin.department.department_mgmt', compact('departments'));
     }
 
     /**
@@ -52,16 +52,16 @@ class DepartmentController extends Controller
         return redirect('/department');
 
     }
-    
+
     public function show(Department $department)
     {
-        
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,12 +70,11 @@ class DepartmentController extends Controller
         return view('admin.department.edit_department', compact('departments'));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Banner  $banner
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -89,21 +88,21 @@ class DepartmentController extends Controller
         $departments->title = $request->input('title');
         $departments->status = $request->input('status');
         $departments->save();
-        return redirect('/department')->with('message','Department successfully updated');
+        return redirect('/department')->with('message', 'Department successfully updated');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $delete_department = Department::find($id);
         $delete_department->delete();
-        return redirect('/department')->with('message','Department successfully deleted');
+        return redirect('/department')->with('message', 'Department successfully deleted');
 
     }
 
@@ -111,21 +110,7 @@ class DepartmentController extends Controller
     {
         $search = $request->search;
         $status = $request->status;
-        // dd($search,$status);
-        // $where = [
-        //     [
-        //         'name',
-        //         '=',
-        //         $search,
-        //     ],
-        //     [
-        //         'status',
-        //         '=',
-        //         $status,
-        //     ]
-        // ];
-        $departments = DB::table('departments')->where('title','like',$search .'%' )->paginate(10);
-        //dd($departments);
-        return view('admin.department.department_mgmt',compact('departments'));
+        $departments = DB::table('departments')->where('title', 'like', $search . '%')->paginate(10);
+        return view('admin.department.department_mgmt', compact('departments'));
     }
 }

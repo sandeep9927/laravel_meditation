@@ -10,14 +10,6 @@
           <label for="exampleInputEmail1">Title</label>
           <input type="text" class="form-control" name="title" value="{{$banner->title}}">
         </div>
-        <!-- <div class="form-group">
-            <label for="exampleInputEmail1">Select Page</label>
-            <select class="custom-select">
-                
-                <option value="1">One</option>
-                <option value="1">Two</option>
-              </select>
-              </div> -->
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
             <input type="file" class="form-control" name="image" value="{{$banner->image}}">

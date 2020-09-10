@@ -40,20 +40,20 @@ class ParentCategoryController extends Controller
             'title' => 'required|max:255',
             'status' => 'required',
         ]);
-        if($request->hasFile('image') && $request->image->isValid()){
+        if ($request->hasFile('image') && $request->image->isValid()) {
             $extension = $request->image->extension();
-            $filename = time()."_.".$extension;
-            $request->image->move(public_path('images'),$filename);
-        }else{
+            $filename = time() . "_." . $extension;
+            $request->image->move(public_path('images'), $filename);
+        } else {
             $filename = "no-image.jpg";
         }
         $technique->title = $request->title;
         $technique->status = $request->status;
         $technique->image = $filename;
-        if($technique->save()){
-            return redirect("techniques")->with('message','Parent  Successfully Created');
-        }else{
-            return redirect("techniques")->with('message','Failed To Created');
+        if ($technique->save()) {
+            return redirect("techniques")->with('message', 'Parent  Successfully Created');
+        } else {
+            return redirect("techniques")->with('message', 'Failed To Created');
         }
     }
 
@@ -76,7 +76,7 @@ class ParentCategoryController extends Controller
      */
     public function edit(ParentCategory $parentCategory)
     {
-        
+
     }
 
     /**
