@@ -46,7 +46,8 @@
                 <th scope="col">Status</th>
                 <th scope="col">Role</th>
                 <th scope="col">Registration Date</th>
-                <th scope="col">Action</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody><?php $count = 1; ?>
@@ -60,6 +61,7 @@
                 <td>{{$user->role->role}}</td>
                 <td>{{$user->created_at}}</td>
                 <td><a class="btn btn-primary" href="{{url("/user/$user->id/edit")}}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{{url("/user/$user->id/delete")}}">Delete</a></td>
               </tr> 
               @endforeach
             </tbody>

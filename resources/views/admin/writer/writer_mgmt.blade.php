@@ -55,9 +55,12 @@
               </tr>
             </thead>
             <tbody>
+              @php
+                  $count = 1+(request()->get('page',1)-1)*10; 
+              @endphp
               @foreach ($writers as $writer)
               <tr>
-              <td>{{$writer->id}}</td>
+              <td>{{$count++}}</td>
               <td>{{$writer->name}}</td>
               <td>{{$writer->email}}</td>
               <td>{{$writer->mobile}}</td>
@@ -65,9 +68,7 @@
               <td>{{$writer->updated_at}}</td>
               {{-- @if (Auth::check() && Auth::user()->id==$writer->id) --}}
               @can('isAdmin')
-                
-              
-              <td><a class="btn btn-secondary" href="{{url("writers/$writer->id/edit")}}">Edit</a> |
+              <td><a class="btn btn-secondary" href="{{url("update-profile")}}">Edit</a> |
                 <a class="btn btn-danger" href="{{url("writers/$writer->id/delete")}}">Delete</a></td>
                 @endcan
               

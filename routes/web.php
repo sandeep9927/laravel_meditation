@@ -70,6 +70,7 @@ Route::get('users/create','UserController@create');
 Route::post('users','UserController@store');
 Route::get('site_user','UserController@site_user');
 Route::get('site_user/{id}/edit','UserController@edit');
+Route::get('/user/{id}/delete','UserController@destroy');
 Route::get('cms_user','UserController@cms_user');
 
 
@@ -78,12 +79,9 @@ Route::get('cms_user','UserController@cms_user');
 Route::get('admin/login','AdminController@admin');
 Route::post('admin/dashboard','AdminController@adminlogin');
 Route::get('writers','AdminController@index');
-<<<<<<< HEAD
 Route::get('writers/{id}/edit','AdminController@edit');
-Route::get('update-writer-profie','AdminController@writerprofile');
-=======
-Route::get('update-writer-profile','AdminController@writerprofile');
->>>>>>> eb1965a939d3e82a9fc42e0e68a34404a0742877
+Route::get('update-profile','AdminController@profile');
+Route::post('writers/{id}/update','AdminController@update');
 Route::get('/search','AdminController@search');
 
 
@@ -152,6 +150,6 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
     Route::get('site_user/{id}/delete','UserController@destroy');
 
     
-    Route::post('writers/{id}/update','AdminController@update');
+    
     Route::get('writers/{id}/delete','AdminController@destroy');
 });

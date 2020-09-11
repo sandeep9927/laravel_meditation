@@ -85,11 +85,11 @@ class AdminController extends Controller
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
         $writer_update->save();
-        return redirect("writers/" . $id . "/edit")->with('message', 'Writer Successfully Updated');
+        return redirect("writers")->with('message', 'Writer Successfully Updated');
     }
-    
 
-    public function writerprofile()
+
+    public function profile()
     {
         return $this->edit(auth()->user()->id);
     }

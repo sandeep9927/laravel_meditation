@@ -118,12 +118,10 @@ class UserController extends Controller
     {
         $user_delete = User::find($id);
         $user_delete->delete();
-        return redirect('site_user')->with('message', 'User Successfully Deleted');
+        return redirect('cms_user')->with('message', 'User Successfully Deleted');
 
     }
-    public function writerprofie(){
-        return $this->edit(auth()->user()->id);
-    }
+    
 
 }
 
