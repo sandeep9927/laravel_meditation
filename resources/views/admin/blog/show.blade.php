@@ -9,7 +9,8 @@
 						<img src="{{url('/images/' . $blog->image)}}" style="width: 100%;" alt="" class="image image-full">
 						<div class="title">
 							<h2>{{$blog->title}}</h2>
-						</div>
+							<span><strong>By : {{$blog->writer->name}}</strong></span>
+						</div><br>
 						{!!$blog->description!!}
 					</div>
 				</div>

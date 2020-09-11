@@ -44,6 +44,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
                 <th scope="col">Type</th>
+                <th scope="col">Writer</th>
                 <th scope="col">Status</th>
                 <th scope="col">Updated On</th>
                 <th scope="col">Edit</th>
@@ -61,6 +62,7 @@
               <td>{{$blog->title}}</td>
               <td><img style="width:100px" src="{{'/images/'.$blog->image}}" alt="no-image.png"></td>
               <td>{{$blog->type}}</td>
+              <td>{{$blog->writer->name}}</td>
               <td>{{$blog->status}}</td>
               <td>{{$blog->updated_at}}</td>
               <td><a class="btn btn-primary" href="{{url("blogs/$blog->id/edit")}}">Edit</a></td>
