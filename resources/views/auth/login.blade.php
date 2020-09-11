@@ -2,9 +2,11 @@
 
 @section('content')
 <section class="pd-tp pd-bt">
+
+
 <div class="container">
     @if (Session::get('message'))
-<p class="alert alert-info">{{Session('message')}}</p>
+<p class="alert alert-danger">{{Session('message')}} <a href="{{ url('contact') }}">Contact</a></p>
     @endif
     <div class="row justify-content-center">
         <div class="col-md-8">

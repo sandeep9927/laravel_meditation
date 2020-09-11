@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('banned_until')->nullable();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }

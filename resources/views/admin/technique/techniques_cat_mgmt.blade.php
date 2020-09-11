@@ -66,9 +66,12 @@
               </tr>
             </thead>
             <tbody>
+              @php
+                  $count = 1+(request()->get('page',1)-1)*10; 
+              @endphp
               @foreach ($techniques as $technique)
               <tr>
-                <td>{{ $technique->id }}</td>
+                <td>{{ $count++ }}</td>
                 <td>{{ $technique->parentCategory->title }}</td>
                 <td>{{ $technique->childCategory->title }}</td>
                 <td>{{ $technique->title }}</td>
