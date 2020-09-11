@@ -36,11 +36,12 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(Blog::class, function (Faker $faker) {
     return [
-        'title' => $faker->sentence(20),
-        'short_description' => $faker->sentence(100),
+        'title' => $faker->sentence(1),
+        'short_description' => $faker->sentence(3),
         'description' => $faker->sentence(200),
         'status' =>'active',
-        'techinque_id' => 2,
+        'writer_id' => 4,
+        'technique_id' => 2,
         'type' =>1,
         
     ];

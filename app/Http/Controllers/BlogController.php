@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Technique;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -25,7 +28,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create_bie');
+        $techniques = Technique::all();
+        return view('admin.blog.create_bie', compact('techniques'));
     }
 
     /**
@@ -58,7 +62,8 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->status = $request->status;
         $blog->type = $request->type;
-        $blog->techinque_id = $request->technique;
+        $blog->technique_id = $request->technique;
+        $blog->writer_id = Auth::user()->id;
        
         if ($blog->save()) {
             return redirect('blogs')->with('message', 'Blog Successfully Created');
@@ -115,7 +120,7 @@ class BlogController extends Controller
         $update_blog->description = $request->description;
         $update_blog->status = $request->status;
         $update_blog->type = $request->type;
-        $update_blog->techinque_id = $request->technique;
+        $update_blog->technique_id = $request->technique;
         if ($update_blog->save()) {
             return redirect('blogs')->with('message', 'Blog Successfully Updated');
         } else {

@@ -21,8 +21,11 @@ class CreateBlogsTable extends Migration
             $table->longText('short_description');
             $table->longText('description');
             $table->string('status');
-            $table->bigInteger('techinque_id')->unsigned();
+            $table->bigInteger('technique_id')->unsigned();
+            $table->bigInteger('writer_id')->unsigned();
             $table->timestamps();
+            $table->foreign('technique_id')->references('id')->on('techniques')->onDelete('cascade');
+            $table->foreign('writer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
