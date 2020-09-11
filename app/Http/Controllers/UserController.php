@@ -121,7 +121,15 @@ class UserController extends Controller
         return redirect('cms_user')->with('message', 'User Successfully Deleted');
 
     }
-    
+
+    public function ChangeUserStatus(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+  
+        return response()->json(['success'=>'User status change successfully.']);
+    }
 
 }
 
