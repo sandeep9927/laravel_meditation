@@ -63,7 +63,7 @@
                 {{-- <td>{{$user->user_status}}</td> --}}
                 <td>{{$user->role->role}}</td>
                 <td>{{$user->created_at}}</td>
-                <td><a class="btn btn-primary" href="{{url("/user/$user->id/edit")}}">Edit</a></td>
+                <td><a class="btn btn-primary" href="{{url("/update-user-profile")}}">Edit</a></td>
                 <td><a class="btn btn-danger" href="{{url("/user/$user->id/delete")}}">Delete</a></td>
               </tr> 
               @endforeach

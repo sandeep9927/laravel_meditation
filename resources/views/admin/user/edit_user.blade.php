@@ -50,14 +50,8 @@
             <input class="form-check-input" type="radio" name="status" required value="inactive">
             <label class="form-check-label" for="inlineRadio2">Inactive</label>
           </div><br>
-          
-          
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Notify User Of New Account</label>
-        </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Monile Number</label>
+            <label for="exampleInputEmail1">Mobile Number</label>
             <input type="text" class="form-control" name="number" value="{{$user->mobile}}">
           </div>
         <div class="form-group">

@@ -59,12 +59,13 @@
               <tr>
                 
               <td>{{$count++}}</td>
-              <td>{{$blog->title}}</td>
+              <td><a href="{{url('blogs/'. $blog->id)}}">{{$blog->title}}</a></td>
               <td><img style="width:100px" src="{{'/images/'.$blog->image}}" alt="no-image.png"></td>
               <td>{{$blog->type}}</td>
               <td>{{$blog->writer->name}}</td>
               <td>{{$blog->status}}</td>
               <td>{{$blog->updated_at}}</td>
+              @if(Auth::check() && Auth::user()->id==$blog->writer_id)
               <td><a class="btn btn-primary" href="{{url("blogs/$blog->id/edit")}}">Edit</a></td>
               <td>
                 <form action="{{url("blogs/$blog->id")}}" method="post">
@@ -72,6 +73,7 @@
                 @csrf
                 <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                @endif
               </td>
               </tr>
               @endforeach

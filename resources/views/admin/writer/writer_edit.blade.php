@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','create user')
+@section('title','edit user')
 @section('content')
 <div class="col-sm-6">
   @if (Session::get('message'))
@@ -40,14 +40,8 @@
             <input class="form-check-input" type="radio" name="status" required value="inactive">
             <label class="form-check-label" for="inlineRadio2">Inactive</label>
           </div>@error('status')<p style="color: red">{{$message}}</p>@enderror<br>
-          
-          
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Notify User Of New Account</label>
-        </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Monile Number</label>
+            <label for="exampleInputEmail1">Mobile Number</label>
             <input type="text" class="form-control" name="number" value="{{$writer_edit->mobile}}">
             @error('number')<p style="color: red">{{$message}}</p>@enderror
           </div>

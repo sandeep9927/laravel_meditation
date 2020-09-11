@@ -51,9 +51,9 @@
                 @auth
                    <li class="nav-link"> <a class="nav-item nav-link" href="{{url('profile')}}">{{ Auth::user()->name}}</a></li>
                    <li class="nav-link">
-                     @cannot('isUser')
+                     @can('isAdmin')
                       <a class="nav-item nav-link" href="{{ url('cms_user') }}">CMS</a>
-                      @endcannot
+                      @endcan
                    </li>
                      <li class="nav-link"> <a class="nav-item nav-link" href="{{ route('logout') }}"
                          onclick="event.preventDefault();
