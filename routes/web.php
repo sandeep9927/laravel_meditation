@@ -153,3 +153,9 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
     
     Route::get('writers/{id}/delete','AdminController@destroy');
 });
+
+
+
+
+
+Route::get('changeStatus', 'UserController@ChangeUserStatus');
