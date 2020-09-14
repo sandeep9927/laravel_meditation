@@ -1,6 +1,7 @@
 @extends('layouts.admin_panel')
 @section('title','cms user')
 @section('content')
+{{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 <div >
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
@@ -71,25 +72,54 @@
             </tbody>
           </table>
 </div>
+
 <script>
-  $(function() {
-    $('#toggle-two').bootstrapToggle({
-      on: 'Active',
-      off: 'InActive'
-    });
-  });
-console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-  $(.toggle-class).on('change',function(){
-    var status = $(this).prop('chacked')==ture ? 1 : 0;
-    var user_id = $(this).data('id')
+  $('.toggle-class').on('change',function(){
+    var status = $(this).prop('chacked')==true ? 1 : 0;
+    var user_id = $(this).data('id');
+    console.log('=============');
     alert(user_id);
+    $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ url('changeStatus') }}',
+            data: {'status': status, 'user_id': user_id},
+            
+            success: function(data){
+              console.log(data.success);
+              console.log('=============');
+            }
+        });
+        alert(user_id);
   })
 </script>
 
 <div class="col-sm-12">
   {{ $users->links() }}
 </div>
-
-
+@endsection
+@section('footer-script')
+<script>
+  $('.toggle-class').on('change',function(){
+    var status = $(this).prop('chacked')==true ? 1 : 0;
+    var user_id = $(this).data('id');
+    console.log('=============');
+    alert(user_id);
+    $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ url('changeStatus') }}',
+            data: {'status': status, 'user_id': user_id},
+            
+            success: function(data){
+              console.log(data.success);
+              console.log('=============');
+            }
+        });
+        alert(user_id);
+  })
+</script>
 
 @endsection
+
+
