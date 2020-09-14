@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Role;
+use App\Technique;
 use Gate;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,10 +51,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role', 'role_id');
     }
 
-    public static function adminvalidate()
+    public function technique() {
+  
+        return $this->hasMany(Technique::class);
+     
+    }
+
+    public function comments()
     {
-        if (!Gate::allows('isAdmin')) {
-            abort(404, 'soryy your not able access this page');
-        }
+        return $this->hasMany('App\Comment','user_id');
     }
 }

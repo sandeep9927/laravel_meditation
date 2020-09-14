@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
         "razorpay/razorpay": "^2.5",
-        "willvincent/laravel-rateable": "^2.2"
+        "willvincent/laravel-rateable": "^2.2",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

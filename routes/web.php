@@ -159,3 +159,4 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
 
 
 Route::get('changeStatus', 'UserController@ChangeUserStatus');
+Route::post('/comment/{post}','CommentController@store')->name('comment.store');
