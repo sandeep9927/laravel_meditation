@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ChildCategory;
 use App\ParentCategory;
 use App\Technique;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class TechniqueController extends Controller
@@ -148,7 +149,10 @@ class TechniqueController extends Controller
     public function show($id)
     {
         $show_techniuqe = Technique::find($id);
-        return view('technique.show_technique', compact('show_techniuqe'));
+        $recommended_techniques = Technique::inRandomOrder()->limit(5)->get();
+        $comments = Comment::all();
+        // return view('technique.show_technique', compact('show_techniuqe'));
+        return view('technique.show_technique', compact('show_techniuqe','recommended_techniques','comments'));
     }
 
     public function rate(Request $request)

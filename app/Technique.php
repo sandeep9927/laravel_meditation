@@ -18,4 +18,9 @@ class Technique extends Model
     {
         return $this->belongsTo('App\ChildCategory', 'child_cat_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment','post_id');
+    }
 }

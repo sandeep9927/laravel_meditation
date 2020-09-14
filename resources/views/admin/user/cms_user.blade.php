@@ -58,7 +58,8 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}>
+                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+                  data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}>
                </td>
                 {{-- <td>{{$user->user_status}}</td> --}}
                 <td>{{$user->role->role}}</td>
@@ -70,25 +71,25 @@
             </tbody>
           </table>
 </div>
+<script>
+  $(function() {
+    $('#toggle-two').bootstrapToggle({
+      on: 'Active',
+      off: 'InActive'
+    });
+  });
+console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+  $(.toggle-class).on('change',function(){
+    var status = $(this).prop('chacked')==ture ? 1 : 0;
+    var user_id = $(this).data('id')
+    alert(user_id);
+  })
+</script>
+
 <div class="col-sm-12">
   {{ $users->links() }}
 </div>
-<script>
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var user_id = $(this).data('id'); 
-         console.log(user_id);
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '/changeStatus',
-            data: {'status': status, 'user_id': user_id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
-</script>
+
+
+
 @endsection

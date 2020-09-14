@@ -1,10 +1,12 @@
 @extends('layout')
 @section('title','edit')
 @section('content')
+<section style="padding: 94.5px 0;">
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
-<form action="{{url("profile/$user->id/update")}}" method="POST" enctype="multipart/form-data">
+<div style="width: 50%; margin-left:25%;">
+<form action="{{url("profile/$user->id/update")}}" method="POST" enctype="multipart/form-data" >
 
   @csrf
     <div class="form-group">
@@ -39,4 +41,5 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+</section>
 @endsection
