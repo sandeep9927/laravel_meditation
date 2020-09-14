@@ -35,6 +35,8 @@ Route::get('/technique', function () {
 
 Route::get('/learn/homepage','LearnController@index');
 
+Route::get('/faq','FaqMgmtController@homefaq');
+Route::get('/faq/{id}','FaqMgmtController@homefaq');
 //<--------------------DepartmentController---------->
 Route::get('/department', 'DepartmentController@index');
 Route::post('/department', 'DepartmentController@store');

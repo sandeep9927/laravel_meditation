@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FaqMgmt;
+use App\FaqCatMgmt;
 use Illuminate\Http\Request;
 
 class FaqMgmtController extends Controller
@@ -16,7 +17,8 @@ class FaqMgmtController extends Controller
 
     public function create()
     {
-        return view('admin.faqs.create_faq');
+        $faqs = FaqCatMgmt::all();
+        return view('admin.faqs.create_faq',compact('faqs'));
     }
 
     public function store(Request $request)
@@ -46,7 +48,8 @@ class FaqMgmtController extends Controller
     public function edit($id)
     {
         $edit_faq = FaqMgmt::find($id);
-        return view('admin.faqs.edit_faq', compact('edit_faq'));
+        $faqs = FaqCatMgmt::all();
+        return view('admin.faqs.edit_faq', compact('edit_faq'), compact('faqs'));
     }
 
     public function update(Request $request, $id)
@@ -72,4 +75,13 @@ class FaqMgmtController extends Controller
         $delete_faq->delete();
         return redirect('faqs')->with('message', 'FAQ Successfully Deleted');
     }
+
+    public function homefaq()
+    {
+        $faqs = FaqCatMgmt::all();
+        $faqquestions = FaqMgmt::all()->where('faq_cat_id','=',1);
+
+        return view('faq',compact('faqs','faqquestions'));
+    }
+
 }

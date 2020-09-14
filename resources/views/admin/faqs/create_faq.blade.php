@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','create user')
+@section('title','create FAQ')
 @section('content')
 <div class="col-sm-6">
     <h2>Create Faq</h2>
@@ -25,8 +25,9 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Category</label>
             <select class="form-control" name="cat">
-              <option>1</option>
-              <option>2</option>
+              @foreach($faqs as $faq)
+              <option value="{{$faq->id}}">{{$faq->title}}</option>
+              @endforeach
              
             </select>
             @error('cat')<p style="color:red">{{$message}}</p>@enderror

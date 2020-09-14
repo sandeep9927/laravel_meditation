@@ -21,6 +21,7 @@ class CreateFaqMgmtsTable extends Migration
             $table->string('status');
             $table->bigInteger('faq_cat_id')->unsigned();
             $table->timestamps();
+            $table->foreign('faq_cat_id')->references('id')->on('faq_cat_mgmts')->onDelete('cascade');
         });
     }
 

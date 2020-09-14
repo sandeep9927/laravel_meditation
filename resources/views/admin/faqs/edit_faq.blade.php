@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','create user')
+@section('title','Edit faq Category')
 @section('content')
 <div class="col-sm-6">
     <h2>Create Faq</h2>
@@ -24,9 +24,10 @@
           <script>tinymce.init({selector: 'textarea#editor',menubar: false});</script>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Category</label>
-            <select class="form-control" name="cat">
-              <option>1</option>
-              <option>2</option>
+            <select class="form-control" name="cat">          
+              @foreach($faqs as $faq)
+              <option value="{{$faq->id}}">{{$faq->title}}</option>
+              @endforeach
              
             </select>
           </div>

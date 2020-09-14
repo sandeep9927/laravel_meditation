@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-@section('title','cms user')
+@section('title','FAQ Category')
 @section('content')
 <div>
   <h2>FAQ Category Management</h2>
@@ -37,7 +37,7 @@
             <button type="submit" class="btn btn-primary">Apply</button>
           </div>
           <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Create FAQ Category</button>
+            <a class="btn btn-primary" href="{{url('faqcats/create')}}">Create FAQ Category</a>
           </div>
         </div>
         <table class="table">
