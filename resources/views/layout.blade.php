@@ -4,6 +4,7 @@
 
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
 
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> 
   
@@ -125,6 +126,7 @@
             <a class="nav-item nav-link" href="{{url('contact')}}">Contact Us</a>
             <a class="nav-item nav-link" href="/about">About Us</a>
             <a class="nav-item nav-link" href="/how-its-works">How It Works</a>
+            <a class="nav-item nav-link" href="/faq">FAQs</a>
           </div>
         </div>
         <!-- Grid column -->
