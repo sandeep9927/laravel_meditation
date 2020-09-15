@@ -78,7 +78,7 @@
     var status = $(this).prop('chacked')==true ? 1 : 0;
     var user_id = $(this).data('id');
     console.log('=============');
-    alert(user_id);
+    alert("Are you sure ");
     $.ajax({
             type: "GET",
             dataType: "json",
@@ -104,7 +104,7 @@
     var status = $(this).prop('chacked')==true ? 1 : 0;
     var user_id = $(this).data('id');
     console.log('=============');
-    alert(user_id);
+    alert('are you sure ');
     $.ajax({
             type: "GET",
             dataType: "json",

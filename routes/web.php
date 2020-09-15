@@ -26,7 +26,7 @@ Route::get('/about', function () {
 });
 
 Route::get('/how-its-works', function () {
-    return view('how_it_works');
+    return view('how_its_works');
 });
 
 Route::get('/technique', function () {
@@ -110,6 +110,7 @@ Route::resource('blogs', 'BlogController');
 
 //<----------------------TechniqueController------------------------->
 Route::resource('techniques', 'TechniqueController');
+Route::get('/search','TechniqueController@search');
 //<----------------------BannerController------------------------->
 Route::resource('banners', 'BannerController');
 Route::get('banners/search', 'BannerController@search');
