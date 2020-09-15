@@ -70,7 +70,7 @@
               </tr> 
               @endforeach
             </tbody>
-          </table>
+     </table>
 </div>
 
 <script>
@@ -90,7 +90,7 @@
               console.log('=============');
             }
         });
-        alert(user_id);
+      alert(user_id);
   })
 </script>
 
