@@ -200,7 +200,7 @@ textarea.form-control {
                 </div>
                 <div class="col-lg-8 col-md-6 mt-4 mt-lg-0 animation" data-animation="fadeInUp" data-animation-delay="0.3s">
                   <div class="field_form icon_form">
-                        <form action="/contact/send" method="post" name="enq">
+                        <form action="{{ url('/contact/send') }}" method="post" name="enq">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-lg-6">

@@ -18,7 +18,7 @@
                     </div>
                     @else
                     <style>.avatar {vertical-align: middle;width: 80px;height: 90px; margin-left: 20px;margin-right: 30px;}</style>
-                    <img src="../images/I80W1Q0.png" alt="Avatar" class="avatar" st>
+                    <img src="../images/avatar.png" alt="Avatar" class="avatar" st>
                     @endif
                     
                     

@@ -25,6 +25,7 @@ class UserProfileController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'email',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'dob' => 'required|before:-4 years',
 
         ]);

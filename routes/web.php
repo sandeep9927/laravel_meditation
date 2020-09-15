@@ -25,8 +25,8 @@ Route::get('/about', function () {
     return view('about_us');
 });
 
-Route::get('/how-its-works', function () {
-    return view('how_its_works');
+Route::get('/how-it-works', function () {
+    return view('how_it_works');
 });
 
 Route::get('/technique', function () {
