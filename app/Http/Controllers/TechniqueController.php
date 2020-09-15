@@ -137,7 +137,9 @@ class TechniqueController extends Controller
     public function technique()
     {
         $techniques = Technique::all();
-        return view('technique.technique', compact('techniques'));
+        $your_level = Technique::inRandomOrder()->get();
+        $your_need = Technique::inRandomOrder()->get();
+        return view('technique.technique', compact('techniques','your_level','your_need'));
     }
 
     /**
@@ -150,7 +152,7 @@ class TechniqueController extends Controller
     {
         $show_techniuqe = Technique::find($id);
         $recommended_techniques = Technique::inRandomOrder()->limit(5)->get();
-        $comments = Comment::all();
+        $comments = Comment::latest()->take(5)->get();
         // return view('technique.show_technique', compact('show_techniuqe'));
         return view('technique.show_technique', compact('show_techniuqe','recommended_techniques','comments'));
     }
@@ -163,8 +165,15 @@ class TechniqueController extends Controller
         $rating->rating = $request->rate;
         $rating->user_id = auth()->user()->id;
         $post->ratings()->save($rating);
-        return redirect("/home/technique");
+        return back();
 
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $writers = DB::table('techniques')->where('title', 'like', '%' . $search . '%');
+        return view('technique.show_technique', compact('show_techniuqe'));
     }
 
 }
