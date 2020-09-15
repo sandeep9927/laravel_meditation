@@ -25,7 +25,7 @@ class UserProfileController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'email',
-            'dob' => 'required',
+            'dob' => 'required|before:-4 years',
 
         ]);
 
