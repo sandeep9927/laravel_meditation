@@ -3,12 +3,17 @@
 @section('content')
 <section>
         <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+            @if ($banner->image!= null)
             <div class="banner-img">
-                
-                  <img src="{{url('/images/'.$banner->image)}}" alt="Snow" style="width:100%;">
-                
-                  <div id="overlay"></div>
-            </div>
+                <img src="{{url('/images/'.$banner->image)}}" alt="Snow" style="width:100%;">               
+                <div id="overlay"></div>
+          </div>
+            @else
+            <div class="banner-img">
+                <img src="{{url('/images/no-image.jpeg')}}" alt="Snow" style="width:100%;">               
+                <div id="overlay"></div>
+          </div>
+            @endif
             <div class="centered text-banner">
                 <div class="slider-title">
                     <h1>Meditation World</h1>

@@ -152,8 +152,6 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
     Route::post('site_user/{id}','UserController@update');
     Route::get('site_user/{id}/delete','UserController@destroy');
 
-    
-    
     Route::get('writers/{id}/delete','AdminController@destroy');
 });
 
