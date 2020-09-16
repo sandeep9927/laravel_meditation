@@ -16,7 +16,7 @@
         </div>
           @foreach($blogs as $blog)
           <div class="col-sm-6">
-            <a href="{{url('blogs/'. $blog->id)}}"><img  style="width: 400px;heigth:300px;" src="{{url('images/' . $blog->image)}}" class="img-responsive"  alt="Image"></a>
+            <a href="{{url('blogs/'. $blog->id)}}"><img  style="width: 400px;" src="{{url('images/' . $blog->image)}}" class="img-responsive"  alt="Image"></a>
             <p>{{$blog->title}}</p>
           </div>
           @endforeach
