@@ -124,9 +124,9 @@
               <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
             </a>
             <a class="nav-item nav-link" href="{{url('contact')}}">Contact Us</a>
-            <a class="nav-item nav-link" href="/about">About Us</a>
-            <a class="nav-item nav-link" href="/how-its-works">How It Works</a>
-            <a class="nav-item nav-link" href="/faq">FAQs</a>
+            <a class="nav-item nav-link" href="{{url('about')}}">About Us</a>
+            <a class="nav-item nav-link" href="{{url('how-its-works')}}">How It Works</a>
+            <a class="nav-item nav-link" href="{{url('faq')}}">FAQs</a>
           </div>
         </div>
         <!-- Grid column -->
