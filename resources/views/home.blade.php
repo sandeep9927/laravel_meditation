@@ -1,13 +1,14 @@
-
 @extends('layout')
 
 @section('content')
 <section>
         <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+            
             <div class="banner-img">
-                  <img src="../images/morning-meditation.jpg" alt="Snow" style="width:100%;">
-                  <div id="overlay"></div>
-            </div>
+                <img src="{{url('/images/no-image.jpg')}}" alt="Snow" style="width:100%;">               
+                <div id="overlay"></div>
+          </div>
+            
             <div class="centered text-banner">
                 <div class="slider-title">
                     <h1>Meditation World</h1>
@@ -18,7 +19,10 @@
                         <h2><p style="margin-bottom: 0;">LEARN</p></h2>
                         <span>Articles, Blogs And Interviews</span>
                     </a>
+
                     <a href="{{ url('home/technique') }}" class="btn btn-primary" style="padding:10px 20px; border-radius: 5px; border:none; ">
+
+                   
                         <h2><p style="margin-bottom: 0;">TECHNIQUES</p></h2>
                         <span>Meditations For Your Needs</span>
                     </a>
@@ -27,4 +31,3 @@
         </div>
     </section>
 @endsection
-

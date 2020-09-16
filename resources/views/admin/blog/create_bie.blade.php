@@ -13,7 +13,6 @@
         <input type="text" class="form-control" name="title"  value="{{old('title')}}">
           @error('title')<p style="color: red">{{$message}}</p>@enderror
         </div>
-    
         <div class="form-group">
           <label for="exampleFormControlSelect1">Type</label>
           <select class="form-control" name="type">
@@ -23,7 +22,6 @@
             <option>4</option>
             <option>5</option>
           </select>
-          @error('type')<p style="color: red">{{$message}}</p>@enderror
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Technique</label>

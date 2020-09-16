@@ -22,14 +22,13 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlSelect2">Select Technique </label>
-          <select multiple class="form-control" name="technique">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <label for="exampleFormControlSelect1">Select Technique</label>
+          <select class="form-control" name="technique">
+            @foreach ($techniques as $technique)
+            <option selected value="{{$technique->id}}">{{$technique->title}}</option>
+            @endforeach
           </select>
+          @error('technique')<p style="color: red">{{$message}}</p>@enderror
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Upload Image</label>
