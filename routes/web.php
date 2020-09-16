@@ -25,7 +25,7 @@ Route::get('/about', function () {
     return view('about_us');
 });
 
-Route::get('/how-its-works', function () {
+Route::get('/how-it-works', function () {
     return view('how_it_works');
 });
 
@@ -110,6 +110,7 @@ Route::resource('blogs', 'BlogController');
 
 //<----------------------TechniqueController------------------------->
 Route::resource('techniques', 'TechniqueController');
+Route::get('/search','TechniqueController@search');
 //<----------------------BannerController------------------------->
 Route::resource('banners', 'BannerController');
 Route::get('banners/search', 'BannerController@search');
@@ -151,8 +152,6 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
     Route::post('site_user/{id}','UserController@update');
     Route::get('site_user/{id}/delete','UserController@destroy');
 
-    
-    
     Route::get('writers/{id}/delete','AdminController@destroy');
 });
 

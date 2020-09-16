@@ -44,7 +44,7 @@
         <div class="container">
           <div id="blog" class="row"> 
                  @if ($techniques->count())
-                 @foreach ($techniques as $technique)
+                 @foreach ($your_level as $technique)
                  <div class="col-md-10 blogShort">
                      {{-- <h1>{{ $technique->title }}</h1> --}}
                      <img style="width: 100px; height:70px;" src="{{ url('/images/'.$technique->image) }}" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
@@ -67,7 +67,7 @@
         <div class="container">
           <div id="blog" class="row"> 
                  @if ($techniques->count())
-                 @foreach ($techniques as $technique)
+                 @foreach ($your_need as $technique)
                  <div class="col-md-10 blogShort">
                      {{-- <h1>{{ $technique->title }}</h1> --}}
                      <img style="width: 100px; height:70px;" src="{{ url('/images/'.$technique->image) }}" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
