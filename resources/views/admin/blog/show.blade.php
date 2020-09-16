@@ -21,7 +21,7 @@
 			      </div>
 			          @foreach($blogs_suggestion as $blog_suggestion)
 			      <div class="well">
-			        <a href=""><img src="{{url('images/' . $blog_suggestion->image)}}" class="img-responsive" style="width:50%" alt="Image"></a>
+			        <a href="{{url('blogs/'. $blog_suggestion->id)}}"><img src="{{url('images/' . $blog_suggestion->image)}}" class="img-responsive" style="width:50%" alt="Image"></a>
 			        <p>{{$blog_suggestion->title}}</p>
 		      	</div>
 		        @endforeach
