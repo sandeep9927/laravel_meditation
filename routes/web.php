@@ -88,7 +88,7 @@ Route::post('stories','StoryController@store');
 Route::get('show_story','StoryController@show');
 Route::get('stories/{id}/edit','StoryController@edit');
 Route::post('stories/{id}/update','StoryController@update');
-Route::delete('stories/{id}','StoryController@destroy');
+Route::delete('stories/{id}/','StoryController@destroy');
 
 // <--------------------FaqMgmtController---------------------->
 

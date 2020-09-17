@@ -34,7 +34,8 @@
             <th scope="col">Banner Image</th>
             <th scope="col">Status</th>
             <th scope="col">Updated On</th>
-            <th scope="col">Action</th>
+            <th scope="col">Edit</th>
+            
           </tr>
         </thead>
         <tbody><?php $count=1?>
@@ -45,7 +46,8 @@
             <td><img style="width: 100px" src="{{url('images/' . $banner->image)}}" alt=""></td>
             <td>{{$banner->status}}</td>
             <td>{{$banner->updated_at}}</td>
-            <td><a href="{{url("/banners/$banner->id/edit")}}">Edit</a></td>
+            <td><a class="btn btn-primary" href="{{url("/banners/$banner->id/edit")}}">Edit</a></td>
+            
           </tr>
         @endforeach
           

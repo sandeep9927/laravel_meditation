@@ -104,10 +104,7 @@ class UserController extends Controller
         $user_upadte->save();
         return redirect("site_user/" . $id . "/edit")->with('message', 'User Successfully Updated');
     }
-    public function updateprofile()
-    {
-        return $this->edit(auth()->user()->id);
-    }
+    
     public function site_user()
     {
         $users = User::all()->where('role_id', '=', 4);

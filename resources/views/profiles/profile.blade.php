@@ -2,7 +2,7 @@
 @section('title','profile')
 @section('content')
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<section style="padding: 94.5px 0;">
+<section style="padding: 94.5px 0;margin-bottom:300px;">
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">

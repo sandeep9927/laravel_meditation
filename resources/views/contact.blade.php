@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title','contact')
 @section('content')
+
 <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 <section style="margin-bottom: 300px;">
     <section class="breadcrumb_section page-title-light background_bg overlay_bg_70" data-img-src="media/img/site-img/buddha.jpg">
@@ -9,9 +10,13 @@
                 <div class="col-sm-12 text-center">
                     <div class="page-title">
                         <h1>Contact Us</h1>
+                        @if (Session::get('message'))
+                        <p class="alert alert-success">{{Session('message')}}</p>
+                          @endif
                     </div>
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb justify-content-center">
+                        
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                       </ol>

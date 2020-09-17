@@ -65,8 +65,8 @@
                     <td>{{$story->status}}</td>
                     <td>{{$story->updated_at}}</td>
                     
-                    @can('isWriter')
-                    @if ($story->writer_id == Auth::user()->id)
+                    
+                    @if ($story->writer_id == Auth::user()->id || Auth::user()->role_id == 1)
                     <td><a class="btn btn-primary" href="{{url("stories/$story->id/edit")}}">Edit</a></td>
                     <td><form action="{{ url("stories/$story->id") }}" method="post">
                       @method('delete')
@@ -74,8 +74,7 @@
                       <button type="submit" class="btn btn-danger">Delete</button>
                       </form></td>  
                     @endif
-                    
-                    @endcan                  
+                                 
                   </tr>     
               @endforeach
               
