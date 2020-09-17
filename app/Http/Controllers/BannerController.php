@@ -117,9 +117,11 @@ class BannerController extends Controller
      * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
-        //
+        $banner = Banner::all($id);
+        $banner->delete();
+        return redirect('/banners')->with('message', 'Banner successfully Delete');
     }
 
     public function homebanner()

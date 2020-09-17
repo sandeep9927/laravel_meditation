@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use DB;
 use Gate;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,10 +81,12 @@ class AdminController extends Controller
         $writer_update->name = $request->input('username');
         $writer_update->email = $request->input('email');
         $writer_update->password = $request->input('password');
-        // $writer_update->role_id = $request->input('role');
         $writer_update->user_status = $request->input('status');
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
+        if ($request->has('password')) {
+            $writer_update->password = Hash::make($request->password);
+        }
         $writer_update->save();
         return redirect("writers")->with('message', 'Writer Successfully Updated');
     }
@@ -120,10 +123,7 @@ class AdminController extends Controller
     public function adminlogin(Request $request)
     {
 
-        //User::adminvalidate();
-        // if(!Gate::allows('isAdmin')){
-        //     abort(404,'soryy your not able access this page');
-        // }
+
 
         $request->validate([
             'email' => 'email',

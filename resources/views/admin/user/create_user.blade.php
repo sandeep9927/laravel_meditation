@@ -27,17 +27,13 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" name="password_confirmation" placeholder="Confurm Password">
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
             @error('password')<p style="color: red">{{$message}}</p>@enderror
           </div>
           <label for="">Select Role</label><br>
           <div class="form-check form-check-inline">
           <input type="radio" id="teacher" value="1" name="role" >
             <label class="form-check-label" for="inlineRadio1">Superuser</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input type="radio" id="teacher" value="2" name="role" >
-            <label class="form-check-label" for="inlineRadio1">Blogger</label>
           </div>
           <div class="form-check form-check-inline">
             <input type="radio" id="teacher" value="3" name="role" >
