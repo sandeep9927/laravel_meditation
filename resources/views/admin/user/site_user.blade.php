@@ -49,7 +49,9 @@
                 <th scope="col">Delete</th>
               </tr>
             </thead>
-            <tbody><?php $count = 1; ?>
+            <tbody>@php
+              $count = 1+(request()->get('page',1)-1)*10; 
+           @endphp
               @foreach ($users as $user)
               <tr>
                 <th scope="row">{{$count++}}</th>

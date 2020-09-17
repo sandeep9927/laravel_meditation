@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ '/images/'.Auth::user()->image }}" class="img-circle elevation-2" alt="no">
+          <img src="{{ url('/images/'.Auth::user()->image) }}" class="img-circle elevation-2" alt="no">
         </div>
         @if ('isWriter')
         <div class="info">

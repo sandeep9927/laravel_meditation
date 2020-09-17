@@ -2,7 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.2.0/css/ionicons.min.css" integrity="sha256-F3Xeb7IIFr1QsWD113kV2JXaEbjhsfpgrKkwZFGIA4E=" crossorigin="anonymous" />
-
+<section style="margin-bottom: 350px;">
 <div class="container-fluid">
     <!-- Row -->
     <div class="row">
@@ -51,4 +51,5 @@
     </div>
     <!-- /Row -->
 </div>
+</section>
 @endsection

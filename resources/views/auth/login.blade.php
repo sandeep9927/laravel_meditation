@@ -1,7 +1,7 @@
 @extends('layout')
-
+@section('title','Login')
 @section('content')
-<section class="pd-tp pd-bt">
+<section class="pd-tp pd-bt" style="margin-bottom: 400px;">
 
 
 <div class="container">

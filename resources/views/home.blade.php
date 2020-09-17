@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title','Welcome')
 @section('content')
 <section>
         <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
