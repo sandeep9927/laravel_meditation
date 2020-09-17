@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserProfile;
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,7 @@ class UserProfileController extends Controller
     }
 
     public function edit()
-    {
+    {   
         return view('profiles.edit_profile')->with('user', Auth::user());
     }
 
