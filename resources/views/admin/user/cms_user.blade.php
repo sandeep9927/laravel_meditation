@@ -51,7 +51,9 @@
                 <th scope="col">Delete</th>
               </tr>
             </thead>
-            <tbody><?php $count = 1; ?>
+            <tbody>@php
+              $count = 1+(request()->get('page',1)-1)*10; 
+           @endphp
               @foreach ($users as $user)
               <tr>
                 <th scope="row">{{$count++}}</th>
@@ -98,28 +100,6 @@
   {{ $users->links() }}
 </div>
 @endsection
-@section('footer-script')
-<script>
-  $('.toggle-class').on('change',function(){
-    var status = $(this).prop('chacked')==true ? 1 : 0;
-    var user_id = $(this).data('id');
-    console.log('=============');
-    alert('are you sure ');
-    $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ url('changeStatus') }}',
-            data: {'status': status, 'user_id': user_id},
-            
-            success: function(data){
-              console.log(data.success);
-              console.log('=============');
-            }
-        });
-        alert(user_id);
-  })
-</script>
 
-@endsection
 
 

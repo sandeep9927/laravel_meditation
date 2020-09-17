@@ -1,6 +1,7 @@
 @extends('layout')
-
+@section('title','Register')
 @section('content')
+<section style="margin-bottom: 400px;">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -74,4 +75,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

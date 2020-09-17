@@ -2,7 +2,7 @@
 @section('title','Rozar Pay')
 @section('content')
     
-
+<section style="margin-bottom: 550px;">
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -70,5 +70,5 @@
     </div>
 </body>
 </html>
-
+</section>
 @endsection

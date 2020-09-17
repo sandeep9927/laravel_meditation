@@ -51,18 +51,6 @@
         <p class="lead">{!!$show_techniuqe->description!!}</p>
         <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
         <hr>
-        <blockquote class="blockquote">
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer class="blockquote-footer">Someone famous in
-            <cite title="Source Title">Source Title</cite>
-          </footer>
-        </blockquote>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
-        <hr>
         
         <form action="{{ url('technique/'.$show_techniuqe->id) }}" method="POST">
           @csrf
