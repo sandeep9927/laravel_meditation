@@ -13,12 +13,12 @@
                 <div class="row">
                     @if (Auth::user()->image)
                     <div class="col-sm-6 col-md-4">
-                        <img src="../images/{{ Auth::user()->image }}" alt="" class="img-rounded img-responsive" />
+                        <img src="{{ url('/images/'.Auth::user()->image) }}" alt="" class="img-rounded img-responsive" />
                         
                     </div>
                     @else
                     <style>.avatar {vertical-align: middle;width: 80px;height: 90px; margin-left: 20px;margin-right: 30px;}</style>
-                    <img src="../images/avatar.png" alt="Avatar" class="avatar" st>
+                    <img src="{{ url('/images/avatar.png') }}" alt="Avatar" class="avatar" st>
                     @endif
                     
                     

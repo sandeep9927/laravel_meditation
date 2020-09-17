@@ -60,7 +60,7 @@
                 
               <td>{{$count++}}</td>
               <td><a href="{{url('blogs/'. $blog->id)}}">{{$blog->title}}</a></td>
-              <td><img style="width:100px" src="{{'/images/'.$blog->image}}" alt="no-image.png"></td>
+              <td><img style="width:100px" src="{{url('/images/'.$blog->image)}}" alt="no-image.png"></td>
               <td>{{$blog->type}}</td>
               <td>{{$blog->writer->name}}</td>
               <td>{{$blog->status}}</td>

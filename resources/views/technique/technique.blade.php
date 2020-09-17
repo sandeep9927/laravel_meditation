@@ -5,9 +5,9 @@
 
 
 <link rel="stylesheet" href="{{ asset('css/ul.css') }}">
-<div class="jumbotron" style="background-image: url('/images/v.jpg');  background-repeat: no-repeat;
-background-size: 100%;height:250px;">
-
+<div class="" >
+<img src="{{ url('/images/v.jpg') }}" alt="" style="background-repeat: no-repeat;
+width:100%;height:250px;">
 </div>
 <h4 style="text-align: center">Select Techniques By Tradition or By Need or By Level</h4><hr>
 <div class="container">    
