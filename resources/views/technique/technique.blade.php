@@ -5,10 +5,7 @@
 
 
 <link rel="stylesheet" href="{{ asset('css/ul.css') }}">
-<div class="" >
-<img src="{{ url('/images/v.jpg') }}" alt="" style="background-repeat: no-repeat;
-width:100%;height:250px;">
-</div>
+<img src="{{ url('/images/v.jpg') }}" class="img-fluid" alt="Responsive image" style="width: 100%;height:240px;">
 <h4 style="text-align: center">Select Techniques By Tradition or By Need or By Level</h4><hr>
 <div class="container">    
   <div class="row">

@@ -48,6 +48,11 @@ class LoginController extends Controller
         if($user->status == 0){
             Auth::logout();
             return redirect('login')->with('message','You need to verify your account');
+        }elseif($user->user_status == 'inactive'){
+            Auth::logout();
+            return redirect('login')->with('message','Your account has disable and you need to contact of administrator');
+        }else {
+            return redirect('login')->with('message','You are are user');
         }
     }
 

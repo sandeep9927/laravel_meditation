@@ -12,16 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('can:isAdmin')->except('admin', 'adminlogin');
-    // }
-
+   
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +35,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -57,7 +48,7 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Banner  $banner
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -125,18 +116,12 @@ class AdminController extends Controller
     {
         return $this->edit(auth()->user()->id);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy($id)
     {/**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
         $writer_delete = User::find($id);

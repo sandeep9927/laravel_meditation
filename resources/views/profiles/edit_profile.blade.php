@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title','edit')
 @section('content')
-<section style="padding: 94.5px 0;">
+<section style="padding: 94.5px 0; margin-bottom:250px;" >
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
   @endif
