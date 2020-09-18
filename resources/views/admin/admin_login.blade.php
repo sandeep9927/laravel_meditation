@@ -33,7 +33,7 @@
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Forgot Password?</a>
+                                <a href="{{ url('/password/reset') }}" class="text-info">Forgot Password?</a>
                             </div>
                         </form>
                     </div>
