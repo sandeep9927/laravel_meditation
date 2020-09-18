@@ -20,17 +20,7 @@
             <input type="email" class="form-control" name="email" value="{{$writer_edit->email}}">
             @error('email')<p style="color: red">{{$message}}</p>@enderror
             
-          </div>
-        <div class="form-group" hidden>
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" name="password" value="{{$writer_edit->password}}">
-          @error('password')<p style="color: red">{{$message}}</p>@enderror
-        </div>
-        <div class="form-group" hidden>
-            <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" name="password_confirmation" value="{{$writer_edit->password}}">
-            @error('password_confirmation')<p style="color: red">{{$message}}</p>@enderror
-          </div>  
+          </div> 
           <label for="">Status</label><br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="status" value="active" required>
