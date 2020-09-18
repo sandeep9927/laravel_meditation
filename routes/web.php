@@ -157,7 +157,7 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
 
 
 //<------------------------------chnagePassword-------------------->$this
-Route::get('change/password', 'AdminController@changePassView');
+Route::get('change/password', 'AdminController@changePassView')->middleware('auth');
 Route::post('change/password', 'AdminController@changePassword')->name('changePassword');
 
 Route::get('changeStatus', 'UserController@ChangeUserStatus');
