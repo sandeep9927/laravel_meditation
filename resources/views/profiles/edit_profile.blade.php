@@ -33,17 +33,6 @@
       @error('dob')<p style="color: red">{{$message}}</p>@enderror
     </div>
 
-    <div class="form-group" hidden>
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control"  name="password" >
-      @error('password')<p style="color: red">{{$message}}</p>@enderror
-    </div>
-    <div class="form-group" hidden>
-      <label for="exampleInputPassword1">Confirm Password</label>
-      <input type="password" class="form-control"  name="password_confirmation" >
-      @error('password_confirmation')<p style="color: red">{{$message}}</p>@enderror
-    </div>
-        
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

@@ -81,13 +81,9 @@ class AdminController extends Controller
         }
         $writer_update->name = $request->input('username');
         $writer_update->email = $request->input('email');
-        $writer_update->password = $request->input('password');
         $writer_update->user_status = $request->input('status');
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
-        if ($request->has('password')) {
-            $writer_update->password = Hash::make($request->password);
-        }
         $writer_update->save();
         return redirect("writers")->with('message', 'Writer Successfully Updated');
     }
