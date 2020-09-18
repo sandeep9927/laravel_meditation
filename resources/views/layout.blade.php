@@ -64,6 +64,9 @@
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
+                      <li class="nav-link"> <a class="nav-item nav-link" href="{{ route('changePassword') }}">
+                      Change Password
+                     </a></li>
                   
                 @else
                 <li class="nav-link">
