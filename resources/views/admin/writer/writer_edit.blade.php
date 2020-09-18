@@ -21,12 +21,12 @@
             @error('email')<p style="color: red">{{$message}}</p>@enderror
             
           </div>
-        <div class="form-group">
+        <div class="form-group" hidden>
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" name="password" value="{{$writer_edit->password}}">
           @error('password')<p style="color: red">{{$message}}</p>@enderror
         </div>
-        <div class="form-group">
+        <div class="form-group" hidden>
             <label for="exampleInputPassword1">Confirm Password</label>
             <input type="password" class="form-control" name="password_confirmation" value="{{$writer_edit->password}}">
             @error('password_confirmation')<p style="color: red">{{$message}}</p>@enderror

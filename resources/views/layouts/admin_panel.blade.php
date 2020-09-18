@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   <title>@yield('title')</title>
 
 
@@ -40,16 +40,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
-      <a class="nav-item nav-link" href="{{ route('logout') }}"
-         onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
-          {{ __('Logout') }}
-      </a>
+      <li>
+       
+        <div class="dropdown" style="float:right;">
+          <button class="dropbtn">Hi,{{ Auth::user()->name }}</button>
+          <div class="dropdown-content">
+            <a class="nav-item nav-link" href="#">{{ Auth::user()->email }}</a>
+            <a class="nav-item nav-link" href="{{ route('changePassword') }}">
+              Change Password
+            </a>
+            <a class="nav-item nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
 
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-      </form>
-      <!-- Notifications Dropdown Menu -->
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+              
+          </div>
+        </div>
+
+
+      </li>
      
     </ul>
     
