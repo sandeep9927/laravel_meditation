@@ -76,7 +76,7 @@ class AdminController extends Controller
         $writer_update->mobile = $request->input('number');
         $writer_update->image = $filename;
         $writer_update->save();
-        return redirect("writers")->with('message', 'Writer Successfully Updated');
+        return redirect("writers")->with('message', 'Successfully Updated');
     }
 
     public function changePassView()

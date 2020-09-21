@@ -65,7 +65,7 @@
               <td>{{$blog->writer->name}}</td>
               <td>{{$blog->status}}</td>
               <td>{{$blog->updated_at}}</td>
-              @if(Auth::check() && Auth::user()->id==$blog->writer_id)
+              @if(Auth::check() && Auth::user()->id==$blog->writer_id || Auth::user()->role_id==1)
               <td><a class="btn btn-primary" href="{{url("blogs/$blog->id/edit")}}">Edit</a></td>
               <td>
                 <form action="{{url("blogs/$blog->id")}}" method="post">
