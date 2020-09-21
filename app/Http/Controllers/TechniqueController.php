@@ -6,6 +6,7 @@ use App\ChildCategory;
 use App\ParentCategory;
 use App\Technique;
 use App\Comment;
+use DB;
 use Illuminate\Http\Request;
 
 class TechniqueController extends Controller

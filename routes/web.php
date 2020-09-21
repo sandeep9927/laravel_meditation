@@ -145,7 +145,7 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
     Route::get('users/create','UserController@create');
     Route::post('users','UserController@store');
     Route::get('site_user','UserController@site_user');
-    Route::get('site_user/{id}/edit','UserController@edit');
+    Route::get('cms/{id}/edit','UserController@edit');
     Route::get('/user/{id}/delete','UserController@destroy');
     
     Route::get('update-my-profile','UserController@updateprofile');
@@ -157,7 +157,7 @@ Route::group(['middleware'=>'can:isAdmin'], function () {
 
 
 //<------------------------------chnagePassword-------------------->$this
-Route::get('change/password', 'AdminController@changePassView');
+Route::get('change/password', 'AdminController@changePassView')->middleware('auth');
 Route::post('change/password', 'AdminController@changePassword')->name('changePassword');
 
 Route::get('changeStatus', 'UserController@ChangeUserStatus');

@@ -1,7 +1,6 @@
 @extends('layouts.admin_panel')
 @section('title','cms user')
 @section('content')
-{{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 <div >
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
@@ -60,45 +59,45 @@
                 
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>
-                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-                  data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}>
-               </td>
-                {{-- <td>{{$user->user_status}}</td> --}}
+               <td>
+                <input type="checkbox" data-id="{{ $user->id }}" name="status" class="js-switch" {{ $user->user_status == 'active' ? 'checked' : '' }}>
+                </td>
                 <td>{{$user->role->role}}</td>
                 <td>{{$user->created_at}}</td>
-                <td><a class="btn btn-primary" href="{{url("/update-user-profile")}}">Edit</a></td>
+                <td><a class="btn btn-primary" href="{{url("/cms/$user->id/edit")}}">Edit</a></td>
                 <td><a class="btn btn-danger" href="{{url("/user/$user->id/delete")}}">Delete</a></td>
               </tr> 
               @endforeach
             </tbody>
      </table>
 </div>
-
-<script>
-  $('.toggle-class').on('change',function(){
-    var status = $(this).prop('chacked')==true ? 1 : 0;
-    var user_id = $(this).data('id');
-    console.log('=============');
-    alert("Are you sure ");
-    $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ url('changeStatus') }}',
-            data: {'status': status, 'user_id': user_id},
-            
-            success: function(data){
-              console.log(data.success);
-              console.log('=============');
-            }
-        });
-      alert(user_id);
-  })
-</script>
-
 <div class="col-sm-12">
   {{ $users->links() }}
 </div>
+@endsection
+
+@section('footer-script')
+<script>let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+  elems.forEach(function(html) {
+      let switchery = new Switchery(html,  { size: 'small' });
+  });
+  $(document).ready(function(){
+    $('.js-switch').change(function () {
+        let status = $(this).prop('checked') === true ? 'active' : 'inactive';
+        let userId = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ url('changeStatus') }}',
+            data: {'status': status, 'user_id': userId},
+            success: function (data) {
+                
+            }
+        });
+    });
+});
+  </script>
 @endsection
 
 
