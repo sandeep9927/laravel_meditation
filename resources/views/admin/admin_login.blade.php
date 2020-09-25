@@ -1,8 +1,10 @@
+<head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>Admin Login</title>
 <!------ Include the above in your HEAD tag ---------->
-
+</head>
 <body>
     
 <form action="{{url('admin/dashboard')}}" method="post">
@@ -28,10 +30,11 @@
                                 <input type="password" name="password" id="password" class="form-control">
                                 @error('password')<p style="color: red">{{$message}}</p>@enderror
                             </div>
-                            <div class="form-group">
-                                <br>
+                            <ul>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
-                            </div>
+                                <a class="btn btn-info btn-md" href="{{ url('/') }}">Home</a>
+                            </ul>
+                        
                             <div id="register-link" class="text-right">
                                 <a href="{{ url('/password/reset') }}" class="text-info">Forgot Password?</a>
                             </div>

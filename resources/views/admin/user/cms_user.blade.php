@@ -1,6 +1,7 @@
 @extends('layouts.admin_panel')
 @section('title','cms user')
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div >
   @if (Session::get('message'))
 <p class="alert alert-success">{{Session('message')}}</p>
@@ -41,6 +42,7 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">S.No</th>
+                <th scope="col">Users Online</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
@@ -56,7 +58,12 @@
               @foreach ($users as $user)
               <tr>
                 <th scope="row">{{$count++}}</th>
-                
+                @if ($user->isOnline())
+                   <td class="text-success"><i class="fa fa-circle"></i> online </td> 
+                @else
+                <td class="text-danger"><i class="fa fa-circle"></i> Offline</td> 
+                @endif
+                {{-- <td>{{ \Carbon\Carbon::parse($user->update_at)->diffForHumans() }}</td> --}}
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                <td>

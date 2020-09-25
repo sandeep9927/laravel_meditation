@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\UserProfile;
 use Auth;
 use App\User;
+use App\Technique;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +14,8 @@ class UserProfileController extends Controller
 
     public function show()
     {
-        return view('profiles.profile');
+        $favorite = Technique::get()->where('favorite','=','yes');
+        return view('profiles.profile',compact('favorite'));
     }
 
     public function edit()
@@ -55,5 +57,14 @@ class UserProfileController extends Controller
     public function destroy(UserProfile $userProfile)
     {
         //
+    }
+
+    public function favoritePost(Request $request)
+    {
+        $favorite = Technique::find($request->user_id);
+        $favorite->favorite = $request->status;
+        $favorite->save();
+  
+        return response()->json(['success'=>'User favorite change successfully.']);
     }
 }
