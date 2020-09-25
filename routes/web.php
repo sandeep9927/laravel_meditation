@@ -162,3 +162,4 @@ Route::post('change/password', 'AdminController@changePassword')->name('changePa
 
 Route::get('changeStatus', 'UserController@ChangeUserStatus');
 Route::post('/comment/{post}','CommentController@store')->name('comment.store');
+Route::get('favoritePost', 'UserProfileController@favoritePost');

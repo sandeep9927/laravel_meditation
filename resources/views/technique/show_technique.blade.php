@@ -50,6 +50,7 @@
         <!-- Post Content -->
         <p class="lead">{!!$show_techniuqe->description!!}</p>
         <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <div style="float: right;"><input data-id="{{$show_techniuqe->id}}" class="toggle-class" type="checkbox" data-onstyle="danger" data-offstyle="white" data-toggle="toggle"  data-on="<i class='fa fa-heart'></i>" data-off="<i class='fa fa-heart'></i>" {{ $show_techniuqe->favorite ? 'checked' : '' }}></div>
         <hr>
         
         <form action="{{ url('technique/'.$show_techniuqe->id) }}" method="POST">
@@ -61,8 +62,25 @@
           <script type="text/javascript">$("#input-id").rating();</script>
           </div>
         </form>
-        <!-- Comments Form -->
-        
+         <!-- set color and hide if not favourited -->
+         <script>
+          $(function() {
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 'yes' : 'no'; 
+                var user_id = $(this).data('id'); 
+                 console.log(status);
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{ url('favoritePost') }}',
+                    data: {'status': status, 'user_id': user_id},
+                    success: function(data){
+                      console.log('cool');
+                    }
+                });
+            })
+          })
+        </script>
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:({{ $show_techniuqe->comments()->count()}})</h5>
           <div class="card-body">

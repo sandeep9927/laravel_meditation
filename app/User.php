@@ -5,6 +5,7 @@ namespace App;
 use App\Role;
 use App\Technique;
 use Gate;
+use Cache;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -60,5 +61,9 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany('App\Comment','user_id');
+    }
+
+    public function isOnline(){
+        return Cache::has('user-is-online-'. $this->id);
     }
 }
